@@ -149,8 +149,8 @@ devDependencies:
     specifier: ^1.0.4
     version: 1.0.4(jsdom@23.0.1)
   wrangler:
-    specifier: ^3.20.0
-    version: 3.20.0
+    specifier: ^3.21.0
+    version: 3.21.0
 
 packages:
 
@@ -757,6 +757,13 @@ packages:
     resolution: {integrity: sha512-+kWfpCkqiepwAKXyHoE0gnkPgkLhz0/9HOBIGhHRsUvUKvhUtm3mbqqoGRWgF1qcjzrDUBbrrOq4MYHfFtc2RA==}
     dev: false
 
+  /@cspotcode/source-map-support@0.8.1:
+    resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
+    engines: {node: '>=12'}
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.9
+    dev: true
+
   /@emmetio/abbreviation@2.3.3:
     resolution: {integrity: sha512-mgv58UrU3rh4YgbE/TzgLQwJ3pFsHHhCLqY20aJq+9comytTXUDNGG/SMtSeMJdkpxgXSXunBGLD8Boka3JyVA==}
     dependencies:
@@ -1272,6 +1279,13 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
+
+  /@jridgewell/trace-mapping@0.3.9:
+    resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
+    dependencies:
+      '@jridgewell/resolve-uri': 3.1.1
+      '@jridgewell/sourcemap-codec': 1.4.15
+    dev: true
 
   /@lit-labs/ssr-dom-shim@1.1.2:
     resolution: {integrity: sha512-jnOD+/+dSrfTWYfSXBXlo5l5f0q1UuJo3tkbMDCYA2lKUYq79jaxqtGEvnRoh049nt1vdo1+45RinipU6FGY2g==}
@@ -8027,12 +8041,13 @@ packages:
       '@cloudflare/workerd-windows-64': 1.20231030.0
     dev: true
 
-  /wrangler@3.20.0:
-    resolution: {integrity: sha512-7mg25zJByhBmrfG+CbImSid7JNd5lxGovLA167ndtE8Yrqd3TUukrGWL8o0RCQIm0FUcgl2nCzWArJDShlZVKA==}
+  /wrangler@3.21.0:
+    resolution: {integrity: sha512-DLoo4XfjeyuGRAVWZFHmU1jWnZIfyLGDm6Ika9oy/CLCPfJzVJvf2jI70EU5BlEHWDZXMSJKw7FDdgSqwhaQXg==}
     engines: {node: '>=16.17.0'}
     hasBin: true
     dependencies:
       '@cloudflare/kv-asset-handler': 0.2.0
+      '@cspotcode/source-map-support': 0.8.1
       '@esbuild-plugins/node-globals-polyfill': 0.2.3(esbuild@0.17.19)
       '@esbuild-plugins/node-modules-polyfill': 0.2.2(esbuild@0.17.19)
       blake3-wasm: 2.1.5
@@ -8044,7 +8059,6 @@ packages:
       resolve.exports: 2.0.2
       selfsigned: 2.4.1
       source-map: 0.6.1
-      source-map-support: 0.5.21
       xxhash-wasm: 1.0.2
     optionalDependencies:
       fsevents: 2.3.3
