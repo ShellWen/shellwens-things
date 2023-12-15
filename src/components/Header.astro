@@ -10,9 +10,9 @@ const { isSticky = false } = Astro.props
 
 <div class="sticky top-0 flex flex-col items-center sm:pt-4" class:list={[{ 'z-50 sm:fixed sm:w-full': !isSticky }]}>
   <nav
-    class="navbar flex-wrap gap-2 bg-neutral px-8 text-neutral-content shadow-lg dark:shadow-none sm:max-w-xl sm:gap-0 sm:rounded-full"
+    class="navbar flex-wrap gap-2 bg-neutral py-2 text-neutral-content shadow-lg dark:shadow-none sm:max-w-xl sm:gap-0 sm:rounded-full sm:px-8"
   >
-    <h2 class="flex w-full flex-1 justify-center text-xl sm:block sm:w-auto">
+    <h2 class="flex w-full flex-1 justify-center pt-2 text-xl sm:block sm:w-auto sm:pt-0">
       <a href="/">
         <strong>ShellWen</strong>'s Everything
       </a>
