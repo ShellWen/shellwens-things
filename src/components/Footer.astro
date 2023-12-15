@@ -7,36 +7,40 @@ import { MdEmail } from 'react-icons/md/index'
 const today = new Date()
 ---
 
-<footer class="footer bg-base-300 p-4 text-base-content sm:p-10">
-  <nav class="mx-auto max-w-4xl">
-    <header class="footer-title">联系方式</header>
-    <div class="grid grid-flow-col gap-4">
-      <a href="https://github.com/ShellWen" target="_blank">
-        <span class="sr-only">在 GitHub 上关注我：@ShellWen</span>
-        <SiGithub className="h-6 w-6" />
-      </a>
-      <a href="https://twitter.com/realShellWen" target="_blank">
-        <span class="sr-only">在 Twitter 上关注我：@realShellWen</span>
-        <SiTwitter className="h-6 w-6" />
-      </a>
-      <a href="https://t.me/ShellWenTheBear" target="_blank">
-        <span class="sr-only">在 Telegram 上私信我：@ShellWenTheBear</span>
-        <SiTelegram className="h-6 w-6" />
-      </a>
-      <a href="mailto:me@shellwen.com" target="_blank">
-        <span class="sr-only">给我发 E-mail: me@shellwen.com</span>
-        <MdEmail className="h-6 w-6" />
-      </a>
-    </div>
-  </nav>
-  <nav>
-    <header class="footer-title">版权</header>
-    <span>&copy; {today.getFullYear()} ShellWen. All rights reserved.</span>
-    <br />
-    <span>
-      本页面内容，除特别声明外，均采用
-      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" class="link">CC BY-NC-SA 4.0 Deed</a>
-       协议授权。
-    </span>
-  </nav>
-</footer>
+<div class="w-full bg-base-300 p-8">
+  <footer class="footer mx-auto max-w-4xl text-base-content">
+    <nav>
+      <header class="footer-title">联系方式</header>
+      <div class="grid grid-flow-col gap-4">
+        <a href="https://github.com/ShellWen" target="_blank">
+          <span class="sr-only">在 GitHub 上关注我：@ShellWen</span>
+          <SiGithub className="h-6 w-6" />
+        </a>
+        <a href="https://twitter.com/realShellWen" target="_blank">
+          <span class="sr-only">在 Twitter 上关注我：@realShellWen</span>
+          <SiTwitter className="h-6 w-6" />
+        </a>
+        <a href="https://t.me/ShellWenTheBear" target="_blank">
+          <span class="sr-only">在 Telegram 上私信我：@ShellWenTheBear</span>
+          <SiTelegram className="h-6 w-6" />
+        </a>
+        <a href="mailto:me@shellwen.com" target="_blank">
+          <span class="sr-only">给我发 E-mail: me@shellwen.com</span>
+          <MdEmail className="h-6 w-6" />
+        </a>
+      </div>
+    </nav>
+    <nav>
+      <header class="footer-title">版权</header>
+      <span>&copy; {today.getFullYear()} ShellWen. All rights reserved.</span>
+      <br />
+      <span>
+        本页面内容，除特别声明外，均采用
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" class="link"
+          >CC BY-NC-SA 4.0 Deed</a
+        >
+         协议授权。
+      </span>
+    </nav>
+  </footer>
+</div>
