@@ -1,0 +1,15 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import Content from './Content.astro'
+
+type Props = CollectionEntry<'post'>['data'] & {
+  slug: string
+}
+
+// TODO: Category
+const { slug, title, description, pubDate, updatedDate, heroImage, category } = Astro.props
+---
+
+<Content {slug} {title} {description} {pubDate} {updatedDate} {heroImage}>
+  <slot />
+</Content>

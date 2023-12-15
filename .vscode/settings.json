@@ -1,0 +1,7 @@
+{
+  "prettier.documentSelectors": ["**/*.astro"],
+  "prettier.configPath": "./prettier.config.js",
+  "prettier.requireConfig": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "prettier.prettierPath": "./node_modules/prettier/index.cjs"
+}

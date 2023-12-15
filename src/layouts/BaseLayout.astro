@@ -1,0 +1,66 @@
+---
+import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts'
+
+import BaseHead from '@/components/BaseHead.astro'
+import { ViewTransitions } from 'astro:transitions'
+
+interface Props {
+  title?: string
+  description?: string
+  image?: string
+  children: any
+}
+
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = undefined } = Astro.props
+---
+
+<!doctype html>
+<html lang="zh">
+  <head>
+    <BaseHead title={title} description={description} image={image} />
+    <ViewTransitions />
+  </head>
+  <body>
+    <script>
+      import { $theme, type ThemeType } from '@/lib/theme/stores'
+
+      function updateTheme(theme: ThemeType) {
+        if (theme.colorMode === 'dark') {
+          document.body.classList.add('dark')
+        } else {
+          document.body.classList.remove('dark')
+        }
+        document.body.setAttribute('data-theme', theme.name)
+      }
+
+      $theme.subscribe((theme) => {
+        updateTheme(theme)
+      })
+
+      const domContentLoadedListener = () => {
+        updateTheme($theme.get())
+      }
+
+      document.addEventListener('astro:after-swap', domContentLoadedListener)
+
+      if (import.meta.hot) {
+        import.meta.hot.accept()
+        import.meta.hot.dispose(() => {
+          document.removeEventListener('astro:after-swap', domContentLoadedListener)
+        })
+      }
+    </script>
+    <script>
+      if (import.meta.env.DEV) {
+        const VConsole = (await import('vconsole')).default
+        let instance = new VConsole()
+        
+        document.addEventListener('astro:after-swap', () => {
+          instance.destroy()
+          instance = new VConsole()
+        })
+      }
+    </script>
+    <slot />
+  </body>
+</html>

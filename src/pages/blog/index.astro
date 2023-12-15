@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content'
+import Header from '@/components/Header.astro'
+import Footer from '@/components/Footer.astro'
+import FormattedDate from '@/components/FormattedDate.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const posts = (await getCollection('post')).sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+---
+
+<BaseLayout>
+  <Header isSticky={true} />
+  <main>
+    <section>
+      <ul>
+        {
+          posts.map((post) => (
+            <li>
+              <a href={`/blog/${post.data.category.id}/${post.slug}/`}>
+                <img width={720} height={360} src={post.data.heroImage} alt="" />
+                <h4 class="title">{post.data.title}</h4>
+                <p class="date">
+                  <FormattedDate date={post.data.pubDate} />
+                </p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

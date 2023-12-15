@@ -1,0 +1,34 @@
+---
+import HeaderLink from './HeaderLink.astro'
+
+interface Props {
+  isSticky?: boolean
+}
+
+const { isSticky = false } = Astro.props
+---
+
+<div class="sticky top-0 flex flex-col items-center sm:pt-4" class:list={[{ 'z-50 sm:fixed sm:w-full': !isSticky }]}>
+  <nav
+    class="navbar flex-wrap gap-2 bg-neutral px-8 text-neutral-content shadow-lg dark:shadow-none sm:max-w-xl sm:gap-0 sm:rounded-full"
+  >
+    <h2 class="flex w-full flex-1 justify-center text-xl sm:block sm:w-auto">
+      <a href="/">
+        <strong>ShellWen</strong>'s Everything
+      </a>
+    </h2>
+    <div class="flex w-full flex-none justify-center sm:block sm:w-auto">
+      <ul class="menu menu-horizontal">
+        <li>
+          <HeaderLink href="/">主页</HeaderLink>
+        </li>
+        <li>
+          <HeaderLink href="/blog">博客</HeaderLink>
+        </li>
+        <li>
+          <HeaderLink href="/about">关于我</HeaderLink>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

@@ -1,0 +1,17 @@
+---
+interface Props extends Omit<astroHTML.JSX.TimeHTMLAttributes, 'datetime'> {
+  date: Date
+}
+
+const { date, ...timeProps } = Astro.props
+---
+
+<time datetime={date.toISOString()} {...timeProps}>
+  {
+    date.toLocaleDateString('zh-Hans-CN', {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    })
+  }
+</time>
