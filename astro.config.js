@@ -18,10 +18,12 @@ export default defineConfig({
     sentry({
       dsn: 'https://7df36d7c0ed618e59ae41c6ded5b9a7c@o4506401530511360.ingest.sentry.io/4506401532018688',
       release: `shellwens-things@${process.env.npm_package_version ?? 'unknown'}`,
-      sourceMapsUploadOptions: {
-        project: 'shellwens-things',
-        authToken: process.env.SENTRY_AUTH_TOKEN,
-      },
+      // Sentry does not support source maps for Astro with Cloudflare adapter yet
+      // https://github.com/getsentry/sentry-javascript/issues/9777
+      // sourceMapsUploadOptions: {
+      //   project: 'shellwens-things',
+      //   authToken: process.env.SENTRY_AUTH_TOKEN,
+      // },
     }),
   ],
   adapter: cloudflare({
