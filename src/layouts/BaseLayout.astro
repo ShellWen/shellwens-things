@@ -31,6 +31,20 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = undefined } 
           document.body.classList.remove('dark')
         }
         document.body.setAttribute('data-theme', theme.name)
+
+        // oklch(var(--n)/1)
+        const themeColor = `oklch(${getComputedStyle(document.body).getPropertyValue('--n').trim()})`
+        const metaThemeColor = document.querySelector('meta[name=theme-color]')
+        if (metaThemeColor) {
+          if (metaThemeColor.getAttribute('content') !== themeColor) {
+            metaThemeColor.setAttribute('content', themeColor)
+          }
+        } else {
+          const newMetaThemeColor = document.createElement('meta')
+          newMetaThemeColor.setAttribute('name', 'theme-color')
+          newMetaThemeColor.setAttribute('content', themeColor)
+          document.head.appendChild(newMetaThemeColor)
+        }
       }
 
       $theme.subscribe((theme) => {
@@ -54,7 +68,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = undefined } 
       if (import.meta.env.DEV) {
         const VConsole = (await import('vconsole')).default
         let instance = new VConsole()
-        
+
         document.addEventListener('astro:after-swap', () => {
           instance.destroy()
           instance = new VConsole()
