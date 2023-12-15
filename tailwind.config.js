@@ -4,10 +4,11 @@
  * @typedef {import('daisyui').Config} DaisyUIConfig
  * @typedef {import('@tailwindcss/typography')} TailwindTypographyPlugin
  */
-import tailwindcssAspectRatio from '@tailwindcss/aspect-ratio'
-import tailwindcssTypography from '@tailwindcss/typography'
-import daisyUi from 'daisyui'
-import defaultTheme from 'tailwindcss/defaultTheme'
+import tailwindcssAspectRatio from '@tailwindcss/aspect-ratio';
+import tailwindcssTypography from '@tailwindcss/typography';
+import daisyUi from 'daisyui';
+import defaultTheme from 'tailwindcss/defaultTheme';
+
 
 /**
  * DaisyUI Configuration
@@ -15,6 +16,7 @@ import defaultTheme from 'tailwindcss/defaultTheme'
  */
 const daisyUiConfig = {
   themes: ['dim', 'autumn'],
+  darkTheme: 'dim'
 }
 
 /**
