@@ -28,7 +28,8 @@ export default defineConfig({
     // }),
   ],
   adapter: cloudflare({
-    imageService: 'cloudflare',
+    // Cloudflare's image service need to pay for extra
+    // imageService: 'cloudflare',
+    imageService: 'passthrough',
   }),
-  
 })
