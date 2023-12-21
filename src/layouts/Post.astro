@@ -7,9 +7,9 @@ type Props = CollectionEntry<'post'>['data'] & {
 }
 
 // TODO: Category
-const { slug, title, description, pubDate, updatedDate, heroImage, category } = Astro.props
+const { slug, title, description, pubDate, updatedDate, heroImage, category, heroImageAlt } = Astro.props
 ---
 
-<Content {slug} {title} {description} {pubDate} {updatedDate} {heroImage}>
+<Content {slug} {title} {description} {pubDate} {updatedDate} {heroImage} {heroImageAlt}>
   <slot />
 </Content>

@@ -1,33 +1,60 @@
 ---
+import { Image } from 'astro:assets'
 import { getCollection } from 'astro:content'
 import Header from '@/components/Header.astro'
 import Footer from '@/components/Footer.astro'
 import FormattedDate from '@/components/FormattedDate.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import sortCategories from '@/lib/util/sortCategories'
+
+const categories = sortCategories(await getCollection('category'))
 
 const posts = (await getCollection('post')).sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
 ---
 
 <BaseLayout>
   <Header isSticky={true} />
-  <main>
-    <section>
-      <ul>
-        {
-          posts.map((post) => (
-            <li>
-              <a href={`/blog/${post.data.category.id}/${post.slug}/`}>
-                <img width={720} height={360} src={post.data.heroImage} alt="" />
-                <h4 class="title">{post.data.title}</h4>
-                <p class="date">
-                  <FormattedDate date={post.data.pubDate} />
-                </p>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
+  <main class="mx-auto my-4 max-w-4xl">
+    {
+      categories.map((category) => (
+        <section>
+          <h2 class="py-4">{category.data.name}</h2>
+          <ul class="flex flex-col gap-4">
+            {posts
+              .filter((post) => post.data.category.id === category.id)
+              .map((post) => (
+                <li>
+                  <a
+                    href={`/blog/${post.data.category.id}/${post.slug}/`}
+                    class="card shadow-md lg:card-side dark:bg-base-200 dark:shadow-none"
+                  >
+                    <figure class="w-72">
+                      <Image
+                        src={post.data.heroImage}
+                        alt={post.data.heroImageAlt ?? ''}
+                        class="object-cover"
+                        transition:name={`hero-image-${post.slug}`}
+                      />
+                    </figure>
+                    <div class="card-body">
+                      <h4 class="card-title" transition:name={`title-${post.slug}`}>
+                        {post.data.title}
+                      </h4>
+                      <p class="">
+                        <FormattedDate date={post.data.pubDate} transition:name={`pub-date-${post.slug}`} />
+                        <div transition:name={`updated-date-${post.slug}`}>
+                          上次更新于
+                          <FormattedDate date={post.data.updatedDate} class="" />
+                        </div>
+                      </p>
+                    </div>
+                  </a>
+                </li>
+              ))}
+          </ul>
+        </section>
+      ))
+    }
   </main>
   <Footer />
 </BaseLayout>

@@ -6,42 +6,44 @@ import BaseLayout from './BaseLayout.astro'
 
 import Comments from '@/components/Comments'
 import { SITE_TITLE } from '@/consts'
+import { Image } from 'astro:assets'
 
 type Props = {
   slug: string
   title: string
   description: string
   pubDate: Date
-  updatedDate?: Date | undefined
-  heroImage?: string | undefined
+  updatedDate: Date
+  heroImage: ImageMetadata
+  heroImageAlt?: string | undefined
 }
 
-const { slug, title, description, pubDate, updatedDate, heroImage } = Astro.props
+const { slug, title, description, pubDate, updatedDate, heroImage, heroImageAlt } = Astro.props
 
 const term = `${title} | ${slug}`
 ---
 
-<BaseLayout title={`${title} | ${SITE_TITLE}`} description={description} image={heroImage}>
+<BaseLayout title={`${title} | ${SITE_TITLE}`} description={description} image={heroImage?.src}>
   <Header />
   <main>
     <article class="w-full">
       <div class="relative h-[30vh] sm:h-[50vh]">
-        {heroImage && <img src={heroImage} alt="" class="h-full w-full object-cover object-center" />}
-        <div class="absolute left-0 top-0 h-full w-full items-center justify-end bg-black opacity-50"></div>
+        <Image
+          src={heroImage}
+          alt={heroImageAlt ?? ''}
+          class="h-full w-full object-cover object-center brightness-50"
+          transition:name={`hero-image-${slug}`}
+        />
         <div
           class="absolute left-0 top-0 flex h-full w-full flex-col justify-end p-4 text-white sm:pb-8 sm:text-center"
         >
-          {title && <h1 class="text-2xl sm:text-4xl">{title}</h1>}
+          <h1 class="text-2xl sm:text-4xl" transition:name={`title-${slug}`}>{title}</h1>
           <br />
-          {pubDate && <FormattedDate date={pubDate} class="" />}
-          {
-            updatedDate && (
-              <div>
-                上次更新于
-                <FormattedDate date={updatedDate} class="" />
-              </div>
-            )
-          }
+          <FormattedDate date={pubDate} class="" transition:name={`pub-date-${slug}`} />
+          <div transition:name={`updated-date-${slug}`}>
+            上次更新于
+            <FormattedDate date={updatedDate} class="" />
+          </div>
         </div>
       </div>
       <div class="prose mx-auto w-full p-4">

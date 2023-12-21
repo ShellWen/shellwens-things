@@ -2,7 +2,8 @@
 title: 'Third post'
 description: 'Lorem ipsum dolor sit amet'
 pubDate: 'Jul 15 2022'
-heroImage: '/blog-placeholder-2.jpg'
+updatedDate: 'Jul 15 2022'
+heroImage: '@assets/images/blog-placeholder-2.jpg'
 category: frontend
 ---
 

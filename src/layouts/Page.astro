@@ -6,9 +6,9 @@ type Props = CollectionEntry<'page'>['data'] & {
   slug: string
 }
 
-const { slug, title, description, pubDate, updatedDate, heroImage } = Astro.props
+const { slug, title, description, pubDate, updatedDate, heroImage, heroImageAlt } = Astro.props
 ---
 
-<Content {slug} {title} {description} {pubDate} {updatedDate} {heroImage}>
+<Content {slug} {title} {description} {pubDate} {updatedDate} {heroImage} {heroImageAlt}>
   <slot />
 </Content>
