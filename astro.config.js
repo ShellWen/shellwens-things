@@ -29,6 +29,6 @@ export default defineConfig({
   ],
   adapter: cloudflare({
     imageService: 'cloudflare',
-    mode: 'directory',
   }),
+  
 })
