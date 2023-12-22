@@ -7,6 +7,7 @@ import BaseLayout from './BaseLayout.astro'
 import Comments from '@/components/Comments'
 import { SITE_TITLE } from '@/consts'
 import { Image } from 'astro:assets'
+import { MdOutlineAccessTime, MdOutlineEdit } from 'react-icons/md/index'
 
 type Props = {
   slug: string
@@ -39,9 +40,12 @@ const term = `${title} | ${slug}`
         >
           <h1 class="text-2xl sm:text-4xl" transition:name={`title-${slug}`}>{title}</h1>
           <br />
-          <FormattedDate date={pubDate} class="" transition:name={`pub-date-${slug}`} />
+          <div transition:name={`pub-date-${slug}`}>
+            <MdOutlineAccessTime className="inline-block" />
+            <FormattedDate date={pubDate} />
+          </div>
           <div transition:name={`updated-date-${slug}`}>
-            上次更新于
+            <MdOutlineEdit className="inline-block" />
             <FormattedDate date={updatedDate} class="" />
           </div>
         </div>

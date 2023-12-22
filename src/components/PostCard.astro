@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets'
+import FormattedDate from '@/components/FormattedDate.astro'
+import { MdOutlineAccessTime } from 'react-icons/md/index'
+import type { CollectionEntry } from 'astro:content'
+
+interface Props extends astroHTML.JSX.AnchorHTMLAttributes {
+  post: CollectionEntry<'post'>
+}
+
+const { post, class: className = '', ...rest } = Astro.props
+---
+
+<a
+  href={`/blog/${post.data.category.id}/${post.slug}/`}
+  class={`card shadow-md dark:bg-base-200 dark:shadow-none ${className}`}
+  {...rest}
+>
+  <figure class="w-[var(--figure-width)] flex-shrink-0">
+    <Image
+      src={post.data.heroImage}
+      alt={post.data.heroImageAlt ?? ''}
+      class="size-full"
+      transition:name={`hero-image-${post.slug}`}
+    />
+  </figure>
+  <div class="card-body">
+    <h4 class="card-title" transition:name={`title-${post.slug}`}>
+      {post.data.title}
+    </h4>
+    <p>
+      {post.data.description}
+
+      <div class="flex flex-row flex-wrap">
+        <div transition:name={`pub-date-${post.slug}`}>
+          <MdOutlineAccessTime className="inline-block" />
+          <FormattedDate date={post.data.pubDate} />
+        </div>
+      </div>
+    </p>
+  </div>
+</a>

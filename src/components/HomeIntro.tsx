@@ -21,7 +21,7 @@ const TextLarge: React.FC<PropsWithChildren<React.HTMLProps<HTMLDivElement>>> = 
 
 const HomeIntro = () => {
   return (
-    <main className="min-h-[80vh] px-8 py-8 font-serif md:px-8">
+    <main className="min-h-[80vh] px-8 py-8 font-serif">
       <article className="mx-auto max-w-4xl">
         <Text>你好，</Text>
         <TextLarge>

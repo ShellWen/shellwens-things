@@ -1,11 +1,10 @@
 ---
-import { Image } from 'astro:assets'
 import { getCollection } from 'astro:content'
 import Header from '@/components/Header.astro'
 import Footer from '@/components/Footer.astro'
-import FormattedDate from '@/components/FormattedDate.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import sortCategories from '@/lib/util/sortCategories'
+import PostCard from '@/components/PostCard.astro'
 
 const categories = sortCategories(await getCollection('category'))
 
@@ -14,46 +13,50 @@ const posts = (await getCollection('post')).sort((a, b) => a.data.pubDate.valueO
 
 <BaseLayout>
   <Header isSticky={true} />
-  <main class="mx-auto my-4 max-w-4xl">
+  <main class="mx-auto my-4 max-w-4xl px-8 lg:px-0">
     {
-      categories.map((category) => (
-        <section>
-          <h2 class="py-4">{category.data.name}</h2>
-          <ul class="flex flex-col gap-4">
-            {posts
-              .filter((post) => post.data.category.id === category.id)
-              .map((post) => (
-                <li>
-                  <a
-                    href={`/blog/${post.data.category.id}/${post.slug}/`}
-                    class="card shadow-md lg:card-side dark:bg-base-200 dark:shadow-none"
-                  >
-                    <figure class="w-72">
-                      <Image
-                        src={post.data.heroImage}
-                        alt={post.data.heroImageAlt ?? ''}
-                        class="size-full"
-                        transition:name={`hero-image-${post.slug}`}
-                      />
-                    </figure>
-                    <div class="card-body">
-                      <h4 class="card-title" transition:name={`title-${post.slug}`}>
-                        {post.data.title}
-                      </h4>
-                      <p class="">
-                        <FormattedDate date={post.data.pubDate} transition:name={`pub-date-${post.slug}`} />
-                        <div transition:name={`updated-date-${post.slug}`}>
-                          上次更新于
-                          <FormattedDate date={post.data.updatedDate} class="" />
-                        </div>
-                      </p>
-                    </div>
-                  </a>
-                </li>
-              ))}
-          </ul>
-        </section>
-      ))
+      categories
+        .map((category) => ({
+          category,
+          posts: posts.filter((post) => post.data.category.id === category.id),
+        }))
+        .map(({ category, posts }) => {
+          return (
+            <section>
+              <h2 class="py-4">{category.data.name}</h2>
+              {posts.length === 0 ? (
+                <div>该分类暂无文章</div>
+              ) : (
+                <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  {posts.map((post, index) => {
+                    if (index > 6) {
+                      return null
+                    }
+                    return (
+                      <li
+                        class:list={[
+                          {
+                            'col-span-1 md:col-span-2 lg:col-span-3': index === 0,
+                            'col-span-1': index !== 0,
+                          },
+                        ]}
+                      >
+                        <PostCard
+                          {post}
+                          class:list={[
+                            {
+                              '[--figure-width:_100%] md:card-side md:[--figure-width:_18rem]': index === 0,
+                            },
+                          ]}
+                        />
+                      </li>
+                    )
+                  })}
+                </ul>
+              )}
+            </section>
+          )
+        })
     }
   </main>
   <Footer />
