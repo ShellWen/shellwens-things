@@ -1,5 +1,7 @@
 ---
+import { getImage } from 'astro:assets'
 import '../styles/global.css'
+import favicon from '@assets/images/favicon.png'
 
 interface Props {
   title: string
@@ -9,13 +11,17 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
-const { title, description, image = "/default_banner.png" } = Astro.props
+const optimizedFaviconAvif = await getImage({ src: favicon, format: 'avif', width: 128, height: 128, quality: 80 })
+const optimizedFaviconWebp = await getImage({ src: favicon, format: 'webp', width: 128, height: 128, quality: 80 })
+
+const { title, description, image = '/default_banner.png' } = Astro.props
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/avif" href={optimizedFaviconAvif.src} />
+<link rel="icon" type="image/webp" href={optimizedFaviconWebp.src} />
 <meta name="generator" content={Astro.generator} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 
@@ -24,7 +30,7 @@ const { title, description, image = "/default_banner.png" } = Astro.props
 
 <!-- Giscus -->
 <!-- https://github.com/giscus/giscus/blob/main/ADVANCED-USAGE.md#meta-tags -->
-<meta name="giscus:backlink" content={canonicalURL}>
+<meta name="giscus:backlink" content={canonicalURL} />
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>

@@ -27,32 +27,39 @@ const posts = (await getCollection('post')).sort((a, b) => a.data.pubDate.valueO
               {posts.length === 0 ? (
                 <div>该分类暂无文章</div>
               ) : (
-                <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  {posts.map((post, index) => {
-                    if (index > 6) {
-                      return null
-                    }
-                    return (
-                      <li
-                        class:list={[
-                          {
-                            'col-span-1 md:col-span-2 lg:col-span-3': index === 0,
-                            'col-span-1': index !== 0,
-                          },
-                        ]}
-                      >
-                        <PostCard
-                          {post}
+                <>
+                  <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                    {posts.map((post, index) => {
+                      if (index > 6) {
+                        return null
+                      }
+                      return (
+                        <li
                           class:list={[
                             {
-                              '[--figure-width:_100%] md:card-side md:[--figure-width:_18rem]': index === 0,
+                              'col-span-1 md:col-span-2 lg:col-span-3': index === 0,
+                              'col-span-1': index !== 0,
                             },
                           ]}
-                        />
-                      </li>
-                    )
-                  })}
-                </ul>
+                        >
+                          <PostCard
+                            {post}
+                            class:list={[
+                              {
+                                '[--figure-width:_100%] md:card-side md:[--figure-width:_18rem]': index === 0,
+                              },
+                            ]}
+                          />
+                        </li>
+                      )
+                    })}
+                  </ul>
+                  {posts.length > 6 && (
+                    <a href={`/category/${category.id}`} class="block py-4 text-center">
+                      查看更多
+                    </a>
+                  )}
+                </>
               )}
             </section>
           )
