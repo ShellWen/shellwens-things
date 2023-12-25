@@ -2,11 +2,12 @@
 import { getImage } from 'astro:assets'
 import '../styles/global.css'
 import favicon from '@assets/images/favicon.png'
+import defaultBanner from '@assets/images/default_banner.png'
 
 interface Props {
   title: string
   description: string
-  image?: string
+  image?: string | ImageMetadata
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
@@ -14,7 +15,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 const optimizedFaviconAvif = await getImage({ src: favicon, format: 'avif', width: 128, height: 128, quality: 80 })
 const optimizedFaviconWebp = await getImage({ src: favicon, format: 'webp', width: 128, height: 128, quality: 80 })
 
-const { title, description, image = '/default_banner.png' } = Astro.props
+const { title, description, image = defaultBanner } = Astro.props
+
+const optimizedImage = await getImage({ src: image, format: 'png', quality: 80 })
 ---
 
 <!-- Global Metadata -->
@@ -42,11 +45,11 @@ const { title, description, image = '/default_banner.png' } = Astro.props
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:image" content={optimizedImage.src} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta property="twitter:image" content={optimizedImage.src} />

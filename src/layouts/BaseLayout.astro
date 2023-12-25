@@ -7,7 +7,7 @@ import { ViewTransitions } from 'astro:transitions'
 interface Props {
   title?: string
   description?: string
-  image?: string
+  image?: string | ImageMetadata
   children: any
 }
 
@@ -17,7 +17,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = undefined } 
 <!doctype html>
 <html lang="zh">
   <head>
-    <BaseHead title={title} description={description} image={image} />
+    <BaseHead {title} {description} {image} />
     <ViewTransitions />
   </head>
   <body>
