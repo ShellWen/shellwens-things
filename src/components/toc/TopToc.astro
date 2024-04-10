@@ -1,0 +1,23 @@
+---
+import { type TocProps } from './index'
+
+type Props = TocProps & astroHTML.JSX.HTMLAttributes
+
+const { headings, ...restProps } = Astro.props
+---
+
+<nav {...restProps}>
+  <ul class="pl-0 text-sm">
+    {
+      headings.map((heading) => (
+        <li class="list-none pl-0">
+          {/* \xa0: non-breaking space */}
+          <span>{'\xa0\xa0'.repeat(heading.depth - 1)}</span>
+          <a class="text-base-content/75 decoration-base-content/25" href={`#${heading.slug}`}>
+            {heading.text}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

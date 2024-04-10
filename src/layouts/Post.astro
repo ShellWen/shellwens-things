@@ -1,15 +1,17 @@
 ---
+import type { MarkdownHeading } from '@astrojs/markdown-remark'
 import type { CollectionEntry } from 'astro:content'
 import Content from './Content.astro'
 
 type Props = CollectionEntry<'post'>['data'] & {
   slug: string
+  headings: MarkdownHeading[]
 }
 
 // TODO: Category
-const { slug, title, description, pubDate, updatedDate, heroImage, category, heroImageAlt } = Astro.props
+const { slug, title, description, pubDate, updatedDate, heroImage, category, heroImageAlt, headings } = Astro.props
 ---
 
-<Content {slug} {title} {description} {pubDate} {updatedDate} {heroImage} {heroImageAlt}>
+<Content {slug} {title} {description} {pubDate} {updatedDate} {heroImage} {heroImageAlt} {headings}>
   <slot />
 </Content>

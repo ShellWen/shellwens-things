@@ -18,7 +18,7 @@ const posts = (await getCollection('post')).sort((a, b) => a.data.pubDate.valueO
       categories
         .map((category) => ({
           category,
-          posts: posts.filter((post) => post.data.category.id === category.id),
+          posts: posts.filter((post) => post.data.category.id === category.id).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
         }))
         .map(({ category, posts }) => {
           return (

@@ -5,9 +5,11 @@ import FormattedDate from '../components/FormattedDate.astro'
 import BaseLayout from './BaseLayout.astro'
 
 import Comments from '@/components/Comments'
+import TopToc from '@/components/toc/TopToc.astro'
 import { SITE_TITLE } from '@/consts'
 import { Image } from 'astro:assets'
 import { MdOutlineAccessTime, MdOutlineEdit } from 'react-icons/md/index'
+import type { MarkdownHeading } from '@astrojs/markdown-remark'
 
 type Props = {
   slug: string
@@ -17,9 +19,10 @@ type Props = {
   updatedDate: Date
   heroImage: ImageMetadata
   heroImageAlt?: string | undefined
+  headings: MarkdownHeading[]
 }
 
-const { slug, title, description, pubDate, updatedDate, heroImage, heroImageAlt } = Astro.props
+const { slug, title, description, pubDate, updatedDate, heroImage, heroImageAlt, headings } = Astro.props
 
 const term = `${title} | ${slug}`
 ---
@@ -52,7 +55,21 @@ const term = `${title} | ${slug}`
       </div>
       <div class="prose mx-auto w-full p-4">
         <div class="mx-auto">
+          <TopToc headings={headings} class="pb-16" />
           <slot />
+          <style is:global>
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+              @apply [--link-opacity:0%;] hover:[--link-opacity:_100%;];
+            }
+            .icon-link {
+              @apply opacity-[var(--link-opacity)] transition-opacity before:-ml-6 before:inline-block before:size-0 before:text-lg before:content-['🔗'];
+            }
+          </style>
         </div>
         <div class="divider">版权声明</div>
         <p class="mx-auto">
