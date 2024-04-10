@@ -6,6 +6,7 @@ import tailwind from '@astrojs/tailwind'
 import { defineConfig } from 'astro/config'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://astro.build/config
 export default defineConfig({
@@ -31,4 +32,11 @@ export default defineConfig({
     syntaxHighlight: 'shiki',
     rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'prepend' }]],
   },
+  vite: {
+    plugins: [visualizer({
+      template: 'sunburst',
+      gzipSize: true,
+      brotliSize: true,
+    })]
+  }
 })
