@@ -1,6 +1,6 @@
 import React, { type PropsWithChildren, memo } from 'react'
 
-import { MdArrowForward } from 'react-icons/md/index'
+import { MdArrowForward } from 'react-icons/md'
 
 const Text: React.FC<PropsWithChildren<React.HTMLProps<HTMLDivElement>>> = memo(
   ({ children, className, ...divProps }) => (
