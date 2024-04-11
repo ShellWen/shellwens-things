@@ -1,0 +1,19 @@
+---
+title: '✨TODO List'
+description: '可不能忘了做'
+pubDate: '2024-04-12'
+updatedDate: '2024-04-12'
+heroImage: '@assets/images/default_banner.png'
+---
+
+- [ ] `Content` 展示 `description`
+- [ ] 将 `HomeIntro` 使用 Astro 重构
+- [ ] 完善博客页面
+  - [ ] 添加分类视图
+  - [ ] 添加标签视图
+- [ ] 添加 RSS 订阅按钮
+  - [ ] 全站 `Footer`
+  - [ ] 分类
+  - [ ] 标签
+- [ ] 增加全站统一 URL 规范
+  - [ ] 用于获取 URL 的函数
