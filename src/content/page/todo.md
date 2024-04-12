@@ -6,7 +6,7 @@ updatedDate: '2024-04-12'
 heroImage: '@assets/images/default_banner.png'
 ---
 
-- [ ] `Content` 展示 `description`
+- [x] `Content` 展示 `description`
 - [ ] 将 `HomeIntro` 使用 Astro 重构
 - [ ] 完善博客页面
   - [ ] 添加分类视图

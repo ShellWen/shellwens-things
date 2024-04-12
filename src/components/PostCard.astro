@@ -29,7 +29,9 @@ const { post, class: className = '', ...rest } = Astro.props
       {post.data.title}
     </h4>
     <p>
-      {post.data.description}
+      <span transition:name={`description-${post.slug}`}>
+        {post.data.description}
+      </span>
 
       <div class="flex flex-row flex-wrap">
         <div transition:name={`pub-date-${post.slug}`}>

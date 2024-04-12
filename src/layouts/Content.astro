@@ -55,7 +55,8 @@ const term = `${title} | ${slug}`
       </div>
       <div class="prose mx-auto w-full p-4">
         <div class="mx-auto">
-          <TopToc headings={headings} class="pb-16" />
+          {description && <p class="mb-0 text-center italic" transition:name={`description-${slug}`}>{description}</p>}
+          {headings.length !== 0 && <TopToc headings={headings} class="py-4" />}
           <slot />
           <style is:global>
             h1,
