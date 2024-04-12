@@ -15,5 +15,6 @@ heroImage: '@assets/images/default_banner.png'
   - [ ] 全站 `Footer`
   - [ ] 分类
   - [ ] 标签
+  - [ ] 设置正确的 html head，如 `<link rel="alternate" type="application/rss+xml" title="Example Feed" href="http://example.com/feed/" />`
 - [ ] 增加全站统一 URL 规范
   - [ ] 用于获取 URL 的函数
