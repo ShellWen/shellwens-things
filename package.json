@@ -30,6 +30,7 @@
     "@types/react": "^18.2.75",
     "@types/react-dom": "^18.2.24",
     "astro": "^4.5.18",
+    "classnames": "^2.5.1",
     "daisyui": "^4.10.1",
     "nanostores": "^0.10.3",
     "react": "^18.2.0",

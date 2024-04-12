@@ -1,11 +1,12 @@
 import React, { type PropsWithChildren, memo } from 'react'
 
+import classNames from 'classnames'
 import { MdArrowForward } from 'react-icons/md'
 
 const Text: React.FC<PropsWithChildren<React.HTMLProps<HTMLDivElement>>> = memo(
   ({ children, className, ...divProps }) => (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <div className={`text-2xl ${className}`} {...divProps}>
+    <div className={classNames('text-2xl', className)} {...divProps}>
       {children}
     </div>
   ),
@@ -13,7 +14,7 @@ const Text: React.FC<PropsWithChildren<React.HTMLProps<HTMLDivElement>>> = memo(
 const TextLarge: React.FC<PropsWithChildren<React.HTMLProps<HTMLDivElement>>> = memo(
   ({ children, className, ...divProps }) => (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <div className={`text-4xl ${className}`} {...divProps}>
+    <div className={classNames('text-4xl', className)} {...divProps}>
       {children}
     </div>
   ),
