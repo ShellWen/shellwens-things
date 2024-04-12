@@ -28,7 +28,7 @@ const term = `${title} | ${slug}`
 ---
 
 <BaseLayout title={`${title} | ${SITE_TITLE}`} description={description} image={heroImage}>
-  <Header class="pb-4" />
+  <Header class="sm:pb-4" />
   <main>
     <article class="w-full">
       <div class="relative h-[30vh] sm:h-[50vh]">
@@ -55,7 +55,13 @@ const term = `${title} | ${slug}`
       </div>
       <div class="prose mx-auto w-full p-4">
         <div class="mx-auto">
-          {description && <p class="mb-0 text-center italic" transition:name={`description-${slug}`}>{description}</p>}
+          {
+            description && (
+              <p class="mb-0 text-center italic" transition:name={`description-${slug}`}>
+                {description}
+              </p>
+            )
+          }
           {headings.length !== 0 && <TopToc headings={headings} class="py-4" />}
           <slot />
           <style is:global>
