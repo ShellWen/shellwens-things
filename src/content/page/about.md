@@ -18,4 +18,4 @@ heroImage: '@assets/images/default_banner.png'
 
 这里好像有点空🤔\
 啊我也不知道该放什么了，先 TODO 一下😋\
-关于整个网站的开发进度，可以查看[这里](/todo){\_blank}。
+关于整个网站的开发进度，可以查看[这里](/todo)。
