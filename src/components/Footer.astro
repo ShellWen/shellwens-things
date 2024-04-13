@@ -6,6 +6,7 @@ import { SiSteam } from 'react-icons/si'
 import { MdEmail } from 'react-icons/md'
 
 const today = new Date()
+const year = today.getFullYear()
 ---
 
 <div class="w-full bg-base-300 p-8" transition:name="footer" transition:persist>
@@ -37,7 +38,7 @@ const today = new Date()
     </nav>
     <nav>
       <header class="footer-title">版权</header>
-      <span>&copy; {today.getFullYear()} ShellWen. All rights reserved.</span>
+      <span>&copy; {year} ShellWen. All rights reserved.</span>
       <br />
       <span>
         本页面内容，除特别声明外，均采用
