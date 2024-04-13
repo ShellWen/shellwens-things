@@ -6,7 +6,12 @@ type Props = astroHTML.JSX.HTMLAttributes
 const { class: propClass, ...props } = Astro.props
 ---
 
-<div class={`sticky top-0 z-50 flex flex-col items-center sm:pt-4 ${propClass}`} transition:name="header" transition:persist {...props}>
+<div
+  class={`sticky top-0 z-50 flex flex-col items-center sm:pt-4 ${propClass}`}
+  transition:name="header"
+  transition:animate="none"
+  {...props}
+>
   <nav
     class="navbar flex-wrap gap-2 bg-neutral py-2 text-neutral-content shadow-lg dark:shadow-none sm:max-w-xl sm:gap-0 sm:rounded-full sm:px-8"
   >
