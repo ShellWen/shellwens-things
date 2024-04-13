@@ -4,6 +4,7 @@ import { SiTwitter } from 'react-icons/si'
 import { SiDiscord } from 'react-icons/si'
 import { SiSteam } from 'react-icons/si'
 import { MdEmail } from 'react-icons/md'
+import { MdRssFeed } from 'react-icons/md'
 
 const today = new Date()
 const year = today.getFullYear()
@@ -47,6 +48,12 @@ const year = today.getFullYear()
         >
         协议授权。
       </span>
+    </nav>
+    <nav>
+      <header class="footer-title">Feed</header>
+      <a href="/rss.xml">
+        <MdRssFeed className="h-6 w-6" />
+      </a>
     </nav>
   </footer>
 </div>
