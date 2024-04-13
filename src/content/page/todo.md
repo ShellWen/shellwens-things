@@ -8,6 +8,7 @@ heroImage: '@assets/images/default_banner.png'
 
 - [x] ~~`Content` 展示 `description`~~
 - [x] ~~将 `HomeIntro` 使用 Astro 重构~~ 暂时不考虑
+- [ ] 做个新的 `HomeIntro`
 - [ ] 完善博客页面
   - [ ] 添加分类视图
   - [ ] 添加标签视图
