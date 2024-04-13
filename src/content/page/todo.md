@@ -14,7 +14,7 @@ heroImage: '@assets/images/default_banner.png'
   - [ ] 添加标签视图
 - [ ] 添加 RSS 订阅按钮
   - [ ] 全站 `Footer`
-  - [ ] 分类
+  - [x] ~~分类~~ 已增加分类 API，未添加按钮
   - [ ] 标签
   - [ ] 设置正确的 html head，如 `<link rel="alternate" type="application/rss+xml" title="Example Feed" href="http://example.com/feed/" />`
 - [ ] 增加全站统一 URL 规范
