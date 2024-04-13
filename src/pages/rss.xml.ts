@@ -9,7 +9,6 @@ export const GET: APIRoute = async function GET(context) {
   if (!context.site) throw new Error('Missing site metadata')
 
   const posts = await getCollection('post')
-  const pages = await getCollection('page')
   const items = [
     ...posts.map((post) => {
       const category = post.data.category.id
@@ -18,10 +17,6 @@ export const GET: APIRoute = async function GET(context) {
         link: `/blog/${category}/${post.slug}/`,
       }
     }),
-    ...pages.map((page) => ({
-      ...page.data,
-      link: `/${page.slug}/`,
-    })),
   ]
   return rss({
     title: SITE_TITLE,
