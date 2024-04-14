@@ -11,6 +11,7 @@ heroImage: '@assets/images/default_banner.png'
 - [ ] 做个新的 `HomeIntro`
 - [ ] 完善博客页面
   - [ ] 添加分类视图
+  - [ ] 在博客总览页面（/blog）中添加跳转到分类的按钮
   - [ ] 添加标签视图
 - [ ] 添加 RSS 订阅按钮
   - [x] ~~全站 `Footer`~~
