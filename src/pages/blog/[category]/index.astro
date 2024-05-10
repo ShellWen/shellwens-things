@@ -1,0 +1,44 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content'
+import Footer from '@/components/Footer.astro'
+import Header from '@/components/Header.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+export async function getStaticPaths() {
+  const categories = await getCollection('category')
+  const posts = await getCollection('post')
+  return categories.map((category) => {
+    return {
+      params: { category: category.id },
+      props: {
+        category,
+        posts: posts.filter((post) => post.data.category.id === category.id),
+      },
+    }
+  })
+}
+type Props = {
+  category: CollectionEntry<'category'>
+  posts: CollectionEntry<'post'>[]
+}
+
+const { category, posts } = Astro.props
+---
+
+<BaseLayout>
+  <Header />
+  <main class="mx-auto my-4 flex max-w-4xl flex-col gap-4 px-8 lg:px-0">
+    <h1>{category.data.name}</h1>
+    <p class="italic">{category.data.description}</p>
+    WARN: Category View are not complete yet
+    {
+      posts.map((post) => (
+        <a href={`/blog/${post.data.category.id}/${post.slug}/`} class="block p-4 border border-gray-200 rounded-md hover:bg-gray-50">
+          <h2>{post.data.title}</h2>
+          <p>{post.data.description}</p>
+        </a>
+      ))
+    }
+  </main>
+  <Footer />
+</BaseLayout>
