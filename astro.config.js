@@ -1,4 +1,5 @@
 // import { rehypeHeadingIds } from '@astrojs/markdown-remark';
+import cloudflare from '@astrojs/cloudflare'
 import mdx from '@astrojs/mdx'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
@@ -12,6 +13,14 @@ import { visualizer } from 'rollup-plugin-visualizer'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://shellwen.com',
+  output: 'hybrid',
+  adapter: cloudflare({
+    imageService: 'compile',
+    platformProxy: {
+      enabled: true,
+      configPath: 'wrangler.toml',
+    },
+  }),
   integrations: [
     mdx(),
     react(),
@@ -34,7 +43,15 @@ export default defineConfig({
     shikiConfig: {
       theme: 'one-dark-pro',
     },
-    rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'prepend' }]],
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: 'prepend',
+        },
+      ],
+    ],
   },
   vite: {
     plugins: [

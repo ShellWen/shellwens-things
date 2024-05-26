@@ -26,3 +26,6 @@ pnpm-debug.log*
 # Rollup Plugin Visualizer
 /stats.html
 /stats.**.html
+
+# Wrangler types
+worker-configuration.d.ts
