@@ -5,48 +5,115 @@ import { SiDiscord } from 'react-icons/si'
 import { SiSteam } from 'react-icons/si'
 import { MdEmail } from 'react-icons/md'
 import { MdRssFeed } from 'react-icons/md'
+import foldLocale from '@/lib/i18n/foldLocale'
 
 const today = new Date()
 const year = today.getFullYear()
 ---
 
 <div class="w-full bg-base-300 p-8" transition:name="footer" transition:animate="none">
-  <footer class="footer mx-auto max-w-4xl text-base-content">
+  <footer class="footer mx-auto max-w-4xl text-base-content [&_nav]:max-w-sm">
     <nav>
-      <header class="footer-title">联系方式</header>
+      <header class="footer-title">
+        {
+          foldLocale(Astro.currentLocale, {
+            en: 'Find Me Here',
+            'zh-hans': '联系方式',
+          })
+        }
+      </header>
       <div class="grid grid-flow-col gap-4">
         <a href="https://github.com/ShellWen" target="_blank">
-          <span class="sr-only">在 GitHub 上关注我：@ShellWen</span>
+          <span class="sr-only">
+            {
+              foldLocale(Astro.currentLocale, {
+                en: 'Follow me on GitHub: @ShellWen',
+                'zh-hans': '在 GitHub 上关注我：@ShellWen',
+              })
+            }
+          </span>
           <SiGithub className="h-6 w-6" />
         </a>
         <a href="https://twitter.com/realShellWen" target="_blank">
-          <span class="sr-only">在 Twitter 上关注我：@realShellWen</span>
+          <span class="sr-only">
+            {
+              foldLocale(Astro.currentLocale, {
+                en: 'Follow me on Twitter: @realShellWen',
+                'zh-hans': '在 Twitter 上关注我：@realShellWen',
+              })
+            }
+          </span>
           <SiTwitter className="h-6 w-6" />
         </a>
         <a href="https://discordapp.com/users/686031289534513225" target="_blank">
-          <span class="sr-only">在 Discord 上找到我：@ShellWen</span>
+          <span class="sr-only">
+            {
+              foldLocale(Astro.currentLocale, {
+                en: 'Find me on Discord: @ShellWen',
+                'zh-hans': '在 Discord 上找到我：@ShellWen',
+              })
+            }
+          </span>
           <SiDiscord className="h-6 w-6" />
         </a>
         <a href="https://steamcommunity.com/id/shellwen/" target="_blank">
-          <span class="sr-only">在 Steam 上和我一起玩：@ShellWen</span>
+          <span class="sr-only">
+            {
+              foldLocale(Astro.currentLocale, {
+                en: 'Play with me on Steam: @ShellWen',
+                'zh-hans': '在 Steam 上和我一起玩：@ShellWen',
+              })
+            }
+          </span>
           <SiSteam className="h-6 w-6" />
         </a>
         <a href="mailto:me@shellwen.com" target="_blank">
-          <span class="sr-only">给我发 E-mail: me@shellwen.com</span>
+          <span class="sr-only">
+            {
+              foldLocale(Astro.currentLocale, {
+                en: 'Send me an E-mail: me@shellwen.com',
+                'zh-hans': '给我发 E-mail: me@shellwen.com',
+              })
+            }
+          </span>
           <MdEmail className="h-6 w-6" />
         </a>
       </div>
     </nav>
     <nav>
-      <header class="footer-title">版权</header>
+      <header class="footer-title">
+        {
+          foldLocale(Astro.currentLocale, {
+            en: 'Copyright',
+            'zh-hans': '版权',
+          })
+        }
+      </header>
       <span>&copy; {year} ShellWen. All rights reserved.</span>
       <br />
       <span>
-        本页面内容，除特别声明外，均采用
-        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" class="link"
-          >CC BY-NC-SA 4.0 Deed</a
-        >
-        协议授权。
+        {
+          foldLocale(Astro.currentLocale, {
+            en: (
+              <>
+                Unless otherwise stated, the content of this page is licensed under the
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed" target="_blank" class="link">
+                  CC BY-NC-SA 4.0 Deed
+                </a>
+                license.
+              </>
+            ),
+            'zh-hans': (
+              <>
+                本页面内容，除特别声明外，均采用
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" class="link">
+                  CC BY-NC-SA 4.0 Deed
+                </a>
+                协议授权。
+              </>
+            ),
+          })
+        }
       </span>
     </nav>
     <nav>

@@ -15,7 +15,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = undefined } 
 ---
 
 <!doctype html>
-<html lang="zh">
+<html lang={Astro.currentLocale}>
   <head>
     <BaseHead {title} {description} {image} />
     <ViewTransitions />

@@ -21,6 +21,20 @@ export default defineConfig({
       configPath: 'wrangler.toml',
     },
   }),
+  i18n: {
+    locales: [
+      'en',
+      {
+        path: 'zh-hans',
+        codes: ['zh-hans', 'zh', 'zh-cn', 'zh-tw', 'zh-hant'],
+      },
+    ],
+    defaultLocale: 'en',
+    routing: {
+      prefixDefaultLocale: true,
+      redirectToDefaultLocale: false,
+    },
+  },
   integrations: [
     mdx(),
     react(),

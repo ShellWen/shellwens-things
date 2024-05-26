@@ -9,7 +9,8 @@
     "paths": {
       "@/*": ["src/*"],
       "@test/*": ["test/*"],
-      "@assets/*": ["src/content/assets/*"],
+      "@assets/*": ["src/content/assets/*"]
     }
-  }
+  },
+  "include": ["src/**/*"]
 }

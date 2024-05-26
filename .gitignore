@@ -29,3 +29,6 @@ pnpm-debug.log*
 
 # Wrangler types
 worker-configuration.d.ts
+
+# Paraglide
+/src/paraglide
