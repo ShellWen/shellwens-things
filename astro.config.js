@@ -15,7 +15,7 @@ export default defineConfig({
   site: 'https://shellwen.com',
   output: 'hybrid',
   adapter: cloudflare({
-    imageService: 'compile',
+    imageService: 'custom',
     platformProxy: {
       enabled: true,
       configPath: 'wrangler.toml',
