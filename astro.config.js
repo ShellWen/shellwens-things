@@ -16,7 +16,7 @@ imageService.entrypoint = './squooshService.js'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://shellwen.com',
-  output: 'hybrid',
+  output: 'server',
   adapter: cloudflare({
     imageService: 'custom',
     platformProxy: {
