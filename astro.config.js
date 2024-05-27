@@ -67,5 +67,8 @@ export default defineConfig({
         brotliSize: true,
       }),
     ],
+    ssr: {
+      noExternal: 'sharp',
+    },
   },
 })
