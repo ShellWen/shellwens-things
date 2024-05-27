@@ -72,5 +72,12 @@
     "rollup-plugin-visualizer": "^5.12.0",
     "vitest": "^1.6.0",
     "wrangler": "^3.57.1"
+  },
+  "pnpm": {
+    "supportedArchitectures": {
+      "cpu": [
+        "wasm32"
+      ]
+    }
   }
 }
