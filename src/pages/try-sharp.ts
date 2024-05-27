@@ -4,8 +4,12 @@ import type { APIRoute } from 'astro'
 export const GET: APIRoute = async () => {
   try {
     await import('sharp')
-  } catch (e) {
-    return Response.json({ error: 'import sharp failed', msg: e }, { status: 500 })
+  } catch (_e) {
+    const e = _e as Error
+    return Response.json(
+      { error: 'import sharp failed', msg: e.message, stack: e.stack, name: e.name },
+      { status: 500 },
+    )
   }
   return Response.json({ success: 'import sharp succeeded' })
 }
