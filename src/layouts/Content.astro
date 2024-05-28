@@ -7,7 +7,7 @@ import BaseLayout from './BaseLayout.astro'
 import Comments from '@/components/Comments'
 import TopToc from '@/components/toc/TopToc.astro'
 import { SITE_TITLE } from '@/consts'
-import { Image } from 'astro:assets'
+import { Picture } from 'astro:assets'
 import { MdOutlineAccessTime, MdOutlineEdit } from 'react-icons/md'
 import type { MarkdownHeading } from '@astrojs/markdown-remark'
 
@@ -32,9 +32,10 @@ const term = `${title} | ${slug}`
   <main>
     <article class="w-full">
       <div class="relative h-[30vh] sm:h-[50vh]">
-        <Image
+        <Picture
           src={heroImage}
           alt={heroImageAlt ?? ''}
+          formats={['avif', 'webp']}
           class="h-full w-full object-cover object-center brightness-50"
           transition:name={`hero-image-${slug}`}
         />

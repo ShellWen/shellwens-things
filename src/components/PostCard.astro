@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets'
+import { Picture } from 'astro:assets'
 import FormattedDate from '@/components/FormattedDate.astro'
 import { MdOutlineAccessTime } from 'react-icons/md'
 import type { CollectionEntry } from 'astro:content'
@@ -17,10 +17,11 @@ const { post, class: className = '', ...rest } = Astro.props
   {...rest}
 >
   <figure class="w-[var(--figure-width)] flex-shrink-0">
-    <Image
+    <Picture
       src={post.data.heroImage}
       alt={post.data.heroImageAlt ?? ''}
-      class="size-full"
+      formats={['avif', 'webp']}
+      class="h-full object-cover"
       transition:name={`hero-image-${post.slug}`}
     />
   </figure>
