@@ -14,13 +14,7 @@ import { visualizer } from 'rollup-plugin-visualizer'
 export default defineConfig({
   site: 'https://shellwen.com',
   output: 'hybrid',
-  adapter: cloudflare({
-    imageService: 'compile',
-    platformProxy: {
-      enabled: true,
-      configPath: 'wrangler.toml',
-    },
-  }),
+  adapter: cloudflare(),
   integrations: [
     mdx(),
     react(),
