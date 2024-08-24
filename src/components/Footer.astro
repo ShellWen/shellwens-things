@@ -11,51 +11,66 @@ const year = today.getFullYear()
 ---
 
 <div class="w-full bg-base-300 p-8" transition:name="footer" transition:animate="none">
-  <footer class="footer mx-auto max-w-4xl text-base-content">
-    <nav>
-      <header class="footer-title">联系方式</header>
-      <div class="grid grid-flow-col gap-4">
-        <a href="https://github.com/ShellWen" target="_blank">
-          <span class="sr-only">在 GitHub 上关注我：@ShellWen</span>
-          <SiGithub className="h-6 w-6" />
+  <footer class="mx-auto max-w-4xl text-base-content">
+    <div class="footer">
+      <nav>
+        <header class="footer-title">联系方式</header>
+        <div class="grid grid-flow-col gap-4">
+          <a href="https://github.com/ShellWen" target="_blank">
+            <span class="sr-only">在 GitHub 上关注我：@ShellWen</span>
+            <SiGithub className="h-6 w-6" />
+          </a>
+          <a href="https://x.com/realShellWen" target="_blank">
+            <span class="sr-only">在 X 上关注我：@realShellWen</span>
+            <SiX className="h-6 w-6" />
+          </a>
+          <a href="https://discordapp.com/users/686031289534513225" target="_blank">
+            <span class="sr-only">在 Discord 上找到我：@ShellWen</span>
+            <SiDiscord className="h-6 w-6" />
+          </a>
+          <a href="https://steamcommunity.com/id/shellwen/" target="_blank">
+            <span class="sr-only">在 Steam 上和我一起玩：@ShellWen</span>
+            <SiSteam className="h-6 w-6" />
+          </a>
+          <a href="mailto:me@shellwen.com" target="_blank">
+            <span class="sr-only">给我发 E-mail: me@shellwen.com</span>
+            <MdEmail className="h-6 w-6" />
+          </a>
+        </div>
+      </nav>
+      <nav>
+        <header class="footer-title">声明</header>
+        <span>
+          GPG Key Fingerprint: <a
+            href="https://keys.openpgp.org/vks/v1/by-fingerprint/702F43996B585D7EA231633551AA58935AFE6617"
+            target="_blank"
+            rel="noreferrer"
+            class="link font-mono">702F 4399</a
+          >
+        </span>
+        <br />
+        <span>&copy; {year} ShellWen. All rights reserved.</span>
+        <br />
+        <span>
+          本页面内容，除特别声明外，均采用
+          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" class="link"
+            >CC BY-NC-SA 4.0 Deed</a
+          >
+          协议授权。
+        </span>
+      </nav>
+      <nav>
+        <header class="footer-title">Feed</header>
+        <a href="/rss.xml">
+          <MdRssFeed className="h-6 w-6" />
         </a>
-        <a href="https://x.com/realShellWen" target="_blank">
-          <span class="sr-only">在 X 上关注我：@realShellWen</span>
-          <SiX className="h-6 w-6" />
-        </a>
-        <a href="https://discordapp.com/users/686031289534513225" target="_blank">
-          <span class="sr-only">在 Discord 上找到我：@ShellWen</span>
-          <SiDiscord className="h-6 w-6" />
-        </a>
-        <a href="https://steamcommunity.com/id/shellwen/" target="_blank">
-          <span class="sr-only">在 Steam 上和我一起玩：@ShellWen</span>
-          <SiSteam className="h-6 w-6" />
-        </a>
-        <a href="mailto:me@shellwen.com" target="_blank">
-          <span class="sr-only">给我发 E-mail: me@shellwen.com</span>
-          <MdEmail className="h-6 w-6" />
-        </a>
-      </div>
-    </nav>
-    <nav>
-      <header class="footer-title">版权</header>
-      <span>&copy; {year} ShellWen. All rights reserved.</span>
-      <br />
-      <span>
-        本页面内容，除特别声明外，均采用
-        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" class="link"
-          >CC BY-NC-SA 4.0 Deed</a
-        >
-        协议授权。
-      </span>
-      <br />
-      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer" class="link">赣 ICP 备 2021003054 号-3</a>
-    </nav>
-    <nav>
-      <header class="footer-title">Feed</header>
-      <a href="/rss.xml">
-        <MdRssFeed className="h-6 w-6" />
-      </a>
-    </nav>
+      </nav>
+    </div>
+    <a
+      href="https://beian.miit.gov.cn/"
+      target="_blank"
+      rel="noreferrer"
+      class="link inline-block pt-4 text-base-content/50 no-underline">赣 ICP 备 2021003054 号-3</a
+    >
   </footer>
 </div>
