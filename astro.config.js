@@ -15,6 +15,20 @@ export default defineConfig({
   site: 'https://shellwen.com',
   output: 'hybrid',
   adapter: cloudflare(),
+  i18n: {
+    locales: [
+      'en',
+      {
+        path: 'zh-hans',
+        codes: ['zh-hans', 'zh', 'zh-cn', 'zh-tw', 'zh-hant'],
+      },
+    ],
+    defaultLocale: 'en',
+    routing: {
+      prefixDefaultLocale: true,
+      redirectToDefaultLocale: false,
+    },
+  },
   integrations: [
     mdx(),
     react(),

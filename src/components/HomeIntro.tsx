@@ -23,7 +23,7 @@ const TextLarge: React.FC<PropsWithChildren<React.HTMLProps<HTMLDivElement>>> = 
 const HomeIntro = () => (
   <main className="min-h-[80vh] px-8 py-8 font-serif">
     <article className="mx-auto max-w-4xl">
-      <Text>你好，</Text>
+      {/* <Text>你好，</Text>
       <TextLarge>
         我是<strong>颉文</strong>，
       </TextLarge>
@@ -46,6 +46,30 @@ const HomeIntro = () => (
       <a href="/about">
         <MdArrowForward className="inline-block" />
         关于我
+      </a> */}
+      <Text>拆拆，</Text>
+      <TextLarge>
+        拆拆<strong>拆拆</strong>，
+      </TextLarge>
+      <Text>
+        拆拆拆拆拆，
+        <br />
+        拆拆拆拆拆拆拆拆拆。
+      </Text>
+      <br />
+      <Text className="text-base italic">
+        拆拆拆拆拆拆拆拆拆拆拆，
+        <br />
+        拆拆拆拆拆拆拆拆拆拆。
+        <br />
+        拆拆拆拆拆拆拆拆拆，
+        <br />
+        拆拆拆拆拆拆拆拆拆拆拆。
+      </Text>
+      <br />
+      <a href="/about">
+        <MdArrowForward className="inline-block" />
+        拆拆拆
       </a>
     </article>
   </main>
