@@ -13,8 +13,6 @@ module.exports = defineConfig({
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
-    'airbnb',
-    'airbnb-typescript',
     'plugin:astro/recommended',
     'prettier',
   ],
@@ -51,6 +49,7 @@ module.exports = defineConfig({
     'react/jsx-no-bind': 'off',
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
+    'import/prefer-default-export': 'off',
     'react/function-component-definition': [
       2,
       {
