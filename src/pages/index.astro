@@ -1,15 +1,8 @@
 ---
-import type { GetStaticPaths } from 'astro'
 import Header from '@/components/Header.astro'
 import Footer from '@/components/Footer.astro'
 import HomeIntro from '@/components/HomeIntro.tsx'
 import BaseLayout from '@/layouts/BaseLayout.astro'
-import { locales } from '@/lib/i18n/constants'
-
-export const getStaticPaths: GetStaticPaths = () => {
-  const allLang = locales
-  return allLang.map((lang) => ({ params: { lang } }))
-}
 ---
 
 <BaseLayout>

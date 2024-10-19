@@ -1,6 +1,5 @@
 ---
 import HeaderLink from './HeaderLink.astro'
-import foldLocale from '@/lib/i18n/foldLocale'
 
 type Props = astroHTML.JSX.HTMLAttributes
 
@@ -24,34 +23,13 @@ const { class: propClass, ...props } = Astro.props
     <div class="flex w-full flex-none justify-center sm:block sm:w-auto">
       <ul class="menu menu-horizontal">
         <li>
-          <HeaderLink href="/">
-            {
-              foldLocale(Astro.currentLocale, {
-                en: 'Home',
-                'zh-hans': '主页',
-              })
-            }
-          </HeaderLink>
+          <HeaderLink href="/">主页</HeaderLink>
         </li>
         <li>
-          <HeaderLink href="/blog">
-            {
-              foldLocale(Astro.currentLocale, {
-                en: 'Blog',
-                'zh-hans': '博客',
-              })
-            }
-          </HeaderLink>
+          <HeaderLink href="/blog">博客</HeaderLink>
         </li>
         <li>
-          <HeaderLink href="/about">
-            {
-              foldLocale(Astro.currentLocale, {
-                en: 'About',
-                'zh-hans': '关于我',
-              })
-            }
-          </HeaderLink>
+          <HeaderLink href="/about">关于我</HeaderLink>
         </li>
       </ul>
     </div>
