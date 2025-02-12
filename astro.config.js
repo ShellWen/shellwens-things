@@ -3,10 +3,10 @@ import cloudflare from '@astrojs/cloudflare'
 import mdx from '@astrojs/mdx'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
+import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'astro/config'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
-import tailwindcss from "@tailwindcss/vite"
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { visualizer } from 'rollup-plugin-visualizer'
 
@@ -61,5 +61,13 @@ export default defineConfig({
         brotliSize: true,
       }),
     ],
+    resolve: {
+      // TODO: Wordaround: https://github.com/withastro/astro/issues/12824#issuecomment-2563095382
+      // Use react-dom/server.edge instead of react-dom/server.browser for React 19.
+      // Without this, MessageChannel from node:worker_threads needs to be polyfilled.
+      alias: import.meta.env.PROD && {
+        'react-dom/server': 'react-dom/server.edge',
+      },
+    },
   },
 })
