@@ -52,6 +52,9 @@ export default defineConfig({
       ],
     ],
   },
+  experimental: {
+    contentIntellisense: true,
+  },
   vite: {
     plugins: [
       tailwindcss(),
