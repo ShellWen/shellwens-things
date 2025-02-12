@@ -32,8 +32,11 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = undefined } 
         }
         document.body.setAttribute('data-theme', theme.name)
 
-        // oklch(var(--n)/1)
-        const themeColor = `oklch(${getComputedStyle(document.body).getPropertyValue('--n').trim()})`
+        const themeColor = getComputedStyle(document.body).getPropertyValue('--color-neutral').trim()
+        if (!/^oklch\(.*\)$/.test(themeColor)) {
+          console.warn('The color value of --color-neutral must be in the oklch color space.')
+          return
+        }
         const metaThemeColor = document.querySelector('meta[name=theme-color]')
         if (metaThemeColor) {
           if (metaThemeColor.getAttribute('content') !== themeColor) {
