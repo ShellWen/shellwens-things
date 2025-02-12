@@ -18,7 +18,9 @@ const posts = (await getCollection('post')).sort((a, b) => a.data.pubDate.valueO
       categories
         .map((category) => ({
           category,
-          posts: posts.filter((post) => post.data.category.id === category.id).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+          posts: posts
+            .filter((post) => post.data.category.id === category.id)
+            .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
         }))
         .map(({ category, posts }) => {
           return (
@@ -46,7 +48,7 @@ const posts = (await getCollection('post')).sort((a, b) => a.data.pubDate.valueO
                             {post}
                             class:list={[
                               {
-                                '[--figure-width:_100%] md:card-side md:[--figure-width:_18rem]': index === 0,
+                                'md:card-side [--figure-width:_100%] md:[--figure-width:_18rem]': index === 0,
                               },
                             ]}
                           />

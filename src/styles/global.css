@@ -1,27 +1,44 @@
-body {
-  @apply font-sans;
+@import 'tailwindcss';
+/*noinspection CssInvalidAtRule*/
+@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  --font-body: sans-serif;
+}
+@plugin "@tailwindcss/aspect-ratio";
+@plugin "@tailwindcss/typography";
+/*noinspection ALL*/
+@plugin "daisyui" {
+  themes:
+    autumn --default,
+    dim --prefersdark;
 }
 
-h1 {
-  @apply text-4xl;
-}
+@layer base {
+  body {
+    @apply font-sans;
+  }
 
-h2 {
-  @apply text-3xl;
-}
+  h1 {
+    @apply text-4xl;
+  }
 
-h3 {
-  @apply text-2xl;
-}
+  h2 {
+    @apply text-3xl;
+  }
 
-h4 {
-  @apply text-xl;
-}
+  h3 {
+    @apply text-2xl;
+  }
 
-h5 {
-  @apply text-lg;
-}
+  h4 {
+    @apply text-xl;
+  }
 
-h6 {
-  @apply text-base;
+  h5 {
+    @apply text-lg;
+  }
+
+  h6 {
+    @apply text-base;
+  }
 }

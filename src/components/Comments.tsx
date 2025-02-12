@@ -12,6 +12,7 @@ const Comments: React.FC<{
     if (theme.colorMode === 'dark') {
       return 'dark_dimmed'
     }
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (theme.colorMode === 'light') {
       return 'light_tritanopia'
     }

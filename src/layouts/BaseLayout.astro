@@ -2,13 +2,13 @@
 import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts'
 
 import BaseHead from '@/components/BaseHead.astro'
-import { ViewTransitions } from 'astro:transitions'
+import { ClientRouter } from 'astro:transitions'
 
 interface Props {
   title?: string
   description?: string
   image?: string | ImageMetadata
-  children: any
+  children: unknown
 }
 
 const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = undefined } = Astro.props
@@ -18,7 +18,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = undefined } 
 <html lang="zh">
   <head>
     <BaseHead {title} {description} {image} />
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body>
     <script>

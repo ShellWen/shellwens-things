@@ -30,8 +30,8 @@ $systemTheme.set(window.matchMedia('(prefers-color-scheme: light)').matches ? 'l
 window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', listener)
 
 if (import.meta.hot) {
-  import.meta.hot!.accept()
-  import.meta.hot!.dispose(() => {
+  import.meta.hot.accept()
+  import.meta.hot.dispose(() => {
     window.matchMedia('(prefers-color-scheme: light)').removeEventListener('change', listener)
   })
 }
@@ -39,6 +39,7 @@ if (import.meta.hot) {
 export const $theme: ReadableAtom<ThemeType> = computed(
   [$systemTheme, $useSystemTheme, $localStorageTheme],
   (systemTheme, useSystemTheme, localStorageTheme) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const useSystemThemeBool = JSON.parse(useSystemTheme)
     if (useSystemThemeBool) {
       if (systemTheme === 'unspecified' || systemTheme === 'dark') {
@@ -46,6 +47,7 @@ export const $theme: ReadableAtom<ThemeType> = computed(
       }
       return themes.autumn
     }
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (themes[localStorageTheme] === undefined) {
       throw new Error(`Unknown local storage theme: ${localStorageTheme}`)
     }

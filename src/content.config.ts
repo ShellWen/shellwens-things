@@ -1,7 +1,8 @@
+import { glob } from 'astro/loaders'
 import { defineCollection, reference, z } from 'astro:content'
 
 const post = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/post' }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -17,7 +18,7 @@ const post = defineCollection({
 })
 
 const page = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/page' }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -31,7 +32,7 @@ const page = defineCollection({
 })
 
 const category = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '**/*.yml', base: './src/content/category' }),
   schema: z.object({
     name: z.string(),
     description: z.string(),
@@ -39,5 +40,4 @@ const category = defineCollection({
   }),
 })
 
-// eslint-disable-next-line import/prefer-default-export
 export const collections = { post, page, category }

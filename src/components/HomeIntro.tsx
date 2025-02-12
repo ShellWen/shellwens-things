@@ -3,22 +3,28 @@ import React, { type PropsWithChildren, memo } from 'react'
 import classNames from 'classnames'
 import { MdArrowForward } from 'react-icons/md'
 
-const Text: React.FC<PropsWithChildren<React.HTMLProps<HTMLDivElement>>> = memo(
-  ({ children, className, ...divProps }) => (
-    // eslint-disable-next-line react/jsx-props-no-spreading
+const Text: React.FC<PropsWithChildren<React.HTMLProps<HTMLDivElement>>> = memo(function Text({
+  children,
+  className,
+  ...divProps
+}) {
+  return (
     <div className={classNames('text-2xl', className)} {...divProps}>
       {children}
     </div>
-  ),
-)
-const TextLarge: React.FC<PropsWithChildren<React.HTMLProps<HTMLDivElement>>> = memo(
-  ({ children, className, ...divProps }) => (
-    // eslint-disable-next-line react/jsx-props-no-spreading
+  )
+})
+const TextLarge: React.FC<PropsWithChildren<React.HTMLProps<HTMLDivElement>>> = memo(function TextLarge({
+  children,
+  className,
+  ...divProps
+}) {
+  return (
     <div className={classNames('text-4xl', className)} {...divProps}>
       {children}
     </div>
-  ),
-)
+  )
+})
 
 const HomeIntro = () => (
   <main className="min-h-[80vh] px-8 py-8 font-serif">

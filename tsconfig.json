@@ -9,8 +9,9 @@
     "paths": {
       "@/*": ["src/*"],
       "@test/*": ["test/*"],
-      "@assets/*": ["src/content/assets/*"]
+      "@assets/*": ["src/assets/*"]
     }
   },
-  "include": ["src/**/*"]
+  "include": [".astro/types.d.ts", "src/**/*"],
+  "exclude": ["dist"]
 }

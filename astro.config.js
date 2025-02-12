@@ -3,17 +3,17 @@ import cloudflare from '@astrojs/cloudflare'
 import mdx from '@astrojs/mdx'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
-import tailwind from '@astrojs/tailwind'
 import { defineConfig } from 'astro/config'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
+import tailwindcss from "@tailwindcss/vite"
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://shellwen.com',
-  output: 'hybrid',
+  output: 'static',
   adapter: cloudflare({
     imageService: 'compile',
     platformProxy: {
@@ -25,7 +25,6 @@ export default defineConfig({
     mdx(),
     react(),
     sitemap(),
-    tailwind(),
     // Sentry does not support Astro with Cloudflare adapter yet
     // https://github.com/getsentry/sentry-javascript/issues/9777
 
@@ -55,6 +54,7 @@ export default defineConfig({
   },
   vite: {
     plugins: [
+      tailwindcss(),
       visualizer({
         template: 'sunburst',
         gzipSize: true,

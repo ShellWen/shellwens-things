@@ -33,7 +33,10 @@ const { category, posts } = Astro.props
     WARN: Category View are not complete yet
     {
       posts.map((post) => (
-        <a href={`/blog/${post.data.category.id}/${post.slug}/`} class="block p-4 border border-gray-200 rounded-md hover:bg-gray-50">
+        <a
+          href={`/blog/${post.data.category.id}/${post.id}/`}
+          class="block rounded-md border border-gray-200 p-4 hover:bg-gray-50"
+        >
           <h2>{post.data.title}</h2>
           <p>{post.data.description}</p>
         </a>

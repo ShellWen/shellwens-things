@@ -16,7 +16,6 @@ export async function getStaticPaths() {
   }))
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export const GET: APIRoute = async (context) => {
   const { category } = context.props as {
     category: Category

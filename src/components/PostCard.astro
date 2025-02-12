@@ -12,8 +12,8 @@ const { post, class: className = '', ...rest } = Astro.props
 ---
 
 <a
-  href={`/blog/${post.data.category.id}/${post.slug}/`}
-  class={`card shadow-md dark:bg-base-200 dark:shadow-none ${className}`}
+  href={`/blog/${post.data.category.id}/${post.id}/`}
+  class={`card shadow-md dark:bg-base-200 dark:shadow-none ${className ?? ''}`}
   {...rest}
 >
   <figure class="w-[var(--figure-width)] flex-shrink-0">
@@ -22,20 +22,20 @@ const { post, class: className = '', ...rest } = Astro.props
       alt={post.data.heroImageAlt ?? ''}
       formats={['avif', 'webp']}
       class="h-full object-cover"
-      transition:name={`hero-image-${post.slug}`}
+      transition:name={`hero-image-${post.id}`}
     />
   </figure>
   <div class="card-body">
-    <h4 class="card-title" transition:name={`title-${post.slug}`}>
+    <h4 class="card-title" transition:name={`title-${post.id}`}>
       {post.data.title}
     </h4>
     <p>
-      <span transition:name={`description-${post.slug}`}>
+      <span transition:name={`description-${post.id}`}>
         {post.data.description}
       </span>
 
       <div class="flex flex-row flex-wrap">
-        <div transition:name={`pub-date-${post.slug}`}>
+        <div transition:name={`pub-date-${post.id}`}>
           <MdOutlineAccessTime className="inline-block" />
           <FormattedDate date={post.data.pubDate} />
         </div>

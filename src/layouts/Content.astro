@@ -40,7 +40,7 @@ const term = `${title} | ${slug}`
           transition:name={`hero-image-${slug}`}
         />
         <div
-          class="absolute left-0 top-0 flex h-full w-full flex-col justify-end p-4 text-white sm:pb-8 sm:text-center"
+          class="absolute top-0 left-0 flex h-full w-full flex-col justify-end p-4 text-white sm:pb-8 sm:text-center"
         >
           <h1 class="text-2xl sm:text-4xl" transition:name={`title-${slug}`}>{title}</h1>
           <br />
@@ -66,16 +66,24 @@ const term = `${title} | ${slug}`
           {headings.length !== 0 && <TopToc headings={headings} class="py-4" />}
           <slot />
           <style is:global>
+            @reference "tailwindcss";
+
             h1,
             h2,
             h3,
             h4,
             h5,
             h6 {
-              @apply [--link-opacity:0%;] hover:[--link-opacity:_100%;];
+              --link-opacity: 0%;
+              &:hover {
+                --link-opacity: 100%;
+              }
             }
             .icon-link {
-              @apply absolute opacity-[var(--link-opacity)] transition-opacity before:-ml-6 before:inline-block before:size-0 before:text-lg before:content-['🔗'];
+              @apply absolute opacity-[var(--link-opacity)] transition-opacity;
+            }
+            .icon-link::before {
+              @apply -ml-6 inline-block size-0 text-lg content-['🔗'];
             }
           </style>
         </div>
