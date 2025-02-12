@@ -1,7 +1,7 @@
 ---
 import { type TocProps } from './index'
-
-type Props = TocProps & astroHTML.JSX.HTMLAttributes
+import type { HTMLAttributes } from 'astro/types'
+type Props = TocProps & HTMLAttributes<'nav'>
 
 const { headings, ...restProps } = Astro.props
 ---

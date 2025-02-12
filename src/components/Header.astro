@@ -1,7 +1,8 @@
 ---
 import HeaderLink from './HeaderLink.astro'
+import type { HTMLAttributes } from 'astro/types'
 
-type Props = astroHTML.JSX.HTMLAttributes
+type Props = HTMLAttributes<'div'>
 
 const { class: propClass, ...props } = Astro.props
 ---
