@@ -1,3 +1,9 @@
 name = "shellwens-things"
 pages_build_output_dir = "dist"
 compatibility_date = "2025-02-04"
+
+[vars]
+SENTRY_ENVIRONMENT = "shellwens-things-preview"
+
+[env.production.vars]
+SENTRY_ENVIRONMENT = "shellwens-things-prod"
