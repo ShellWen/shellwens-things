@@ -20,7 +20,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = undefined } 
     <BaseHead {title} {description} {image} />
     <ClientRouter />
   </head>
-  <body>
+  <body class="flex min-h-screen flex-col">
     <script>
       import { theme, type ThemeType } from '@/lib/theme/stores'
 

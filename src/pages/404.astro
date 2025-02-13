@@ -1,0 +1,21 @@
+---
+import Header from '@/components/Header.astro'
+import Footer from '@/components/Footer.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { Icon } from 'astro-icon/components'
+---
+
+<BaseLayout>
+  <Header />
+  <div class="flex min-h-[70vh] flex-1 flex-col items-center justify-center gap-4">
+    <p class="text-4xl font-bold">404 Not Found</p>
+    <p>ShellWen 找不到你要的页面<br />也许你可以去首页逛逛？🤔</p>
+    <a href="/">
+      <button class="btn btn-primary btn-soft">
+        <Icon name="material-symbols:home" class="size-4" />
+        回到首页
+      </button>
+    </a>
+  </div>
+  <Footer />
+</BaseLayout>
