@@ -17,15 +17,15 @@ export const themes: Record<string, ThemeType> = {
   },
 } as const
 
-export const $systemTheme = atom<'light' | 'dark' | 'unspecified'>('unspecified')
-export const $useSystemTheme = persistentAtom<string>('useSystemTheme', JSON.stringify(true))
-export const $localStorageTheme = persistentAtom<string>('theme', themes.dim.name)
+export const systemTheme = atom<'light' | 'dark' | 'unspecified'>('unspecified')
+export const useSystemTheme = persistentAtom<string>('useSystemTheme', JSON.stringify(true))
+export const localStorageTheme = persistentAtom<string>('theme', themes.dim.name)
 
 const listener = (e: MediaQueryListEvent) => {
-  $systemTheme.set(e.matches ? 'light' : 'dark')
+  systemTheme.set(e.matches ? 'light' : 'dark')
 }
 
-$systemTheme.set(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+systemTheme.set(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
 
 window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', listener)
 
@@ -36,8 +36,8 @@ if (import.meta.hot) {
   })
 }
 
-export const $theme: ReadableAtom<ThemeType> = computed(
-  [$systemTheme, $useSystemTheme, $localStorageTheme],
+export const theme: ReadableAtom<ThemeType> = computed(
+  [systemTheme, useSystemTheme, localStorageTheme],
   (systemTheme, useSystemTheme, localStorageTheme) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const useSystemThemeBool = JSON.parse(useSystemTheme)

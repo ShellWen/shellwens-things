@@ -22,7 +22,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = undefined } 
   </head>
   <body>
     <script>
-      import { $theme, type ThemeType } from '@/lib/theme/stores'
+      import { theme, type ThemeType } from '@/lib/theme/stores'
 
       function updateTheme(theme: ThemeType) {
         if (theme.colorMode === 'dark') {
@@ -50,12 +50,12 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = undefined } 
         }
       }
 
-      $theme.subscribe((theme) => {
+      theme.subscribe((theme) => {
         updateTheme(theme)
       })
 
       const domContentLoadedListener = () => {
-        updateTheme($theme.get())
+        updateTheme(theme.get())
       }
 
       document.addEventListener('astro:after-swap', domContentLoadedListener)

@@ -22,6 +22,7 @@ heroImage: '@assets/images/default_banner.png'
   - [ ] 用于获取 URL 的函数
 - [x] ~~修复错误的代码高亮，同时考虑更换为 One Dark 主题~~
 - [ ] 使用 https://jstools.dev/rehype-url-inspector/ 给链接自动添加 `_blank`
-- [ ] 移除仅用于评论区和首页的 React，使用 Svelte 或原生 Web Components 代替
+- [x] ~~移除仅用于评论区和首页的 React，使用 Svelte 或原生 Web Components 代替~~
+- [ ] 彻底移除 React，使用 Svelte 代替
 - [ ] 添加 404 页，可以用 Svelte 加点动画什么的
 - [ ] 固定 TopBar 的高度，针对特定页面做出悬浮沉浸式效果

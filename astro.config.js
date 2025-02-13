@@ -3,6 +3,7 @@ import cloudflare from '@astrojs/cloudflare'
 import mdx from '@astrojs/mdx'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
+import svelte from '@astrojs/svelte'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'astro/config'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
@@ -23,11 +24,8 @@ export default defineConfig({
   }),
   integrations: [
     mdx(),
-    react(),
-    sitemap(),
-    // Sentry does not support Astro with Cloudflare adapter yet
+    react(), // Sentry does not support Astro with Cloudflare adapter yet
     // https://github.com/getsentry/sentry-javascript/issues/9777
-
     // sentry({
     //   dsn: 'https://7df36d7c0ed618e59ae41c6ded5b9a7c@o4506401530511360.ingest.sentry.io/4506401532018688',
     //   release: `shellwens-things@${process.env.npm_package_version ?? 'unknown'}`,
@@ -36,6 +34,8 @@ export default defineConfig({
     //   authToken: process.env.SENTRY_AUTH_TOKEN,
     // },
     // }),
+    sitemap(),
+    svelte(),
   ],
   markdown: {
     syntaxHighlight: 'shiki',
