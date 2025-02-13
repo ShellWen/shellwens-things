@@ -23,6 +23,12 @@ export default tseslint.config(
   eslintConfigPrettier,
   eslintPluginAstro.configs['jsx-a11y-strict'],
   {
+    files: ['**/*.astro'],
+    rules: {
+      '@typescript-eslint/no-unsafe-return': 'off',
+    },
+  },
+  {
     ignores: ['*', '!src/**'],
   },
   {

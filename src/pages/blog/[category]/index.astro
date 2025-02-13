@@ -26,8 +26,8 @@ const { category, posts } = Astro.props
 ---
 
 <BaseLayout>
-  <Header />
-  <main class="mx-auto my-4 flex max-w-4xl flex-col gap-4 px-8 lg:px-0">
+  <Header slot="header" />
+  <main class="mx-auto my-4 flex max-w-4xl flex-col gap-4 px-8 lg:px-0" slot="body">
     <h1>{category.data.name}</h1>
     <p class="italic">{category.data.description}</p>
     WARN: Category View are not complete yet
@@ -43,5 +43,5 @@ const { category, posts } = Astro.props
       ))
     }
   </main>
-  <Footer />
+  <Footer slot="footer" />
 </BaseLayout>

@@ -12,8 +12,8 @@ const posts = (await getCollection('post')).sort((a, b) => a.data.pubDate.valueO
 ---
 
 <BaseLayout>
-  <Header />
-  <main class="mx-auto my-4 flex max-w-4xl flex-col gap-4 px-8 lg:px-0">
+  <Header slot="header" />
+  <main class="mx-auto my-4 flex max-w-4xl flex-col gap-4 px-8 lg:px-0" slot="body">
     {
       categories
         .map((category) => ({
@@ -48,7 +48,7 @@ const posts = (await getCollection('post')).sort((a, b) => a.data.pubDate.valueO
                             {post}
                             class:list={[
                               {
-                                'md:card-side [--figure-width:_100%] md:[--figure-width:_18rem]': index === 0,
+                                '[--figure-width:_100%] md:card-side md:[--figure-width:_18rem]': index === 0,
                               },
                             ]}
                           />
@@ -68,5 +68,5 @@ const posts = (await getCollection('post')).sort((a, b) => a.data.pubDate.valueO
         })
     }
   </main>
-  <Footer />
+  <Footer slot="footer" />
 </BaseLayout>

@@ -28,8 +28,8 @@ const term = `${title} | ${slug}`
 ---
 
 <BaseLayout title={`${title} | ${SITE_TITLE}`} description={description} image={heroImage}>
-  <Header class="sm:pb-4" />
-  <main>
+  <Header class="sm:pb-4" slot="header" />
+  <main slot="body">
     <article class="w-full">
       <div class="relative h-[30vh] sm:h-[50vh]">
         <Picture
@@ -54,7 +54,7 @@ const term = `${title} | ${slug}`
           </div>
         </div>
       </div>
-      <div class="prose mx-auto w-full p-4">
+      <div class="mx-auto prose w-full p-4">
         <div class="mx-auto">
           {
             description && (
@@ -98,6 +98,6 @@ const term = `${title} | ${slug}`
         </p>
       </div>
     </article>
-    <Footer />
+    <Footer slot="footer" />
   </main>
 </BaseLayout>

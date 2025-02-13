@@ -6,8 +6,8 @@ import { Icon } from 'astro-icon/components'
 ---
 
 <BaseLayout>
-  <Header />
-  <div class="flex min-h-[70vh] flex-1 flex-col items-center justify-center gap-4">
+  <Header slot="header" />
+  <main class="flex flex-col items-center justify-center gap-4" slot="body">
     <p class="text-4xl font-bold">404 Not Found</p>
     <p>ShellWen 找不到你要的页面<br />也许你可以去首页逛逛？🤔</p>
     <a href="/">
@@ -16,6 +16,6 @@ import { Icon } from 'astro-icon/components'
         回到首页
       </button>
     </a>
-  </div>
-  <Footer />
+  </main>
+  <Footer slot="footer" />
 </BaseLayout>

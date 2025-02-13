@@ -78,6 +78,10 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = undefined } 
         })
       }
     </script>
-    <slot />
+    <slot name="header" />
+    <div class="min-h-[50vh] flex-1">
+      <slot name="body" />
+    </div>
+    <slot name="footer" />
   </body>
 </html>
