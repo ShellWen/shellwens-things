@@ -8,7 +8,7 @@ heroImage: '@assets/images/default_banner.png'
 
 - [x] ~~`Content` 展示 `description`~~
 - [x] ~~将 `HomeIntro` 使用 Astro 重构~~ 暂时不考虑
-- [ ] 做个新的 `HomeIntro`
+- [x] ~~做个新的 `HomeIntro`~~
 - [ ] 完善博客页面
   - [ ] 添加分类视图
   - [ ] 在博客总览页面（/blog）中添加跳转到分类的按钮
@@ -24,3 +24,4 @@ heroImage: '@assets/images/default_banner.png'
 - [ ] 使用 https://jstools.dev/rehype-url-inspector/ 给链接自动添加 `_blank`
 - [ ] 移除仅用于评论区和首页的 React，使用 Svelte 或原生 Web Components 代替
 - [ ] 添加 404 页，可以用 Svelte 加点动画什么的
+- [ ] 固定 TopBar 的高度，针对特定页面做出悬浮沉浸式效果
