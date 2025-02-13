@@ -11,5 +11,5 @@ export default {
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
   importOrder: ['<THIRD_PARTY_MODULES>', '^@/(.*)$', '^@test/(.*)$', '^[./]'],
-  tailwindConfig: './tailwind.config.js',
+  tailwindStylesheet: './src/styles/global.css',
 }
