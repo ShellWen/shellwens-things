@@ -1,4 +1,7 @@
-@import 'tailwindcss';
+@layer theme, base, base-override, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import 'tailwindcss/utilities.css' layer(utilities);
 /*noinspection CssInvalidAtRule*/
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -13,7 +16,7 @@
     dim --prefersdark;
 }
 
-@layer base {
+@layer base-override {
   body {
     @apply font-sans;
   }
