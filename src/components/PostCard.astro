@@ -1,7 +1,7 @@
 ---
 import { Picture } from 'astro:assets'
 import FormattedDate from '@/components/FormattedDate.astro'
-import { MdOutlineAccessTime } from 'react-icons/md'
+import { Icon } from 'astro-icon/components'
 import type { CollectionEntry } from 'astro:content'
 import type { HTMLAttributes } from 'astro/types'
 interface Props extends HTMLAttributes<'a'> {
@@ -36,7 +36,7 @@ const { post, class: className = '', ...rest } = Astro.props
 
       <div class="flex flex-row flex-wrap">
         <div transition:name={`pub-date-${post.id}`}>
-          <MdOutlineAccessTime className="inline-block" />
+          <Icon name="material-symbols:nest-clock-farsight-analog-outline" class="inline-block" />
           <FormattedDate date={post.data.pubDate} />
         </div>
       </div>

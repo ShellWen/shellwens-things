@@ -10,6 +10,6 @@ export default {
   endOfLine: 'lf',
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
-  importOrder: ['^react$', '<THIRD_PARTY_MODULES>', '^@/(.*)$', '^@test/(.*)$', '^[./]'],
+  importOrder: ['<THIRD_PARTY_MODULES>', '^@/(.*)$', '^@test/(.*)$', '^[./]'],
   tailwindConfig: './tailwind.config.js',
 }

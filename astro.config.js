@@ -1,10 +1,10 @@
 // import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 import cloudflare from '@astrojs/cloudflare'
 import mdx from '@astrojs/mdx'
-import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import svelte from '@astrojs/svelte'
 import tailwindcss from '@tailwindcss/vite'
+import icon from 'astro-icon'
 import { defineConfig } from 'astro/config'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
@@ -23,8 +23,7 @@ export default defineConfig({
     },
   }),
   integrations: [
-    mdx(),
-    react(), // Sentry does not support Astro with Cloudflare adapter yet
+    mdx(), // Sentry does not support Astro with Cloudflare adapter yet
     // https://github.com/getsentry/sentry-javascript/issues/9777
     // sentry({
     //   dsn: 'https://7df36d7c0ed618e59ae41c6ded5b9a7c@o4506401530511360.ingest.sentry.io/4506401532018688',
@@ -36,6 +35,7 @@ export default defineConfig({
     // }),
     sitemap(),
     svelte(),
+    icon(),
   ],
   markdown: {
     syntaxHighlight: 'shiki',
@@ -64,13 +64,5 @@ export default defineConfig({
         brotliSize: true,
       }),
     ],
-    resolve: {
-      // TODO: Wordaround: https://github.com/withastro/astro/issues/12824#issuecomment-2563095382
-      // Use react-dom/server.edge instead of react-dom/server.browser for React 19.
-      // Without this, MessageChannel from node:worker_threads needs to be polyfilled.
-      alias: import.meta.env.PROD && {
-        'react-dom/server': 'react-dom/server.edge',
-      },
-    },
   },
 })

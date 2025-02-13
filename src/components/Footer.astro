@@ -1,10 +1,5 @@
 ---
-import { SiGithub } from 'react-icons/si'
-import { SiX } from 'react-icons/si'
-import { SiDiscord } from 'react-icons/si'
-import { SiSteam } from 'react-icons/si'
-import { MdEmail } from 'react-icons/md'
-import { MdRssFeed } from 'react-icons/md'
+import { Icon } from 'astro-icon/components'
 
 const today = new Date()
 const year = today.getFullYear()
@@ -18,23 +13,23 @@ const year = today.getFullYear()
         <div class="grid grid-flow-col gap-4">
           <a href="https://github.com/ShellWen" target="_blank">
             <span class="sr-only">在 GitHub 上关注我：@ShellWen</span>
-            <SiGithub className="h-6 w-6" />
+            <Icon name="simple-icons:github" class="size-6" />
           </a>
           <a href="https://x.com/realShellWen" target="_blank">
             <span class="sr-only">在 X 上关注我：@realShellWen</span>
-            <SiX className="h-6 w-6" />
+            <Icon name="simple-icons:x" class="size-6" />
           </a>
           <a href="https://discordapp.com/users/686031289534513225" target="_blank">
             <span class="sr-only">在 Discord 上找到我：@ShellWen</span>
-            <SiDiscord className="h-6 w-6" />
+            <Icon name="simple-icons:discord" class="size-6" />
           </a>
           <a href="https://steamcommunity.com/id/shellwen/" target="_blank">
             <span class="sr-only">在 Steam 上和我一起玩：@ShellWen</span>
-            <SiSteam className="h-6 w-6" />
+            <Icon name="simple-icons:steam" class="size-6" />
           </a>
           <a href="mailto:me@shellwen.com" target="_blank">
             <span class="sr-only">给我发 E-mail: me@shellwen.com</span>
-            <MdEmail className="h-6 w-6" />
+            <Icon name="material-symbols:alternate-email" class="size-6" />
           </a>
         </div>
       </nav>
@@ -63,7 +58,7 @@ const year = today.getFullYear()
       <nav>
         <header class="footer-title">Feed</header>
         <a href="/rss.xml">
-          <MdRssFeed className="h-6 w-6" />
+          <Icon name="material-symbols:rss-feed" class="size-6" />
         </a>
       </nav>
     </div>
