@@ -3,6 +3,7 @@ import cloudflare from '@astrojs/cloudflare'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import svelte from '@astrojs/svelte'
+import sentry from '@sentry/astro'
 import tailwindcss from '@tailwindcss/vite'
 import icon from 'astro-icon'
 import { defineConfig } from 'astro/config'
@@ -23,16 +24,16 @@ export default defineConfig({
     },
   }),
   integrations: [
-    mdx(), // Sentry does not support Astro with Cloudflare adapter yet
-    // https://github.com/getsentry/sentry-javascript/issues/9777
-    // sentry({
-    //   dsn: 'https://7df36d7c0ed618e59ae41c6ded5b9a7c@o4506401530511360.ingest.sentry.io/4506401532018688',
-    //   release: `shellwens-things@${process.env.npm_package_version ?? 'unknown'}`,
-    // sourceMapsUploadOptions: {
-    //   project: 'shellwens-things',
-    //   authToken: process.env.SENTRY_AUTH_TOKEN,
-    // },
-    // }),
+    // Sentry does not support Astro with Cloudflare adapter yet
+    mdx(), // https://github.com/getsentry/sentry-javascript/issues/9777
+    sentry({
+      dsn: 'https://7df36d7c0ed618e59ae41c6ded5b9a7c@o4506401530511360.ingest.sentry.io/4506401532018688',
+      release: `shellwens-things@${process.env.npm_package_version ?? 'unknown'}`,
+      sourceMapsUploadOptions: {
+        project: 'shellwens-things',
+        authToken: process.env.SENTRY_AUTH_TOKEN,
+      },
+    }),
     sitemap(),
     svelte(),
     icon(),

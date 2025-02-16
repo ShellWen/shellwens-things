@@ -2,7 +2,7 @@
 title: '✨TODO List'
 description: '可不能忘了做'
 pubDate: '2024-04-12'
-updatedDate: '2024-04-13'
+updatedDate: '2025-02-16'
 heroImage: '@assets/images/default_banner.png'
 ---
 
@@ -27,3 +27,4 @@ heroImage: '@assets/images/default_banner.png'
 - [x] ~~添加 404 页，可以用 Svelte 加点动画什么的~~
 - [ ] 固定 TopBar 的高度，针对特定页面做出悬浮沉浸式效果
 - [x] ~~编写 README，然后开源~~
+- [x] ~~Sentry 错误监控~~
