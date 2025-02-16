@@ -33,5 +33,5 @@
   inputPosition="top"
   theme={themeString}
   lang="zh-CN"
-  loading="lazy"
+  loading="eager"
 />
