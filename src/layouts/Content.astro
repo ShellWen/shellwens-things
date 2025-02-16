@@ -85,6 +85,22 @@ const term = `${title} | ${slug}`
             .icon-link::before {
               @apply -ml-6 inline-block size-0 text-lg content-['🔗'];
             }
+
+            /* @media (prefers-color-scheme: dark) {
+              .astro-code,
+              .astro-code span {
+                color: var(--shiki-dark) !important;
+                background-color: var(--shiki-dark-bg) !important;
+                font-style: var(--shiki-dark-font-style) !important;
+                font-weight: var(--shiki-dark-font-weight) !important;
+                text-decoration: var(--shiki-dark-text-decoration) !important;
+              }
+            } */
+            /* Use @apply to compatible with Tailwind CSS dark mode */
+            .astro-code,
+            .astro-code span {
+              @apply dark:bg-(--shiki-dark-bg)! dark:font-(--shiki-dark-font-weight)! dark:text-(--shiki-dark)! dark:[font-style:var(--shiki-dark-font-style)]! dark:[text-decoration:var(--shiki-dark-text-decoration)]!;
+            }
           </style>
         </div>
         <div class="divider">版权声明</div>

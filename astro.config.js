@@ -40,7 +40,10 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: 'shiki',
     shikiConfig: {
-      theme: 'one-dark-pro',
+      themes: {
+        light: 'one-light',
+        dark: 'one-dark-pro',
+      },
     },
     rehypePlugins: [
       rehypeSlug,
