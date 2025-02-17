@@ -7,11 +7,11 @@ heroImage: '@assets/images/default_banner.png'
 ---
 
 - [x] ~~`Content` 展示 `description`~~
-- [x] ~~将 `HomeIntro` 使用 Astro 重构~~ 暂时不考虑
+- [x] ~~将 `HomeIntro` 使用 Astro 重构~~
 - [x] ~~做个新的 `HomeIntro`~~
 - [ ] 完善博客页面
-  - [ ] 添加分类视图
-  - [ ] 在博客总览页面（/blog）中添加跳转到分类的按钮
+  - [x] ~~添加分类视图~~
+  - [x] ~~在博客总览页面（/blog）中添加跳转到分类的按钮~~
   - [ ] 添加标签视图
 - [ ] 添加 RSS 订阅按钮
   - [x] ~~全站 `Footer`~~
@@ -29,3 +29,4 @@ heroImage: '@assets/images/default_banner.png'
 - [x] ~~编写 README，然后开源~~
 - [x] ~~Sentry 错误监控~~
 - [ ] 添加阅读时间预测
+- [ ] PostCard 添加更多信息显示，比如说修改日期和预计阅读时间
