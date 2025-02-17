@@ -5,6 +5,7 @@ import Footer from '@/components/Footer.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import sortCategories from '@/lib/util/sortCategories'
 import PostCard from '@/components/PostCard.astro'
+import { Icon } from 'astro-icon/components'
 
 const categories = sortCategories(await getCollection('category'))
 
@@ -25,7 +26,12 @@ const posts = (await getCollection('post')).sort((a, b) => a.data.pubDate.valueO
         .map(({ category, posts }) => {
           return (
             <section>
-              <h2 class="py-4">{category.data.name}</h2>
+              <a href={`/blog/${category.id}`} class="inline-block">
+                <h2 class="py-4">
+                  {category.data.name}
+                  <Icon name="material-symbols:arrow-forward" class="inline" />
+                </h2>
+              </a>
               {posts.length === 0 ? (
                 <div>该分类暂无文章</div>
               ) : (
@@ -48,7 +54,7 @@ const posts = (await getCollection('post')).sort((a, b) => a.data.pubDate.valueO
                             {post}
                             class:list={[
                               {
-                                '[--figure-width:_100%] md:card-side md:[--figure-width:_18rem]': index === 0,
+                                '[--figure-width:100%] md:card-side md:[--figure-width:18rem]': index === 0,
                               },
                             ]}
                           />
@@ -57,9 +63,14 @@ const posts = (await getCollection('post')).sort((a, b) => a.data.pubDate.valueO
                     })}
                   </ul>
                   {posts.length > 6 && (
-                    <a href={`/blog/${category.id}`} class="block py-4 text-center">
-                      查看更多
-                    </a>
+                    <div class="text-center">
+                      <a href={`/blog/${category.id}`} class="inline-block py-4 text-center">
+                        <button class="btn btn-ghost">
+                          <Icon name="material-symbols:arrow-forward" />
+                          查看更多
+                        </button>
+                      </a>
+                    </div>
                   )}
                 </>
               )}

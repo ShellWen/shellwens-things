@@ -30,15 +30,12 @@ const { category, posts } = Astro.props
   <main class="mx-auto my-4 flex max-w-4xl flex-col gap-4 px-8 lg:px-0" slot="body">
     <h1>{category.data.name}</h1>
     <p class="italic">{category.data.description}</p>
-    WARN: Category View are not complete yet
     {
       posts.map((post) => (
-        <a
-          href={`/blog/${post.data.category.id}/${post.id}/`}
-          class="block rounded-md border border-gray-200 p-4 hover:bg-gray-50"
-        >
-          <h2>{post.data.title}</h2>
-          <p>{post.data.description}</p>
+        <a href={`/blog/${category.id}/${post.id}`} class="rounded-lg border p-4 hover:bg-gray-50">
+          <h2 class="text-xl font-bold">{post.data.title}</h2>
+          <p class="text-gray-600">{post.data.description}</p>
+          <time class="text-sm text-gray-500">{post.data.pubDate.toLocaleDateString()}</time>
         </a>
       ))
     }
