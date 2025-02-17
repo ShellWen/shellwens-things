@@ -2,19 +2,22 @@
 import HeaderLink from './HeaderLink.astro'
 import type { HTMLAttributes } from 'astro/types'
 
-type Props = HTMLAttributes<'div'>
+type Props = HTMLAttributes<'div'> & {
+  isSticky?: boolean
+}
 
-const { class: propClass, ...props } = Astro.props
+const { isSticky = false, class: propClass, ...props } = Astro.props
 ---
 
 <div
   class={`sticky top-0 z-50 flex flex-col items-center sm:pt-4 ${propClass ?? ''}`}
+  class:list={[{ 'sm:fixed sm:w-full': !isSticky }]}
   transition:name="header"
   transition:animate="none"
   {...props}
 >
   <nav
-    class="navbar bg-neutral text-neutral-content flex-wrap gap-2 py-2 shadow-lg sm:max-w-xl sm:gap-0 sm:rounded-full sm:px-8 dark:shadow-none"
+    class="navbar flex-wrap gap-2 bg-neutral py-2 text-neutral-content shadow-lg sm:max-w-xl sm:gap-0 sm:rounded-full sm:px-8 dark:shadow-none"
   >
     <h2 class="flex w-full flex-1 justify-center pt-2 text-xl sm:block sm:w-auto sm:pt-0">
       <a href="/">
