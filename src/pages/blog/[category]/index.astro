@@ -3,6 +3,9 @@ import { type CollectionEntry, getCollection } from 'astro:content'
 import Footer from '@/components/Footer.astro'
 import Header from '@/components/Header.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import { sortPostByPubDateDesc } from '@/lib/util/sorts'
+import PostCard from '@/components/PostCard.astro'
+import GridListSwitcher from '@/components/GridListSwitcher.svelte'
 
 export async function getStaticPaths() {
   const categories = await getCollection('category')
@@ -12,7 +15,7 @@ export async function getStaticPaths() {
       params: { category: category.id },
       props: {
         category,
-        posts: posts.filter((post) => post.data.category.id === category.id),
+        posts: posts.filter((post) => post.data.category.id === category.id).sort(sortPostByPubDateDesc),
       },
     }
   })
@@ -30,15 +33,20 @@ const { category, posts } = Astro.props
   <main class="mx-auto my-4 flex max-w-4xl flex-col gap-4 px-8 lg:px-0" slot="body">
     <h1>{category.data.name}</h1>
     <p class="italic">{category.data.description}</p>
-    {
-      posts.map((post) => (
-        <a href={`/blog/${category.id}/${post.id}`} class="rounded-lg border p-4 hover:bg-gray-50">
-          <h2 class="text-xl font-bold">{post.data.title}</h2>
-          <p class="text-gray-600">{post.data.description}</p>
-          <time class="text-sm text-gray-500">{post.data.pubDate.toLocaleDateString()}</time>
-        </a>
-      ))
-    }
+    <GridListSwitcher client:load client:idle>
+      <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {
+          posts.map((post) => (
+            <li class="col-span-1 view-list:md:col-span-2 view-list:lg:col-span-3">
+              <PostCard
+                {post}
+                class="view-list:[--figure-width:100%] view-list:md:card-side view-list:md:[--figure-width:18rem]"
+              />
+            </li>
+          ))
+        }
+      </ul>
+    </GridListSwitcher>
   </main>
   <Footer slot="footer" />
 </BaseLayout>

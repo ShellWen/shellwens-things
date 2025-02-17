@@ -16,6 +16,9 @@
     dim --prefersdark;
 }
 
+@custom-variant view-grid (&:where(.view-grid *));
+@custom-variant view-list (&:where(.view-list *));
+
 @layer base-override {
   body {
     @apply font-sans;

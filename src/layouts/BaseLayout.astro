@@ -22,7 +22,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = undefined } 
   </head>
   <body class="flex min-h-screen flex-col">
     <script>
-      import { theme, type ThemeType } from '@/lib/theme/stores'
+      import { theme, type ThemeType } from '@/lib/store/theme'
 
       function updateTheme(theme: ThemeType) {
         if (theme.colorMode === 'dark') {

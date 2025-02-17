@@ -3,13 +3,12 @@ import { getCollection } from 'astro:content'
 import Header from '@/components/Header.astro'
 import Footer from '@/components/Footer.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
-import sortCategories from '@/lib/util/sortCategories'
 import PostCard from '@/components/PostCard.astro'
 import { Icon } from 'astro-icon/components'
+import { sortCategoryBySortOrder, sortPostByPubDateDesc } from '@/lib/util/sorts'
 
-const categories = sortCategories(await getCollection('category'))
-
-const posts = (await getCollection('post')).sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+const categories = (await getCollection('category')).sort(sortCategoryBySortOrder)
+const posts = await getCollection('post')
 ---
 
 <BaseLayout>
@@ -19,9 +18,7 @@ const posts = (await getCollection('post')).sort((a, b) => a.data.pubDate.valueO
       categories
         .map((category) => ({
           category,
-          posts: posts
-            .filter((post) => post.data.category.id === category.id)
-            .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+          posts: posts.filter((post) => post.data.category.id === category.id).sort(sortPostByPubDateDesc),
         }))
         .map(({ category, posts }) => {
           return (
@@ -37,10 +34,7 @@ const posts = (await getCollection('post')).sort((a, b) => a.data.pubDate.valueO
               ) : (
                 <>
                   <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                    {posts.map((post, index) => {
-                      if (index > 6) {
-                        return null
-                      }
+                    {posts.slice(0, 7).map((post, index) => {
                       return (
                         <li
                           class:list={[
@@ -62,7 +56,7 @@ const posts = (await getCollection('post')).sort((a, b) => a.data.pubDate.valueO
                       )
                     })}
                   </ul>
-                  {posts.length > 6 && (
+                  {posts.length > 7 && (
                     <div class="text-center">
                       <a href={`/blog/${category.id}`} class="inline-block py-4 text-center">
                         <button class="btn btn-ghost">

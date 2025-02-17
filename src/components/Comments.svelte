@@ -1,6 +1,6 @@
 <script lang="ts">
   import Giscus from '@giscus/svelte'
-  import { theme } from '@/lib/theme/stores'
+  import { theme } from '@/lib/store/theme'
 
   const {
     term,

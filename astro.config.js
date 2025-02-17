@@ -7,6 +7,7 @@ import sentry from '@sentry/astro'
 import tailwindcss from '@tailwindcss/vite'
 import icon from 'astro-icon'
 import { defineConfig } from 'astro/config'
+import 'dotenv/config'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -26,14 +27,21 @@ export default defineConfig({
   integrations: [
     // Sentry does not support Astro with Cloudflare adapter yet
     mdx(), // https://github.com/getsentry/sentry-javascript/issues/9777
-    sentry({
-      dsn: 'https://7df36d7c0ed618e59ae41c6ded5b9a7c@o4506401530511360.ingest.sentry.io/4506401532018688',
-      release: `shellwens-things@${process.env.npm_package_version ?? 'unknown'}`,
-      sourceMapsUploadOptions: {
-        project: 'shellwens-things',
-        authToken: process.env.SENTRY_AUTH_TOKEN,
-      },
-    }),
+    ...(() => {
+      if (process.env.SENTRY_ENVIRONMENT === 'local-dev') {
+        return []
+      }
+      return [
+        sentry({
+          dsn: 'https://7df36d7c0ed618e59ae41c6ded5b9a7c@o4506401530511360.ingest.sentry.io/4506401532018688',
+          release: `shellwens-things@${process.env.npm_package_version ?? 'unknown'}`,
+          sourceMapsUploadOptions: {
+            project: 'shellwens-things',
+            authToken: process.env.SENTRY_AUTH_TOKEN,
+          },
+        }),
+      ]
+    })(),
     sitemap(),
     svelte(),
     icon(),
