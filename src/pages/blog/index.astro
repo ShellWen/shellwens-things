@@ -57,9 +57,9 @@ const posts = await getCollection('post')
                     })}
                   </ul>
                   {posts.length > 7 && (
-                    <div class="text-center">
-                      <a href={`/blog/${category.id}`} class="inline-block py-4 text-center">
-                        <button class="btn btn-ghost">
+                    <div class="text-end">
+                      <a href={`/blog/${category.id}`} class="inline-block py-4">
+                        <button class="btn btn-primary">
                           <Icon name="material-symbols:arrow-forward" />
                           查看更多
                         </button>
