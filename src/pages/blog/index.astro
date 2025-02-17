@@ -57,7 +57,7 @@ const posts = (await getCollection('post')).sort((a, b) => a.data.pubDate.valueO
                     })}
                   </ul>
                   {posts.length > 6 && (
-                    <a href={`/category/${category.id}`} class="block py-4 text-center">
+                    <a href={`/blog/${category.id}`} class="block py-4 text-center">
                       查看更多
                     </a>
                   )}
