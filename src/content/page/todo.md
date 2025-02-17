@@ -28,3 +28,4 @@ heroImage: '@assets/images/default_banner.png'
 - [ ] 固定 TopBar 的高度，针对特定页面做出悬浮沉浸式效果
 - [x] ~~编写 README，然后开源~~
 - [x] ~~Sentry 错误监控~~
+- [ ] 添加阅读时间预测
