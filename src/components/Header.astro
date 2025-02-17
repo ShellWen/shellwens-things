@@ -6,7 +6,7 @@ type Props = HTMLAttributes<'div'> & {
   isSticky?: boolean
 }
 
-const { isSticky = false, class: propClass, ...props } = Astro.props
+const { isSticky = true, class: propClass, ...props } = Astro.props
 ---
 
 <div
