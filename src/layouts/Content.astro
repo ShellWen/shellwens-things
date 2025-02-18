@@ -111,6 +111,11 @@ const term = `${title} | ${slug}`
             class="link">CC BY-NC-SA 4.0 Deed</a
           > 协议授权。<div class="divider">评论区</div>
           <Comments term={term} client:idle client:only="svelte" />
+          <noscript>
+            评论区需要 JavaScript 支持，但您的浏览器不支持 JavaScript 或 JavaScript 被禁用了。
+            <br />
+            请开启 JavaScript 或者使用支持 JavaScript 的浏览器。
+          </noscript>
         </p>
       </div>
     </article>
