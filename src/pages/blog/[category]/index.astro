@@ -47,7 +47,7 @@ const { category, posts } = Astro.props
           </a>
         </div>
       ) : (
-        <GridListSwitcher client:load client:idle>
+        <GridListSwitcher client:load>
           <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
               <li class="col-span-1 view-list:md:col-span-2 view-list:lg:col-span-3">

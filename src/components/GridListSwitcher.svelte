@@ -8,7 +8,7 @@
   }
 </script>
 
-<div class={`flex flex-col gap-4 ${$gridListSwitcherState === 'grid' ? 'view-grid' : 'view-list'}`}>
+<div class={`flex flex-col w-full gap-4 ${$gridListSwitcherState === 'grid' ? 'view-grid' : 'view-list'}`}>
   <div class="join self-end">
     <input
       class="join-item btn"
