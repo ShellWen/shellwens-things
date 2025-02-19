@@ -25,7 +25,6 @@ export default defineConfig({
     },
   }),
   integrations: [
-    // Sentry does not support Astro with Cloudflare adapter yet
     mdx(), // https://github.com/getsentry/sentry-javascript/issues/9777
     ...(() => {
       if (process.env.SENTRY_ENVIRONMENT === 'local-dev') {
