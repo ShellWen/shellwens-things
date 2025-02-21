@@ -1,8 +1,18 @@
 import { glob } from 'astro/loaders'
 import { defineCollection, reference, z } from 'astro:content'
 
+const generateIdIgnorePath = ({ entry, data }: { entry: string; base: URL; data: Record<string, unknown> }) => {
+  if (data.slug) {
+    return data.slug as string
+  }
+  const regex = /[^/\\]*(?=\.[^.]*$)|[^/\\]*$/
+  const slug = entry.match(regex)?.[0]
+  if (!slug) throw new Error(`Failed to generate ID for ${entry}`)
+  return slug
+}
+
 const post = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/post' }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/post', generateId: generateIdIgnorePath }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -18,7 +28,11 @@ const post = defineCollection({
 })
 
 const page = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/page' }),
+  loader: glob({
+    pattern: '**/*.{md,mdx}',
+    base: './src/content/page',
+    generateId: generateIdIgnorePath,
+  }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
