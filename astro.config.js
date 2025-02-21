@@ -13,6 +13,8 @@ import rehypeSlug from 'rehype-slug'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { visualizer } from 'rollup-plugin-visualizer'
 
+import { remarkReadingTime } from './remark-reading-time.js'
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://shellwen.com',
@@ -53,6 +55,7 @@ export default defineConfig({
         dark: 'one-dark-pro',
       },
     },
+    remarkPlugins: [remarkReadingTime],
     rehypePlugins: [
       rehypeSlug,
       [

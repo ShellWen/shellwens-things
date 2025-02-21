@@ -20,9 +20,10 @@ type Props = {
   heroImage: ImageMetadata
   heroImageAlt?: string | undefined
   headings: MarkdownHeading[]
+  minutesRead: string
 }
 
-const { slug, title, description, pubDate, updatedDate, heroImage, heroImageAlt, headings } = Astro.props
+const { slug, title, description, pubDate, updatedDate, heroImage, heroImageAlt, headings, minutesRead } = Astro.props
 
 const term = `${title} | ${slug}`
 ---
@@ -40,17 +41,21 @@ const term = `${title} | ${slug}`
           transition:name={`hero-image-${slug}`}
         />
         <div
-          class="absolute top-0 left-0 flex h-full w-full flex-col justify-end p-4 text-white sm:pb-8 sm:text-center"
+          class="absolute top-0 left-0 flex h-full w-full flex-col items-center justify-end p-4 text-white sm:pb-8 sm:text-center"
         >
-          <h1 class="text-2xl sm:text-4xl" transition:name={`title-${slug}`}>{title}</h1>
+          <h1 class="w-fit text-2xl sm:text-4xl" transition:name={`title-${slug}`}>{title}</h1>
           <br />
-          <div transition:name={`pub-date-${slug}`}>
-            <Icon name="material-symbols:nest-clock-farsight-analog-outline" class="inline-block" />
+          <div transition:name={`pub-date-${slug}`} class="tooltip inline-block w-fit" data-tip="最初发布日期">
+            <Icon name="material-symbols:calendar-today" class="inline-block" />
             <FormattedDate date={pubDate} />
           </div>
-          <div transition:name={`updated-date-${slug}`}>
-            <Icon name="material-symbols:edit-outline" class="inline-block" />
+          <div transition:name={`updated-date-${slug}`} class="tooltip inline-block w-fit" data-tip="上次更新日期">
+            <Icon name="material-symbols:history" class="inline-block" />
             <FormattedDate date={updatedDate} />
+          </div>
+          <div transition:name={`minutes-read-${slug}`} class="tooltip inline-block w-fit" data-tip="预计阅读时间">
+            <Icon name="material-symbols:timer" class="inline-block" />
+            {minutesRead}
           </div>
         </div>
       </div>

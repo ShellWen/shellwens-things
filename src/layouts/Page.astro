@@ -6,11 +6,12 @@ import Content from './Content.astro'
 type Props = CollectionEntry<'page'>['data'] & {
   slug: string
   headings: MarkdownHeading[]
+  minutesRead: string
 }
 
-const { slug, title, description, pubDate, updatedDate, heroImage, heroImageAlt, headings } = Astro.props
+const { slug, title, description, pubDate, updatedDate, heroImage, heroImageAlt, headings, minutesRead } = Astro.props
 ---
 
-<Content {slug} {title} {description} {pubDate} {updatedDate} {heroImage} {heroImageAlt} {headings}>
+<Content {slug} {title} {description} {pubDate} {updatedDate} {heroImage} {heroImageAlt} {headings} {minutesRead}>
   <slot />
 </Content>

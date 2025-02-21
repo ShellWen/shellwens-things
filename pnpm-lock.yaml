@@ -62,9 +62,15 @@ importers:
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
+      mdast-util-to-string:
+        specifier: ^4.0.0
+        version: 4.0.0
       nanostores:
         specifier: ^0.11.4
         version: 0.11.4
+      reading-time-estimator:
+        specifier: ^1.11.0
+        version: 1.11.0
       rehype:
         specifier: ^13.0.2
         version: 13.0.2
@@ -3990,6 +3996,9 @@ packages:
   readdirp@4.0.2:
     resolution: {integrity: sha512-yDMz9g+VaZkqBYS/ozoBJwaBhTbZo3UNYQHNRw1D3UFQB8oHB4uS/tAODO+ZLjGWmUbKnIlOWO+aaIiAxrUWHA==}
     engines: {node: '>= 14.16.0'}
+
+  reading-time-estimator@1.11.0:
+    resolution: {integrity: sha512-2813WXSxCPsDvgrYq+cPBI4gGqgmtKlo62rpI0mwnhrMfZJIqbDfOeidr9Y36OruDesQGmYA9DkVRmvsBbv2DA==}
 
   recma-build-jsx@1.0.0:
     resolution: {integrity: sha512-8GtdyqaBcDfva+GUKDr3nev3VpKAhup1+RvkMvUxURHpW7QyIvk9F5wz7Vzo06CEMSilw6uArgRqhpiUcWp8ew==}
@@ -9753,6 +9762,8 @@ snapshots:
       picomatch: 2.3.1
 
   readdirp@4.0.2: {}
+
+  reading-time-estimator@1.11.0: {}
 
   recma-build-jsx@1.0.0:
     dependencies:
