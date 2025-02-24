@@ -30,3 +30,5 @@ heroImage: '@assets/images/default_banner.png'
 - [x] ~~Sentry 错误监控~~
 - [x] ~~添加阅读时间预测~~
 - [x] ~~PostCard 添加更多信息显示，比如说修改日期和预计阅读时间~~
+- [ ] 美化文章目录结构
+- [ ] 站内搜索

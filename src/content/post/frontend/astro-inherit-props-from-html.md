@@ -3,7 +3,7 @@ title: 'Astro 组件中如何从 HTML 原生元素继承 Props 类型'
 description: '了解在 Astro 框架中，如何通过继承原生 HTML 元素的 Props 类型，使自定义组件能够使用原生 HTML 元素的属性。文章涵盖了问题背景、在 React 中的解决方案以及在 Astro 中的实现方法。'
 pubDate: '2023-12-22'
 updatedDate: '2025-02-13'
-heroImage: '../hero-images/astro-og.jpg'
+heroImage: './astro-inherit-props-from-html.png'
 category: frontend
 # tags: astro, typescript
 ---
