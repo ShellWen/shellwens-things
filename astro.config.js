@@ -6,6 +6,7 @@ import svelte from '@astrojs/svelte'
 import sentry from '@sentry/astro'
 import tailwindcss from '@tailwindcss/vite'
 import icon from 'astro-icon'
+import pagefind from 'astro-pagefind'
 import { defineConfig } from 'astro/config'
 import 'dotenv/config'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
@@ -46,6 +47,7 @@ export default defineConfig({
     sitemap(),
     svelte(),
     icon(),
+    pagefind(),
   ],
   markdown: {
     syntaxHighlight: 'shiki',

@@ -1,0 +1,15 @@
+@reference './global.css';
+
+.pagefind-ui {
+  --pagefind-ui-scale: 1;
+  --pagefind-ui-font: var(--font-sans);
+  --pagefind-ui-text: var(--text-base-content);
+  --pagefind-ui-primary: var(--color-primary);
+  --pagefind-ui-border-width: 0px;
+  & .pagefind-ui__search-input {
+    @apply input input-lg w-full;
+  }
+  & .pagefind-ui__search-clear {
+    @apply btn btn-ghost;
+  }
+}

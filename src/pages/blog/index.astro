@@ -6,6 +6,8 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 import PostCard from '@/components/PostCard.astro'
 import { Icon } from 'astro-icon/components'
 import { sortCategoryBySortOrder, sortPostByPubDateDesc } from '@/lib/util/sorts'
+import Search from 'astro-pagefind/components/Search'
+import '@/styles/pagefind-ui.css'
 
 const categories = (await getCollection('category')).sort(sortCategoryBySortOrder)
 const posts = await getCollection('post')
@@ -14,6 +16,27 @@ const posts = await getCollection('post')
 <BaseLayout>
   <Header isSticky={true} slot="header" />
   <main class="mx-auto my-4 flex max-w-4xl flex-col gap-4 px-8 lg:px-0" slot="body">
+    <Search
+      id="search"
+      className="pagefind-ui mt-4"
+      uiOptions={{
+        showImages: false,
+        resetStyles: false,
+        translations: {
+          placeholder: '搜索',
+          clear_search: '清除',
+          load_more: '加载更多结果',
+          search_label: '站内搜索',
+          filters_label: '筛选',
+          zero_results: '未找到 [SEARCH_TERM] 的相关结果',
+          many_results: '找到 [COUNT] 个 [SEARCH_TERM] 的相关结果',
+          one_result: '找到 [COUNT] 个 [SEARCH_TERM] 的相关结果',
+          alt_search: '未找到 [SEARCH_TERM] 的相关结果。改为显示 [DIFFERENT_TERM] 的相关结果',
+          search_suggestion: '未找到 [SEARCH_TERM] 的相关结果。请尝试以下搜索。',
+          searching: '正在搜索 [SEARCH_TERM]...',
+        },
+      }}
+    />
     {
       categories
         .map((category) => ({
@@ -24,7 +47,7 @@ const posts = await getCollection('post')
           return (
             <section>
               <a href={`/blog/${category.id}`} class="inline-block">
-                <h1 class="py-4" transition:name={`category-name-${category.id}`}>
+                <h1 class="py-4 font-serif" transition:name={`category-name-${category.id}`}>
                   {category.data.name}
                   <Icon name="material-symbols:arrow-forward" class="inline" />
                 </h1>

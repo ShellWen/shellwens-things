@@ -30,7 +30,7 @@ const term = `${title} | ${slug}`
 
 <BaseLayout title={`${title} | ${SITE_TITLE}`} description={description} image={heroImage}>
   <Header class="sm:pb-4" slot="header" isSticky={false} />
-  <main slot="body">
+  <main slot="body" data-pagefind-body>
     <article class="w-full">
       <div class="relative h-[30vh] sm:h-[50vh]">
         <Picture
@@ -43,7 +43,9 @@ const term = `${title} | ${slug}`
         <div
           class="absolute top-0 left-0 flex h-full w-full flex-col items-center justify-end p-4 text-white sm:pb-8 sm:text-center"
         >
-          <h1 class="w-fit text-2xl sm:text-4xl" transition:name={`title-${slug}`}>{title}</h1>
+          <h1 class="w-fit text-2xl sm:text-4xl" transition:name={`title-${slug}`} data-pagefind-meta="title">
+            {title}
+          </h1>
           <br />
           <div transition:name={`pub-date-${slug}`} class="tooltip inline-block w-fit" data-tip="最初发布日期">
             <Icon name="material-symbols:calendar-today" class="inline-block" />

@@ -31,8 +31,10 @@ const { category, posts } = Astro.props
 
 <BaseLayout>
   <Header slot="header" />
-  <main class="mx-auto my-4 flex w-full max-w-4xl flex-col gap-4 px-8 lg:px-0" slot="body">
-    <h1 transition:name={`category-name-${category.id}`}>{category.data.name}</h1>
+  <main class="mx-auto my-4 flex w-full max-w-4xl flex-col gap-4 px-8 lg:px-0" slot="body" data-pagefind-body>
+    <h1 transition:name={`category-name-${category.id}`} class="font-serif" data-pagefind-meta="title">
+      {category.data.name}
+    </h1>
     <p class="italic">{category.data.description}</p>
     {
       posts.length === 0 ? (
@@ -40,7 +42,7 @@ const { category, posts } = Astro.props
           该分类暂无文章
           <br />
           <a href="/blog" class="inline-block pt-4">
-            <button class="btn btn-primary btn-soft">
+            <button class="btn btn-soft btn-primary">
               <Icon name="material-symbols:category" class="size-4" />
               回到分类页
             </button>

@@ -31,6 +31,7 @@
     "@tailwindcss/vite": "^4.0.8",
     "astro": "^5.3.1",
     "astro-icon": "^1.1.5",
+    "astro-pagefind": "^1.8.1",
     "classnames": "^2.5.1",
     "mdast-util-to-string": "^4.0.0",
     "nanostores": "^0.11.4",
