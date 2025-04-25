@@ -70,6 +70,7 @@ export default defineConfig({
   },
   experimental: {
     contentIntellisense: true,
+    responsiveImages: true,
   },
   vite: {
     plugins: [
