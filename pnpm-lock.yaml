@@ -98,6 +98,9 @@ importers:
       vconsole:
         specifier: ^3.15.1
         version: 3.15.1
+      view-transitions-polyfill:
+        specifier: ^1.0.4
+        version: 1.0.4
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3.3.0
@@ -4870,6 +4873,9 @@ packages:
 
   vfile@6.0.3:
     resolution: {integrity: sha512-KzIbH/9tXat2u30jf+smMwFCsno4wHVdNmzFyL+T/L3UGqqk6JKfVqOFOZEpZSHADH1k40ab6NUIXZq422ov3Q==}
+
+  view-transitions-polyfill@1.0.4:
+    resolution: {integrity: sha512-CPwuLt4+GrO6nCvngGBDQjuY4zzn+rO7JZ6R74qqGH+le7g3AKSBWAIRC4Ja8Oz9xgvQLK2sjjW1PUWH8iE/VA==}
 
   vite-node@3.0.6:
     resolution: {integrity: sha512-s51RzrTkXKJrhNbUzQRsarjmAae7VmMPAsRT7lppVpIg6mK3zGthP9Hgz0YQQKuNcF+Ii7DfYk3Fxz40jRmePw==}
@@ -11028,6 +11034,8 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
+
+  view-transitions-polyfill@1.0.4: {}
 
   vite-node@3.0.6(@types/node@22.13.1)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.7.0):
     dependencies:

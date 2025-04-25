@@ -43,7 +43,8 @@
     "svelte": "^5.20.4",
     "tailwindcss": "^4.0.8",
     "typescript": "^5.7.3",
-    "vconsole": "^3.15.1"
+    "vconsole": "^3.15.1",
+    "view-transitions-polyfill": "^1.0.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.0",
