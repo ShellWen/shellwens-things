@@ -70,8 +70,11 @@ export default defineConfig({
   },
   experimental: {
     contentIntellisense: true,
-    responsiveImages: true,
     preserveScriptOrder: true,
+  },
+  image: {
+    responsiveImages: true,
+    layout: 'constrained',
   },
   vite: {
     plugins: [
