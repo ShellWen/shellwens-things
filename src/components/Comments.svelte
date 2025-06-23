@@ -10,7 +10,7 @@
 
   const themeString = $derived.by(() => {
     if ($theme.colorMode === 'dark') {
-      return 'dark_dimmed'
+      return 'dark_tritanopia'
     }
     if ($theme.colorMode === 'light') {
       return 'light_tritanopia'

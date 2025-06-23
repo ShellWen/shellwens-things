@@ -13,7 +13,7 @@
 @plugin "daisyui" {
   themes:
     autumn --default,
-    dim --prefersdark;
+    night --prefersdark;
 }
 
 @custom-variant view-grid (&:where(.view-grid *));
