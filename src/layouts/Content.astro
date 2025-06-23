@@ -37,6 +37,7 @@ const term = `${title} | ${slug}`
           src={heroImage}
           alt={heroImageAlt ?? ''}
           formats={['avif', 'webp']}
+          loading="eager"
           class="h-full w-full object-cover object-center brightness-50"
           transition:name={`hero-image-${slug}`}
         />
