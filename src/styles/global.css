@@ -48,3 +48,10 @@
     @apply text-base;
   }
 }
+
+@layer utilities {
+  .footer-title {
+    /* For A11y, default 60% is too low */
+    @apply opacity-80;
+  }
+}
