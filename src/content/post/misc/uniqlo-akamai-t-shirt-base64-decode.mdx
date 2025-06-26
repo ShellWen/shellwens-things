@@ -1,0 +1,187 @@
+---
+title: '优衣库 Akamai 有爱系列新品背部 Base64 还原'
+description: '新品上市一个星期了，终于有空把背面的 Base64 还原了'
+pubDate: '2025-06-27'
+updatedDate: '2025-06-27'
+heroImage: './uniqlo-akamai-t-shirt-base64-decode.png'
+category: misc
+---
+
+import AppPicture from '@/components/AppPicture.astro'
+import akamaiTShirtBack from './Akamai_Technologies___UNIQLO___T_shirt.jpg'
+import screenshot from './uniqlo-akamai-t-shirt-base64-decode-screenshot.png'
+
+# TL;DR
+
+背面文本转写：
+```
+#!/bin/bash eval "$(base64 -d <<< 'IyEvYmluL2Jhc2gKCiMgQ29uZ3Jhd
+HVsYXRpb25zISBZb3UgZm91bmQgdGhlIGVhc3RlciBlZ2chIOKdpO+4jwojIOOBiuO
+CgeOBp+OBqOOBhuOBlOOBluOBhOOBvuOBme+8gemaoOOBleOCjOOBn+OCteODl+OD
+qeOCpOOCuuOCkuimi+OBpOOBkeOBvuOBl+OBn++8geKdpO+4jwoKIyBEZWZpbmUgd
+GhlIHRleHQgdG8gYW5pbWF0ZQp0ZXh0PSLimaVQRUFDReKZpUZPUuKZpUFMTOKZpV
+BFQUNF4pmlRk9S4pmlQUxM4pmlUEVBQ0XimaVGT1LimaVBTEzimaVQRUFDReKZpUZ
+PUuKZpUFMTOKZpVBFQUNF4pmlRk9S4pmlQUxM4pmlIgoKIyBHZXQgdGVybWluYWwg
+ZGltZW5zaW9ucwpjb2xzPSQodHB1dCBjb2xzKQpsaW5lcz0kKHRwdXQgbGluZXMpC
+gojIENhbGN1bGF0ZSB0aGUgbGVuZ3RoIG9mIHRoZSB0ZXh0CnRleHRfbGVuZ3RoPS
+R7I3RleHR9CgojIEhpZGUgdGhlIGN1cnNvcgp0cHV0IGNpdmlzCgojIFRyYXAgQ1RS
+TCtDIHRvIHNob3cgdGhlIGN1cnNvciBiZWZvcmUgZXhpdGluZwp0cmFwICJ0cHV0I
+GNub3JtOyBleGl0IiBTSUdJTlQKCiMgU2V0IGZyZXF1ZW5jeSBzY2FsaW5nIGZhY3R
+vcgpmcmVxPTAuMgoKIyBJbmZpbml0ZSBsb29wIGZvciBjb250aW51b3VzIGFuaW1hd
+Glvbgpmb3IgKCggdD0wOyA7IHQrPTEgKSk7IGRvCiAgICAjIEV4dHJhY3Qgb25lIGN
+oYXJhY3RlciBhdCBhIHRpbWUKICAgIGNoYXI9IiR7dGV4dDp0ICUgdGV4dF9sZW5nd
+Gg6MX0iCiAgICAKICAgICMgQ2FsY3VsYXRlIHRoZSBhbmdsZSBpbiByYWRpYW5zCiA
+gICBhbmdsZT0kKGVjaG8gIigkdCkgKiAkZnJlcSIgfCBiYyAtbCkKCiAgICAjIENhb
+GN1bGF0ZSB0aGUgc2luZSBvZiB0aGUgYW5nbGUKICAgIHNpbmVfdmFsdWU9JChlY2
+hvICJzKCRhbmdsZSkiIHwgYmMgLWwpCgogICAgIyBDYWxjdWxhdGUgeCBwb3NpdGl
+vbiB1c2luZyB0aGUgc2luZSB2YWx1ZQogICAgeD0kKGVjaG8gIigkY29scyAvIDIpIC
+sgKCRjb2xzIC8gNCkgKiAkc2luZV92YWx1ZSIgfCBiYyAtbCkKICAgIHg9JChwcmlu
+dGYgIiUuMGYiICIkeCIpCgogICAgIyBFbnN1cmUgeCBpcyB3aXRoaW4gdGVybWluY
+WwgYm91bmRzCiAgICBpZiAoKCB4IDwgMCApKTsgdGhlbiB4PTA7IGZpCiAgICBpZi
+AoKCB4ID49IGNvbHMgKSk7IHRoZW4geD0kKChjb2xzIC0gMSkpOyBmaQoKICAgICM
+gQ2FsY3VsYXRlIGNvbG9yIGdyYWRpZW50IGJldHdlZW4gMTIgKGN5YW4pIGFuZCAyM
+DggKG9yYW5nZSkKICAgIGNvbG9yX3N0YXJ0PTEyCiAgICBjb2xvcl9lbmQ9MjA4CiA
+gICBjb2xvcl9yYW5nZT0kKChjb2xvcl9lbmQgLSBjb2xvcl9zdGFydCkpCiAgICBjb
+2xvcj0kKChjb2xvcl9zdGFydCArIChjb2xvcl9yYW5nZSAqIHQgLyBsaW5lcykgJSBj
+b2xvcl9yYW5nZSkpCgogICAgIyBQcmludCB0aGUgY2hhcmFjdGVyIHdpdGggMjU2L
+WNvbG9yIHN1cHBvcnQKICAgIGVjaG8gLW5lICJcMDMzWzM4OzU7JHtjb2xvcn1tIiQ
+odHB1dCBjdXAgJHQgJHgpIiRjaGFyXDAzM1swbSIKCiAgICAjIExpbmUgZmVlZCB0b
+yBtb3ZlIGRvd253YXJkCiAgICBlY2hvICIiCgpkb25lCgo=')"
+```
+
+请注意，直接文本转写并没有在 shebang 后添加换行，所以需要手动添加换行后才能作为 shell 脚本执行。
+
+```shell
+#!/bin/bash
+eval "$(base64 -d <<< 'IyEvYmluL2Jhc2gKCiMgQ29uZ3Jhd
+HVsYXRpb25zISBZb3UgZm91bmQgdGhlIGVhc3RlciBlZ2chIOKdpO+4jwojIOOBiuO
+CgeOBp+OBqOOBhuOBlOOBluOBhOOBvuOBme+8gemaoOOBleOCjOOBn+OCteODl+OD
+qeOCpOOCuuOCkuimi+OBpOOBkeOBvuOBl+OBn++8geKdpO+4jwoKIyBEZWZpbmUgd
+GhlIHRleHQgdG8gYW5pbWF0ZQp0ZXh0PSLimaVQRUFDReKZpUZPUuKZpUFMTOKZpV
+BFQUNF4pmlRk9S4pmlQUxM4pmlUEVBQ0XimaVGT1LimaVBTEzimaVQRUFDReKZpUZ
+PUuKZpUFMTOKZpVBFQUNF4pmlRk9S4pmlQUxM4pmlIgoKIyBHZXQgdGVybWluYWwg
+ZGltZW5zaW9ucwpjb2xzPSQodHB1dCBjb2xzKQpsaW5lcz0kKHRwdXQgbGluZXMpC
+gojIENhbGN1bGF0ZSB0aGUgbGVuZ3RoIG9mIHRoZSB0ZXh0CnRleHRfbGVuZ3RoPS
+R7I3RleHR9CgojIEhpZGUgdGhlIGN1cnNvcgp0cHV0IGNpdmlzCgojIFRyYXAgQ1RS
+TCtDIHRvIHNob3cgdGhlIGN1cnNvciBiZWZvcmUgZXhpdGluZwp0cmFwICJ0cHV0I
+GNub3JtOyBleGl0IiBTSUdJTlQKCiMgU2V0IGZyZXF1ZW5jeSBzY2FsaW5nIGZhY3R
+vcgpmcmVxPTAuMgoKIyBJbmZpbml0ZSBsb29wIGZvciBjb250aW51b3VzIGFuaW1hd
+Glvbgpmb3IgKCggdD0wOyA7IHQrPTEgKSk7IGRvCiAgICAjIEV4dHJhY3Qgb25lIGN
+oYXJhY3RlciBhdCBhIHRpbWUKICAgIGNoYXI9IiR7dGV4dDp0ICUgdGV4dF9sZW5nd
+Gg6MX0iCiAgICAKICAgICMgQ2FsY3VsYXRlIHRoZSBhbmdsZSBpbiByYWRpYW5zCiA
+gICBhbmdsZT0kKGVjaG8gIigkdCkgKiAkZnJlcSIgfCBiYyAtbCkKCiAgICAjIENhb
+GN1bGF0ZSB0aGUgc2luZSBvZiB0aGUgYW5nbGUKICAgIHNpbmVfdmFsdWU9JChlY2
+hvICJzKCRhbmdsZSkiIHwgYmMgLWwpCgogICAgIyBDYWxjdWxhdGUgeCBwb3NpdGl
+vbiB1c2luZyB0aGUgc2luZSB2YWx1ZQogICAgeD0kKGVjaG8gIigkY29scyAvIDIpIC
+sgKCRjb2xzIC8gNCkgKiAkc2luZV92YWx1ZSIgfCBiYyAtbCkKICAgIHg9JChwcmlu
+dGYgIiUuMGYiICIkeCIpCgogICAgIyBFbnN1cmUgeCBpcyB3aXRoaW4gdGVybWluY
+WwgYm91bmRzCiAgICBpZiAoKCB4IDwgMCApKTsgdGhlbiB4PTA7IGZpCiAgICBpZi
+AoKCB4ID49IGNvbHMgKSk7IHRoZW4geD0kKChjb2xzIC0gMSkpOyBmaQoKICAgICM
+gQ2FsY3VsYXRlIGNvbG9yIGdyYWRpZW50IGJldHdlZW4gMTIgKGN5YW4pIGFuZCAyM
+DggKG9yYW5nZSkKICAgIGNvbG9yX3N0YXJ0PTEyCiAgICBjb2xvcl9lbmQ9MjA4CiA
+gICBjb2xvcl9yYW5nZT0kKChjb2xvcl9lbmQgLSBjb2xvcl9zdGFydCkpCiAgICBjb
+2xvcj0kKChjb2xvcl9zdGFydCArIChjb2xvcl9yYW5nZSAqIHQgLyBsaW5lcykgJSBj
+b2xvcl9yYW5nZSkpCgogICAgIyBQcmludCB0aGUgY2hhcmFjdGVyIHdpdGggMjU2L
+WNvbG9yIHN1cHBvcnQKICAgIGVjaG8gLW5lICJcMDMzWzM4OzU7JHtjb2xvcn1tIiQ
+odHB1dCBjdXAgJHQgJHgpIiRjaGFyXDAzM1swbSIKCiAgICAjIExpbmUgZmVlZCB0b
+yBtb3ZlIGRvd253YXJkCiAgICBlY2hvICIiCgpkb25lCgo=')"
+```
+
+其中 Base64 部分的内容为一个 shell 脚本，解码后内容如下：
+
+```shell
+#!/bin/bash
+
+# Congratulations! You found the easter egg! ❤️
+# おめでとうございます！隠されたサプライズを見つけました！❤️
+
+# Define the text to animate
+text="♥PEACE♥FOR♥ALL♥PEACE♥FOR♥ALL♥PEACE♥FOR♥ALL♥PEACE♥FOR♥ALL♥PEACE♥FOR♥ALL♥"
+
+# Get terminal dimensions
+cols=$(tput cols)
+lines=$(tput lines)
+
+# Calculate the length of the text
+text_length=${#text}
+
+# Hide the cursor
+tput civis
+
+# Trap CTRL+C to show the cursor before exiting
+trap "tput cnorm; exit" SIGINT
+
+# Set frequency scaling factor
+freq=0.2
+
+# Infinite loop for continuous animation
+for (( t=0; ; t+=1 )); do
+    # Extract one character at a time
+    char="${text:t % text_length:1}"
+    
+    # Calculate the angle in radians
+    angle=$(echo "($t) * $freq" | bc -l)
+
+    # Calculate the sine of the angle
+    sine_value=$(echo "s($angle)" | bc -l)
+
+    # Calculate x position using the sine value
+    x=$(echo "($cols / 2) + ($cols / 4) * $sine_value" | bc -l)
+    x=$(printf "%.0f" "$x")
+
+    # Ensure x is within terminal bounds
+    if (( x < 0 )); then x=0; fi
+    if (( x >= cols )); then x=$((cols - 1)); fi
+
+    # Calculate color gradient between 12 (cyan) and 208 (orange)
+    color_start=12
+    color_end=208
+    color_range=$((color_end - color_start))
+    color=$((color_start + (color_range * t / lines) % color_range))
+
+    # Print the character with 256-color support
+    echo -ne "\033[38;5;${color}m"$(tput cup $t $x)"$char\033[0m"
+
+    # Line feed to move downward
+    echo ""
+
+done
+```
+
+# 背景
+
+优衣库在 2025 年 6 月 20 日，为其「PEACE FOR ALL」慈善 T 恤项目推出了与云服务及网络安全公司 Akamai 合作的全新设计 T 恤。这是继之前成功合作后，Akamai 再次作为合作伙伴参与该项目。
+
+<AppPicture src={akamaiTShirtBack} alt="T 恤背面" />
+
+这次合作的设计充满了对互联网发展史的致敬：
+
+- **米色设计**：T 恤的浅褐色是对早期「米色盒子」电脑塑料外壳的怀旧，那是互联网黎明期的象征
+- **胸前心形**：象征着互联网连接人们，将世界引向更美好未来的力量
+- **背面代码**：最特别的是 T 恤背面印着一段**真实的代码**，这段代码引用了支撑互联网的开源操作系统 Linux，象征着开放、共享与连接的理念
+
+正如 Akamai 所表达的：「世界中で愛されるこれらの共通言語の力を借りて、Akamai が、世界を導くブランドとその先のユーザーとを結びつけ、より安全で、よりつながる未来を共に築いていきたい」——希望借助这些被全世界所喜爱的共通语言的力量，让 Akamai 能够连接世界领先品牌及其用户，共同构建一个更安全、更紧密相连的未来。
+
+所有「PEACE FOR ALL」T 恤的销售利润都将捐赠给联合国难民署（UNHCR）、救助儿童会（Save the Children）、国际计划组织（Plan International）等国际人道主义组织，用于支持全球各地的难民和处境困难的儿童。
+
+而这篇文章，就将聚焦于 T 恤背面的那段神秘代码——让我们一起来看看这段 Base64 编码背后隐藏着什么。
+
+# 过程
+
+最开始我使用手机自带的 Google Lens 去对背部的文字进行识别，结果识别出来的文本把 `0` 识别成了 `@`，把正常的 `O` 又识别成了 `0`，导致解码之后出现大片乱码。
+
+此时我灵机一动，为什么不直接用 AI 去修复识别错误的这些字符呢。
+
+<AppPicture src={screenshot} alt="修复后的文本" />
+
+模型是 Gemini 2.5 Pro，为了避免幻觉，temperature 设置为 0。
+
+# 推荐终端模拟器
+
+目前测试过几款终端模拟器，流畅度大概是：
+
+Alacritty > Ghostty > kitty >> Konsole
+
+---
+
+没找到合适的工具，我就不录制实际执行效果了，欢迎各位在评论区给出运行效果😉
