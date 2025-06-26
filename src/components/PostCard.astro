@@ -1,10 +1,10 @@
 ---
-import { Picture } from 'astro:assets'
 import FormattedDate from '@/components/FormattedDate.astro'
 import { Icon } from 'astro-icon/components'
 import type { CollectionEntry } from 'astro:content'
 import type { HTMLAttributes } from 'astro/types'
 import { render } from 'astro:content'
+import AppPicture from './AppPicture.astro'
 interface Props extends HTMLAttributes<'a'> {
   post: CollectionEntry<'post'>
 }
@@ -21,10 +21,9 @@ const minutesRead = (remarkPluginFrontmatter.minutesRead as string | undefined) 
   {...rest}
 >
   <figure class="w-[var(--figure-width)] flex-shrink-0">
-    <Picture
+    <AppPicture
       src={post.data.heroImage}
       alt={post.data.heroImageAlt ?? ''}
-      formats={['avif', 'webp']}
       class="h-full object-cover"
       transition:name={`hero-image-${post.id}`}
     />

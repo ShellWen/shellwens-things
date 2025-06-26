@@ -1,0 +1,13 @@
+---
+import { Picture } from 'astro:assets'
+import type { LocalImageProps, RemoteImageProps } from 'astro:assets'
+import type { HTMLAttributes } from 'astro/types'
+
+export type Props = (LocalImageProps | RemoteImageProps) & {
+  pictureAttributes?: HTMLAttributes<'picture'>
+}
+
+const { ...props } = Astro.props
+---
+
+<Picture {...props} formats={['avif', 'webp']} fallbackFormat="png" />
