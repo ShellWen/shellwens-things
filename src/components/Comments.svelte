@@ -4,8 +4,10 @@
 
   const {
     term,
+    id,
   }: {
     term: string
+    id: string
   } = $props()
 
   const themeString = $derived.by(() => {
@@ -20,7 +22,7 @@
 </script>
 
 <Giscus
-  id="comments"
+  id={id}
   repo="ShellWen/shellwens-everything-discussion"
   repoId="R_kgDOK52cgw"
   category="评论区"

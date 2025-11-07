@@ -8,16 +8,17 @@ interface Props {
   title?: string
   description?: string
   image?: string | ImageMetadata
+  pubDate?: Date
   children: unknown
 }
 
-const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = undefined } = Astro.props
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = undefined, pubDate = undefined } = Astro.props
 ---
 
 <!doctype html>
 <html lang="zh">
   <head>
-    <BaseHead {title} {description} {image} />
+    <BaseHead {title} {description} {image} {pubDate} />
     <ClientRouter />
   </head>
   <body class="flex min-h-screen flex-col">

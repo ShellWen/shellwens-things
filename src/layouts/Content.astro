@@ -28,49 +28,53 @@ const { slug, title, description, pubDate, updatedDate, heroImage, heroImageAlt,
 const term = `${title} | ${slug}`
 ---
 
-<BaseLayout title={`${title} | ${SITE_TITLE}`} description={description} image={heroImage}>
+<BaseLayout title={`${title} | ${SITE_TITLE}`} description={description} image={heroImage} pubDate={pubDate}>
   <Header class="sm:pb-4" slot="header" isSticky={false} />
   <main slot="body" data-pagefind-body>
-    <article class="w-full">
-      <div class="relative h-[30vh] sm:h-[50vh]">
+    <article id="article-content" class="w-full">
+      <div id="hero-image-container" class="relative h-[30vh] sm:h-[50vh]">
         <AppPicture
           src={heroImage}
           alt={heroImageAlt ?? ''}
+          id='hero-image'
           loading="eager"
           class="h-full w-full object-cover object-center brightness-50"
           transition:name={`hero-image-${slug}`}
         />
         <div
+          id="hero-overlay"
           class="absolute top-0 left-0 flex h-full w-full flex-col items-center justify-end p-4 text-white sm:pb-8 sm:text-center"
         >
-          <h1 class="w-fit text-2xl sm:text-4xl" transition:name={`title-${slug}`} data-pagefind-meta="title">
+          <h1 id="article-title" class="w-fit text-2xl sm:text-4xl" transition:name={`title-${slug}`} data-pagefind-meta="title">
             {title}
           </h1>
           <br />
-          <div transition:name={`pub-date-${slug}`} class="tooltip inline-block w-fit" data-tip="最初发布日期">
+          <div id="article-metadata">
+          <div id="pub-date" transition:name={`pub-date-${slug}`} class="tooltip inline-block w-fit" data-tip="最初发布日期">
             <Icon name="material-symbols:calendar-today" class="inline-block" />
             <FormattedDate date={pubDate} />
           </div>
-          <div transition:name={`updated-date-${slug}`} class="tooltip inline-block w-fit" data-tip="上次更新日期">
+          <div id="updated-date" transition:name={`updated-date-${slug}`} class="tooltip inline-block w-fit" data-tip="上次更新日期">
             <Icon name="material-symbols:history" class="inline-block" />
             <FormattedDate date={updatedDate} />
           </div>
-          <div transition:name={`minutes-read-${slug}`} class="tooltip inline-block w-fit" data-tip="预计阅读时间">
+          <div id="minutes-read" transition:name={`minutes-read-${slug}`} class="tooltip inline-block w-fit" data-tip="预计阅读时间">
             <Icon name="material-symbols:timer" class="inline-block" />
             {minutesRead}
           </div>
+          </div>
         </div>
       </div>
-      <div class="mx-auto prose w-full p-4">
-        <div class="mx-auto">
+      <div id="article-body" class="mx-auto prose w-full p-4">
+        <div id="article-main" class="mx-auto">
           {
             description && (
-              <p class="mb-0 text-center italic" transition:name={`description-${slug}`}>
+              <p id="article-description" class="mb-0 text-center italic" transition:name={`description-${slug}`}>
                 {description}
               </p>
             )
           }
-          {headings.length !== 0 && <TopToc headings={headings} class="py-4" />}
+          {headings.length !== 0 && <TopToc id="table-of-contents" headings={headings} class="py-4" />}
           <slot />
           <style is:global>
             @reference "tailwindcss";
@@ -110,15 +114,15 @@ const term = `${title} | ${slug}`
             }
           </style>
         </div>
-        <div class="divider">版权声明</div>
-        <p class="mx-auto">
+        <div id="copyright-notice" class="divider">版权声明</div>
+        <p id="copyright-text" class="mx-auto">
           本页面内容，除特别声明外，均采用 <a
             href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans"
             target="_blank"
             class="link">CC BY-NC-SA 4.0 Deed</a
-          > 协议授权。<div class="divider">评论区</div>
-          <Comments term={term} client:idle client:only="svelte" />
-          <noscript>
+          > 协议授权。<div class="divider" id="comments-area-divider">评论区</div>
+          <Comments id="comments-area" term={term} client:idle client:only="svelte" />
+          <noscript id="comments-area-noscript">
             评论区需要 JavaScript 支持，但您的浏览器不支持 JavaScript 或 JavaScript 被禁用了。
             <br />
             请开启 JavaScript 或者使用支持 JavaScript 的浏览器。
