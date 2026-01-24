@@ -36,7 +36,7 @@ const term = `${title} | ${slug}`
         <AppPicture
           src={heroImage}
           alt={heroImageAlt ?? ''}
-          id='hero-image'
+          id="hero-image"
           loading="eager"
           class="h-full w-full object-cover object-center brightness-50"
           transition:name={`hero-image-${slug}`}
@@ -45,23 +45,43 @@ const term = `${title} | ${slug}`
           id="hero-overlay"
           class="absolute top-0 left-0 flex h-full w-full flex-col items-center justify-end p-4 text-white sm:pb-8 sm:text-center"
         >
-          <h1 id="article-title" class="w-fit text-2xl sm:text-4xl" transition:name={`title-${slug}`} data-pagefind-meta="title">
+          <h1
+            id="article-title"
+            class="w-fit text-2xl sm:text-4xl"
+            transition:name={`title-${slug}`}
+            data-pagefind-meta="title"
+          >
             {title}
           </h1>
           <br />
           <div id="article-metadata">
-          <div id="pub-date" transition:name={`pub-date-${slug}`} class="tooltip inline-block w-fit" data-tip="最初发布日期">
-            <Icon name="material-symbols:calendar-today" class="inline-block" />
-            <FormattedDate date={pubDate} />
-          </div>
-          <div id="updated-date" transition:name={`updated-date-${slug}`} class="tooltip inline-block w-fit" data-tip="上次更新日期">
-            <Icon name="material-symbols:history" class="inline-block" />
-            <FormattedDate date={updatedDate} />
-          </div>
-          <div id="minutes-read" transition:name={`minutes-read-${slug}`} class="tooltip inline-block w-fit" data-tip="预计阅读时间">
-            <Icon name="material-symbols:timer" class="inline-block" />
-            {minutesRead}
-          </div>
+            <div
+              id="pub-date"
+              transition:name={`pub-date-${slug}`}
+              class="tooltip inline-block w-fit"
+              data-tip="最初发布日期"
+            >
+              <Icon name="material-symbols:calendar-today" class="inline-block" />
+              <FormattedDate date={pubDate} />
+            </div>
+            <div
+              id="updated-date"
+              transition:name={`updated-date-${slug}`}
+              class="tooltip inline-block w-fit"
+              data-tip="上次更新日期"
+            >
+              <Icon name="material-symbols:history" class="inline-block" />
+              <FormattedDate date={updatedDate} />
+            </div>
+            <div
+              id="minutes-read"
+              transition:name={`minutes-read-${slug}`}
+              class="tooltip inline-block w-fit"
+              data-tip="预计阅读时间"
+            >
+              <Icon name="material-symbols:timer" class="inline-block" />
+              {minutesRead}
+            </div>
           </div>
         </div>
       </div>

@@ -8,12 +8,14 @@ category: misc
 ---
 
 import AppPicture from '@/components/AppPicture.astro'
+
 import akamaiTShirtBack from './Akamai_Technologies___UNIQLO___T_shirt.jpg'
 import screenshot from './uniqlo-akamai-t-shirt-base64-decode-screenshot.png'
 
 # TL;DR
 
 背面文本转写：
+
 ```
 #!/bin/bash eval "$(base64 -d <<< 'IyEvYmluL2Jhc2gKCiMgQ29uZ3Jhd
 HVsYXRpb25zISBZb3UgZm91bmQgdGhlIGVhc3RlciBlZ2chIOKdpO+4jwojIOOBiuO
@@ -118,7 +120,7 @@ freq=0.2
 for (( t=0; ; t+=1 )); do
     # Extract one character at a time
     char="${text:t % text_length:1}"
-    
+
     # Calculate the angle in radians
     angle=$(echo "($t) * $freq" | bc -l)
 

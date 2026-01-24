@@ -7,10 +7,10 @@
 @theme {
   --font-body: sans-serif;
 }
-@plugin "@tailwindcss/aspect-ratio";
-@plugin "@tailwindcss/typography";
+@plugin '@tailwindcss/aspect-ratio';
+@plugin '@tailwindcss/typography';
 /*noinspection ALL*/
-@plugin "daisyui" {
+@plugin 'daisyui' {
   themes:
     autumn --default,
     night --prefersdark;
