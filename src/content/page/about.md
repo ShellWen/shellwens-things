@@ -2,8 +2,7 @@
 title: '关于我'
 description: '这里是关于 ShellWen 的一切'
 pubDate: '2023-12-14'
-updatedDate: '2024-04-12'
-heroImage: '@assets/images/default_banner.png'
+updatedDate: '2026-01-24'
 ---
 
 # 你好！

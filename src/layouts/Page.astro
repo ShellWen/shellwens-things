@@ -9,9 +9,9 @@ type Props = CollectionEntry<'page'>['data'] & {
   minutesRead: string
 }
 
-const { slug, title, description, pubDate, updatedDate, heroImage, heroImageAlt, headings, minutesRead } = Astro.props
+const { slug, title, description, pubDate, updatedDate, headings, minutesRead } = Astro.props
 ---
 
-<Content {slug} {title} {description} {pubDate} {updatedDate} {heroImage} {heroImageAlt} {headings} {minutesRead}>
+<Content {slug} {title} {description} {pubDate} {updatedDate} {headings} {minutesRead}>
   <slot />
 </Content>

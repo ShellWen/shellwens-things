@@ -13,16 +13,12 @@ const generateIdIgnorePath = ({ entry, data }: { entry: string; base: URL; data:
 
 const post = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/post', generateId: generateIdIgnorePath }),
-  schema: ({ image }) =>
+  schema: () =>
     z.object({
       title: z.string(),
       description: z.string(),
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date(),
-      // heroImage: z.string().optional(),
-      // @ts-expect-error Astro's type definitions is wrong
-      heroImage: image().optional().default('@assets/images/default_banner.png'),
-      heroImageAlt: z.string().optional(),
       category: reference('category'),
     }),
 })
@@ -39,9 +35,6 @@ const page = defineCollection({
       description: z.string(),
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date(),
-      // @ts-expect-error Astro's type definitions is wrong
-      heroImage: image().optional().default('@assets/images/default_banner.png'),
-      heroImageAlt: z.string().optional(),
     }),
 })
 

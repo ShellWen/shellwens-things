@@ -3,7 +3,6 @@ title: 'Jetpack Compose 适配 Android 原生滚动截图'
 description: '探索如何在 Jetpack Compose 中优雅地实现滚动截图功能，解决 FAB 等组件在长截图时的显示问题'
 pubDate: '2025-06-24'
 updatedDate: '2025-06-24'
-heroImage: './compose-android-native-scroll-screenshot.png'
 category: android
 # tags: android, compose
 ---

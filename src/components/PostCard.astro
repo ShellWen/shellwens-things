@@ -4,7 +4,6 @@ import { Icon } from 'astro-icon/components'
 import type { CollectionEntry } from 'astro:content'
 import type { HTMLAttributes } from 'astro/types'
 import { render } from 'astro:content'
-import AppPicture from './AppPicture.astro'
 interface Props extends HTMLAttributes<'a'> {
   post: CollectionEntry<'post'>
 }
@@ -20,14 +19,6 @@ const minutesRead = (remarkPluginFrontmatter.minutesRead as string | undefined) 
   class={`card shadow-md dark:bg-base-200 dark:shadow-none ${className ?? ''}`}
   {...rest}
 >
-  <figure class="w-[var(--figure-width)] flex-shrink-0">
-    <AppPicture
-      src={post.data.heroImage}
-      alt={post.data.heroImageAlt ?? ''}
-      class="h-full object-cover"
-      transition:name={`hero-image-${post.id}`}
-    />
-  </figure>
   <div class="card-body">
     <h4 class="card-title" transition:name={`title-${post.id}`}>
       {post.data.title}

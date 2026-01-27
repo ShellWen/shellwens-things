@@ -9,7 +9,6 @@ import TopToc from '@/components/toc/TopToc.astro'
 import { SITE_TITLE } from '@/consts'
 import { Icon } from 'astro-icon/components'
 import type { MarkdownHeading } from '@astrojs/markdown-remark'
-import AppPicture from '@/components/AppPicture.astro'
 
 type Props = {
   slug: string
@@ -17,30 +16,19 @@ type Props = {
   description: string
   pubDate: Date
   updatedDate: Date
-  heroImage: ImageMetadata
-  heroImageAlt?: string | undefined
   headings: MarkdownHeading[]
   minutesRead: string
 }
 
-const { slug, title, description, pubDate, updatedDate, heroImage, heroImageAlt, headings, minutesRead } = Astro.props
-
+const { slug, title, description, pubDate, updatedDate, headings, minutesRead } = Astro.props
 const term = `${title} | ${slug}`
 ---
 
-<BaseLayout title={`${title} | ${SITE_TITLE}`} description={description} image={heroImage} pubDate={pubDate}>
+<BaseLayout title={`${title} | ${SITE_TITLE}`} description={description} pubDate={pubDate}>
   <Header class="sm:pb-4" slot="header" isSticky={false} />
   <main slot="body" data-pagefind-body>
     <article id="article-content" class="w-full">
       <div id="hero-image-container" class="relative h-[30vh] sm:h-[50vh]">
-        <AppPicture
-          src={heroImage}
-          alt={heroImageAlt ?? ''}
-          id="hero-image"
-          loading="eager"
-          class="h-full w-full object-cover object-center brightness-50"
-          transition:name={`hero-image-${slug}`}
-        />
         <div
           id="hero-overlay"
           class="absolute top-0 left-0 flex h-full w-full flex-col items-center justify-end p-4 text-white sm:pb-8 sm:text-center"

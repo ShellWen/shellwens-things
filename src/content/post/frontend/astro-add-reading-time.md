@@ -3,7 +3,6 @@ title: 'Astro 添加预计阅读时间实践'
 description: '为你的 Astro 博客添加阅读时间估算。本文将分享我在实现这个功能时的思路和代码，手把手带你搞定它。'
 pubDate: '2025-02-21'
 updatedDate: '2025-02-25'
-heroImage: './astro-add-reading-time.png'
 category: frontend
 # tags: astro, typescript
 ---

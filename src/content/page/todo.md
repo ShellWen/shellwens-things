@@ -3,7 +3,6 @@ title: '✨TODO List'
 description: '可不能忘了做'
 pubDate: '2024-04-12'
 updatedDate: '2025-02-16'
-heroImage: '@assets/images/default_banner.png'
 ---
 
 - [x] ~~`Content` 展示 `description`~~
