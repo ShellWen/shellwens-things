@@ -28,51 +28,45 @@ const term = `${title} | ${slug}`
   <Header slot="header" />
   <main slot="body" data-pagefind-body>
     <article id="article-content" class="w-full">
-      <div id="hero-image-container" class="relative h-[30vh] sm:h-[50vh]">
-        <div
-          id="hero-overlay"
-          class="absolute top-0 left-0 flex h-full w-full flex-col items-center justify-end p-4 text-white sm:pb-8 sm:text-center"
+      <header class="mx-auto flex w-full max-w-prose flex-col items-center px-4 pt-8 pb-4 text-center sm:pt-12">
+        <h1
+          id="article-title"
+          class="text-3xl font-bold sm:text-4xl"
+          transition:name={`title-${slug}`}
+          data-pagefind-meta="title"
         >
-          <h1
-            id="article-title"
-            class="w-fit text-2xl sm:text-4xl"
-            transition:name={`title-${slug}`}
-            data-pagefind-meta="title"
+          {title}
+        </h1>
+        <div id="article-metadata" class="mt-4 flex flex-wrap justify-center gap-4 text-sm opacity-80">
+          <div
+            id="pub-date"
+            transition:name={`pub-date-${slug}`}
+            class="tooltip flex items-center gap-1"
+            data-tip="最初发布日期"
           >
-            {title}
-          </h1>
-          <br />
-          <div id="article-metadata">
-            <div
-              id="pub-date"
-              transition:name={`pub-date-${slug}`}
-              class="tooltip inline-block w-fit"
-              data-tip="最初发布日期"
-            >
-              <Icon name="material-symbols:calendar-today" class="inline-block" />
-              <FormattedDate date={pubDate} />
-            </div>
-            <div
-              id="updated-date"
-              transition:name={`updated-date-${slug}`}
-              class="tooltip inline-block w-fit"
-              data-tip="上次更新日期"
-            >
-              <Icon name="material-symbols:history" class="inline-block" />
-              <FormattedDate date={updatedDate} />
-            </div>
-            <div
-              id="minutes-read"
-              transition:name={`minutes-read-${slug}`}
-              class="tooltip inline-block w-fit"
-              data-tip="预计阅读时间"
-            >
-              <Icon name="material-symbols:timer" class="inline-block" />
-              {minutesRead}
-            </div>
+            <Icon name="material-symbols:calendar-today" />
+            <FormattedDate date={pubDate} />
+          </div>
+          <div
+            id="updated-date"
+            transition:name={`updated-date-${slug}`}
+            class="tooltip flex items-center gap-1"
+            data-tip="上次更新日期"
+          >
+            <Icon name="material-symbols:history" />
+            <FormattedDate date={updatedDate} />
+          </div>
+          <div
+            id="minutes-read"
+            transition:name={`minutes-read-${slug}`}
+            class="tooltip flex items-center gap-1"
+            data-tip="预计阅读时间"
+          >
+            <Icon name="material-symbols:timer" />
+            {minutesRead}
           </div>
         </div>
-      </div>
+      </header>
       <div id="article-body" class="mx-auto prose w-full p-4">
         <div id="article-main" class="mx-auto">
           {
