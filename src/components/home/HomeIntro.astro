@@ -4,45 +4,51 @@ import AppPicture from '@/components/AppPicture.astro'
 import homeFront from '@/assets/images/home_front.png'
 ---
 
-<main class="px-(--page-padding) py-8 pt-20 md:px-24" data-pagefind-body>
+<main class="px-(--page-padding) py-8 pt-20" data-pagefind-body>
   <span data-pagefind-meta="title" class="sr-only">首页</span>
 
-  <article class="relative mx-auto max-w-(--page)">
-    <div class="relative z-10 flex flex-col items-start">
-      <div class="mb-8 flex items-center gap-4 opacity-60">
-        <span class="h-px w-8 bg-base-content"></span><span
-          class="font-mono text-[0.625rem] font-bold tracking-[0.3em] uppercase">Software Engineer &amp; Furry</span
-        >
-      </div><h1 class="flex flex-col text-[6rem] leading-[0.85] font-black tracking-tight uppercase md:text-[8rem]">
-        <span class="text-neutral">Shell</span><div class="flex items-baseline gap-4">
-          <span
-            class="custom-stroke text-transparent [--custom-stroke-color:var(--color-base-100)] [--custom-stroke-outline-color:var(--color-base-content)]"
-            >Wen</span
-          ><div
-            class="mb-4 flex flex-col border-l border-l-base-content pl-4 text-sm leading-4 font-medium tracking-normal lowercase opacity-40 md:text-sm"
+  <article class="mx-auto flex max-w-(--page) flex-col sm:flex-row">
+    <div class="shrink-0">
+      <div class="z-10 flex flex-col items-start">
+        <div class="mb-8 flex items-center gap-4 opacity-60">
+          <span class="h-px w-8 bg-base-content"></span><span
+            class="font-mono text-[0.625rem] font-bold tracking-[0.3em] uppercase">Software Engineer &amp; Furry</span
           >
-            <span>[zh] 颉文</span><span>/xié wén/</span>
+        </div><h1 class="flex flex-col text-[6rem] leading-[0.85] font-black tracking-tight uppercase md:text-[8rem]">
+          <span class="text-neutral">Shell</span><div class="flex items-baseline gap-4">
+            <span
+              class="custom-stroke text-transparent [--custom-stroke-color:var(--color-base-100)] [--custom-stroke-outline-color:var(--color-base-content)]"
+              >Wen</span
+            ><div
+              class="mb-4 flex flex-col border-l border-l-base-content pl-4 text-sm leading-4 font-medium tracking-normal lowercase opacity-40 md:text-sm"
+            >
+              <span>[zh] 颉文</span><span>/xié wén/</span>
+            </div>
           </div>
-        </div>
-      </h1>
-    </div>
+        </h1>
+      </div>
 
-    <div class="mt-4 font-serif text-2xl leading-normal sm:text-3xl">
-      <span class="font-light">写点不无聊的代码，</span>
+      <div class="mt-4 font-serif text-2xl leading-normal sm:text-3xl">
+        <span class="font-light">写点不无聊的代码，</span>
+        <br />
+        <span class="font-bold underline decoration-[4px] underline-offset-8">有时假装自己是小动物。</span>
+      </div>
       <br />
-      <span class="font-bold underline decoration-[4px] underline-offset-8">有时假装自己是小动物。</span>
+      <br />
+      <a href="/about">
+        <button class="btn px-0 btn-ghost hover:bg-transparent hover:outline-transparent">
+          关于我
+          <Icon name="material-symbols:arrow-forward" />
+        </button>
+      </a>
     </div>
-    <br />
-    <br />
-    <a href="/about">
-      <button class="btn px-0 btn-ghost hover:bg-transparent hover:outline-transparent">
-        关于我
-        <Icon name="material-symbols:arrow-forward" />
-      </button>
-    </a>
-    <div class="absolute top-0 right-0 bottom-0">
-      <!-- TODO: Alt -->
-      <AppPicture src={homeFront} alt={'TODO'} class="h-full object-contain object-bottom-right" />
+    <div class="flex-1"></div>
+    <div class="h-96 self-end">
+      <AppPicture
+        src={homeFront}
+        alt="ShellWen 的卡通小熊形象，穿连帽卫衣和运动鞋，手插口袋眨眼微笑的手绘涂鸦风格头像"
+        class="h-full object-contain object-bottom-right"
+      />
     </div>
   </article>
 </main>
