@@ -5,8 +5,12 @@ const today = new Date()
 const year = today.getFullYear()
 ---
 
-<div class="w-full bg-neutral p-8 text-neutral-content" transition:name="footer" transition:animate="none">
-  <footer class="mx-auto max-w-4xl">
+<div
+  class="w-full bg-neutral p-(--page-padding) text-neutral-content"
+  transition:name="footer"
+  transition:animate="none"
+>
+  <footer class="mx-auto max-w-(--page)">
     <div class="footer md:footer-horizontal">
       <nav>
         <header class="footer-title">联系方式</header>
@@ -46,10 +50,6 @@ const year = today.getFullYear()
         </span>
         <br />
         <span>&copy; {year} ShellWen. All rights reserved.</span>
-        <span>
-          The Android robot is reproduced or modified from work created and shared by Google and used according to terms
-          described in the Creative Commons 3.0 Attribution License.
-        </span>
         <br />
         <span
           >本站源码位于 <a

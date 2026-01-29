@@ -7,19 +7,20 @@ export interface ThemeType {
 }
 
 export const themes: Record<string, ThemeType> = {
-  autumn: {
-    name: 'autumn',
+  shellwenLight: {
+    name: 'shellwen-light',
     colorMode: 'light',
   },
-  dim: {
-    name: 'dim',
+  // TODO: add dark
+  shellwenDark: {
+    name: 'shellwen-light',
     colorMode: 'dark',
   },
 } as const
 
 export const systemTheme = atom<'light' | 'dark' | 'unspecified'>('unspecified')
 export const useSystemTheme = persistentAtom<string>('useSystemTheme', JSON.stringify(true))
-export const localStorageTheme = persistentAtom<string>('theme', themes.dim.name)
+export const localStorageTheme = persistentAtom<string>('theme', themes.shellwenLight.name)
 
 const listener = (e: MediaQueryListEvent) => {
   systemTheme.set(e.matches ? 'light' : 'dark')
@@ -43,9 +44,9 @@ export const theme: ReadableAtom<ThemeType> = computed(
     const useSystemThemeBool = JSON.parse(useSystemTheme)
     if (useSystemThemeBool) {
       if (systemTheme === 'unspecified' || systemTheme === 'dark') {
-        return themes.dim
+        return themes.shellwenDark
       }
-      return themes.autumn
+      return themes.shellwenLight
     }
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (themes[localStorageTheme] === undefined) {

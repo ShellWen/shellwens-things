@@ -14,8 +14,8 @@ const posts = await getCollection('post')
 ---
 
 <BaseLayout>
-  <Header isSticky={true} slot="header" />
-  <main class="mx-auto my-4 flex max-w-4xl flex-col gap-4 px-8 lg:px-0" slot="body">
+  <Header slot="header" />
+  <main class="mx-auto my-4 flex max-w-(--page) flex-col gap-4 px-(--page-padding) lg:px-0" slot="body">
     <Search
       id="search"
       className="pagefind-ui mt-4"

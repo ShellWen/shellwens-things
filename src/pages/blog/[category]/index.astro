@@ -31,7 +31,11 @@ const { category, posts } = Astro.props
 
 <BaseLayout>
   <Header slot="header" />
-  <main class="mx-auto my-4 flex w-full max-w-4xl flex-col gap-4 px-8 lg:px-0" slot="body" data-pagefind-body>
+  <main
+    class="mx-auto my-4 flex w-full max-w-(--page) flex-col gap-4 px-(--page-padding) lg:px-0"
+    slot="body"
+    data-pagefind-body
+  >
     <h1 transition:name={`category-name-${category.id}`} class="font-serif" data-pagefind-meta="title">
       {category.data.name}
     </h1>

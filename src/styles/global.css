@@ -11,9 +11,42 @@
 @plugin '@tailwindcss/typography';
 /*noinspection ALL*/
 @plugin 'daisyui' {
-  themes:
-    autumn --default,
-    night --prefersdark;
+  themes: false;
+}
+
+@plugin 'daisyui/theme' {
+  name: 'shellwen-light';
+  default: true;
+  prefersdark: false;
+  color-scheme: 'light';
+  --color-base-100: oklch(98% 0.01 95.277);
+  --color-base-200: oklch(96% 0.04 95.617);
+  --color-base-300: oklch(92% 0.1 95.746);
+  --color-base-content: oklch(40% 0.036 53.05);
+  --color-primary: oklch(98% 0.003 247.858);
+  --color-primary-content: oklch(0% 0 0);
+  --color-secondary: oklch(98% 0.003 247.858);
+  --color-secondary-content: oklch(0% 0 0);
+  --color-accent: oklch(52.2% 0.106 257.417);
+  --color-accent-content: oklch(100% 0 0);
+  --color-neutral: oklch(54.61% 0.036 53.05);
+  --color-neutral-content: oklch(100% 0 0);
+  --color-info: oklch(71% 0.143 215.221);
+  --color-info-content: oklch(98% 0.019 200.873);
+  --color-success: oklch(69% 0.17 162.48);
+  --color-success-content: oklch(97% 0.021 166.113);
+  --color-warning: oklch(70% 0.213 47.604);
+  --color-warning-content: oklch(98% 0.016 73.684);
+  --color-error: oklch(65% 0.241 354.308);
+  --color-error-content: oklch(97% 0.014 343.198);
+  --radius-selector: 0.25rem;
+  --radius-field: 0rem;
+  --radius-box: 0.25rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1.5px;
+  --depth: 0;
+  --noise: 0;
 }
 
 @custom-variant view-grid (&:where(.view-grid *));
@@ -54,4 +87,22 @@
     /* For A11y, default 60% is too low */
     @apply opacity-80;
   }
+}
+
+@theme {
+  --page: var(--container-4xl);
+  --page-padding: calc(var(--spacing) * 8);
+}
+
+.custom-stroke {
+  color: var(--custom-stroke-color, currentColor);
+  text-shadow:
+    1px 1px 0 var(--custom-stroke-outline-color, #000),
+    -1px -1px 0 var(--custom-stroke-outline-color, #000),
+    1px -1px 0 var(--custom-stroke-outline-color, #000),
+    -1px 1px 0 var(--custom-stroke-outline-color, #000),
+    1px 0 0 var(--custom-stroke-outline-color, #000),
+    -1px 0 0 var(--custom-stroke-outline-color, #000),
+    0 1px 0 var(--custom-stroke-outline-color, #000),
+    0 -1px 0 var(--custom-stroke-outline-color, #000);
 }
