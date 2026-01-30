@@ -56,7 +56,7 @@ const posts = await getCollection('post')
                 <div>该分类暂无文章</div>
               ) : (
                 <>
-                  <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  <ul class="grid-auto-rows-[minmax(0,1fr)] grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                     {posts.slice(0, 7).map((post, index) => {
                       return (
                         <li

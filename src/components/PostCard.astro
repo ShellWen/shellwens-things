@@ -14,34 +14,30 @@ const { remarkPluginFrontmatter } = await render(post)
 const minutesRead = (remarkPluginFrontmatter.minutesRead as string | undefined) ?? ''
 ---
 
-<a
-  href={`/blog/${post.data.category.id}/${post.id}/`}
-  class={`card shadow-md dark:bg-base-200 dark:shadow-none ${className ?? ''}`}
-  {...rest}
->
-  <div class="card-body">
-    <h4 class="card-title" transition:name={`title-${post.id}`}>
+<a href={`/blog/${post.data.category.id}/${post.id}/`} class:list={['card h-full bg-base-200', className]} {...rest}>
+  <div class="card-body flex flex-col p-6">
+    <h4 class="mb-2 card-title line-clamp-2" transition:name={`title-${post.id}`}>
       {post.data.title}
     </h4>
-    <p>
-      <span transition:name={`description-${post.id}`}>
+    <div class="grow">
+      <p class="m-0 line-clamp-3 text-sm opacity-80" transition:name={`description-${post.id}`}>
         {post.data.description}
-      </span>
+      </p>
+    </div>
 
-      <div class="flex flex-row flex-wrap gap-2">
-        <div transition:name={`pub-date-${post.id}`} class="tooltip" data-tip="最初发布日期">
-          <Icon name="material-symbols:calendar-today" class="inline-block" />
-          <FormattedDate date={post.data.pubDate} />
-        </div>
-        <div transition:name={`updated-date-${post.id}`} class="tooltip" data-tip="上次更新日期">
-          <Icon name="material-symbols:history" class="inline-block" />
-          <FormattedDate date={post.data.pubDate} />
-        </div>
-        <div transition:name={`minutes-read-${post.id}`} class="tooltip" data-tip="预计阅读时间">
-          <Icon name="material-symbols:timer" class="inline-block" />
-          {minutesRead}
-        </div>
+    <div class="mt-4 flex flex-row flex-wrap gap-x-4 gap-y-2 text-sm opacity-60">
+      <div transition:name={`pub-date-${post.id}`} class="tooltip" data-tip="最初发布日期">
+        <Icon name="material-symbols:calendar-today" class="inline-block" />
+        <FormattedDate date={post.data.pubDate} />
       </div>
-    </p>
+      <div transition:name={`updated-date-${post.id}`} class="tooltip" data-tip="上次更新日期">
+        <Icon name="material-symbols:history" class="inline-block" />
+        <FormattedDate date={post.data.pubDate} />
+      </div>
+      <div transition:name={`minutes-read-${post.id}`} class="tooltip" data-tip="预计阅读时间">
+        <Icon name="material-symbols:timer" class="inline-block" />
+        {minutesRead}
+      </div>
+    </div>
   </div>
 </a>
