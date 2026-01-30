@@ -71,9 +71,13 @@ const term = `${title} | ${slug}`
         <div id="article-main" class="mx-auto">
           {
             description && (
-              <p id="article-description" class="mb-0 text-center italic" transition:name={`description-${slug}`}>
+              <blockquote
+                id="article-description"
+                class="mb-0 border-l-4 border-base-300 bg-base-200 px-4 py-3 text-left text-sm leading-relaxed text-base-content not-italic"
+                transition:name={`description-${slug}`}
+              >
                 {description}
-              </p>
+              </blockquote>
             )
           }
           {headings.length !== 0 && <TopToc id="table-of-contents" headings={headings} class="py-4" />}
