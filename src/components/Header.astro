@@ -1,6 +1,9 @@
 ---
 import HeaderLink from './HeaderLink.astro'
 import type { HTMLAttributes } from 'astro/types'
+import { Icon } from 'astro-icon/components'
+import Search from 'astro-pagefind/components/Search'
+import '@/styles/pagefind-ui.css'
 
 type Props = HTMLAttributes<'div'>
 
@@ -19,8 +22,19 @@ const { class: propClass, ...props } = Astro.props
         <span class="font-black">SHELLWEN</span>'s
       </a>
     </h2>
-    <div class="flex w-full flex-none justify-center sm:block sm:w-auto">
+    <div class="flex w-full flex-none items-center justify-center sm:block sm:w-auto">
       <ul class="menu menu-horizontal">
+        <li>
+          <button
+            class="tooltip btn tooltip-bottom btn-ghost btn-sm"
+            type="button"
+            aria-label="搜索"
+            data-tip="搜索"
+            onclick="document.getElementById('site-search-modal').showModal()"
+          >
+            <Icon name="material-symbols:search" />
+          </button>
+        </li>
         <li>
           <HeaderLink href="/">首页</HeaderLink>
         </li>
@@ -33,4 +47,38 @@ const { class: propClass, ...props } = Astro.props
       </ul>
     </div>
   </nav>
+  <dialog id="site-search-modal" class="modal">
+    <div class="modal-box w-full max-w-(--page)">
+      <h3 id="site-search-title" class="text-lg font-bold">站内搜索</h3>
+      <Search
+        id="search"
+        className="pagefind-ui mt-4"
+        uiOptions={{
+          showImages: false,
+          resetStyles: false,
+          translations: {
+            placeholder: '搜索',
+            clear_search: '清除',
+            load_more: '加载更多结果',
+            search_label: '站内搜索',
+            filters_label: '筛选',
+            zero_results: '未找到 [SEARCH_TERM] 的相关结果',
+            many_results: '找到 [COUNT] 个 [SEARCH_TERM] 的相关结果',
+            one_result: '找到 [COUNT] 个 [SEARCH_TERM] 的相关结果',
+            alt_search: '未找到 [SEARCH_TERM] 的相关结果。改为显示 [DIFFERENT_TERM] 的相关结果',
+            search_suggestion: '未找到 [SEARCH_TERM] 的相关结果。请尝试以下搜索。',
+            searching: '正在搜索 [SEARCH_TERM]...',
+          },
+        }}
+      />
+      <div class="modal-action">
+        <form method="dialog">
+          <button class="btn">关闭</button>
+        </form>
+      </div>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+      <button>关闭</button>
+    </form>
+  </dialog>
 </div>
