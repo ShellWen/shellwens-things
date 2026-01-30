@@ -10,6 +10,7 @@ import pagefind from 'astro-pagefind'
 import { defineConfig } from 'astro/config'
 import 'dotenv/config'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeExternalLinks from 'rehype-external-links'
 import rehypeSlug from 'rehype-slug'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { visualizer } from 'rollup-plugin-visualizer'
@@ -60,6 +61,13 @@ export default defineConfig({
     remarkPlugins: [remarkReadingTime],
     rehypePlugins: [
       rehypeSlug,
+      [
+        rehypeExternalLinks,
+        {
+          target: '_blank',
+          rel: ['noopener', 'noreferrer'],
+        },
+      ],
       [
         rehypeAutolinkHeadings,
         {
