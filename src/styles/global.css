@@ -49,6 +49,43 @@
   --noise: 0;
 }
 
+
+@plugin "daisyui/theme" {
+  name: "shellwen-dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: "dark";
+  --color-base-100: oklch(15% 0.213 212.400);
+  --color-base-200: oklch(22.9% 0.228 234.500);
+  --color-base-300: oklch(38.5% 0.370 220);
+  --color-base-content: oklch(98% 0.022 95.277);
+  --color-primary: oklch(0% 0 0);
+  --color-primary-content: oklch(100% 0 0);
+  --color-secondary: oklch(0% 0 0);
+  --color-secondary-content: oklch(100% 0 0);
+  --color-accent: oklch(52.2% 0.106 257.417);
+  --color-accent-content: oklch(100% 0 0);
+  --color-neutral: oklch(38.3% 0.065 53.050);
+  --color-neutral-content: oklch(100% 0 0);
+  --color-info: oklch(68% 0.169 237.323);
+  --color-info-content: oklch(97% 0.013 236.62);
+  --color-success: oklch(72% 0.219 149.579);
+  --color-success-content: oklch(98% 0.018 155.826);
+  --color-warning: oklch(70% 0.213 47.604);
+  --color-warning-content: oklch(98% 0.016 73.684);
+  --color-error: oklch(64% 0.246 16.439);
+  --color-error-content: oklch(96% 0.015 12.422);
+  --radius-selector: 0.25rem;
+  --radius-field: 0rem;
+  --radius-box: 0.25rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1.5px;
+  --depth: 0;
+  --noise: 0;
+}
+
+
 @custom-variant view-grid (&:where(.view-grid *));
 @custom-variant view-list (&:where(.view-list *));
 

@@ -3,6 +3,7 @@
 .pagefind-ui {
   --pagefind-ui-scale: 1;
   --pagefind-ui-font: var(--font-sans);
+  --pagefind-ui-background: var(--color-base-200);
   --pagefind-ui-text: var(--text-base-content);
   --pagefind-ui-primary: var(--color-primary);
   --pagefind-ui-border-width: 0px;

@@ -13,7 +13,7 @@ export const themes: Record<string, ThemeType> = {
   },
   // TODO: add dark
   shellwenDark: {
-    name: 'shellwen-light',
+    name: 'shellwen-dark',
     colorMode: 'dark',
   },
 } as const
