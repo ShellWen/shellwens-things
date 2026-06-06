@@ -1,6 +1,11 @@
 name = "shellwens-things"
-pages_build_output_dir = "dist"
+main = "@astrojs/cloudflare/entrypoints/server"
 compatibility_date = "2025-02-04"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
 
 [vars]
 SENTRY_ENVIRONMENT = "shellwens-things-preview"

@@ -1,11 +1,11 @@
 // import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 import cloudflare from '@astrojs/cloudflare'
+import { unified } from '@astrojs/markdown-remark'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import svelte from '@astrojs/svelte'
 import sentry from '@sentry/astro'
 import tailwindcss from '@tailwindcss/vite'
-import icon from 'astro-icon'
 import pagefind from 'astro-pagefind'
 import { defineConfig } from 'astro/config'
 import 'dotenv/config'
@@ -14,20 +14,24 @@ import rehypeExternalLinks from 'rehype-external-links'
 import rehypeSlug from 'rehype-slug'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { visualizer } from 'rollup-plugin-visualizer'
+import Icons from 'unplugin-icons/vite'
 
 import { remarkReadingTime } from './remark-reading-time.js'
+
+const isVitest = Boolean(process.env.VITEST)
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://shellwen.com',
-  output: 'static',
-  adapter: cloudflare({
-    imageService: 'compile',
-    platformProxy: {
-      enabled: true,
-      configPath: 'wrangler.toml',
-    },
-  }),
+  output: isVitest ? 'static' : 'server',
+  adapter: isVitest
+    ? undefined
+    : cloudflare({
+        imageService: 'compile',
+        platformProxy: {
+          configPath: 'wrangler.toml',
+        },
+      }),
   integrations: [
     mdx(), // https://github.com/getsentry/sentry-javascript/issues/9777
     ...(() => {
@@ -47,38 +51,38 @@ export default defineConfig({
     })(),
     sitemap(),
     svelte(),
-    icon(),
     pagefind(),
   ],
   markdown: {
-    syntaxHighlight: 'shiki',
-    shikiConfig: {
-      themes: {
-        light: 'one-light',
-        dark: 'one-dark-pro',
+    processor: unified({
+      syntaxHighlight: 'shiki',
+      shikiConfig: {
+        themes: {
+          light: 'one-light',
+          dark: 'one-dark-pro',
+        },
       },
-    },
-    remarkPlugins: [remarkReadingTime],
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypeExternalLinks,
-        {
-          target: '_blank',
-          rel: ['noopener', 'noreferrer', 'nofollow'],
-        },
+      remarkPlugins: [remarkReadingTime],
+      rehypePlugins: [
+        rehypeSlug,
+        [
+          rehypeExternalLinks,
+          {
+            target: '_blank',
+            rel: ['noopener', 'noreferrer', 'nofollow'],
+          },
+        ],
+        [
+          rehypeAutolinkHeadings,
+          {
+            behavior: 'prepend',
+          },
+        ],
       ],
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: 'prepend',
-        },
-      ],
-    ],
+    }),
   },
   experimental: {
     contentIntellisense: true,
-    preserveScriptOrder: true,
   },
   image: {
     responsiveImages: true,
@@ -87,6 +91,9 @@ export default defineConfig({
   vite: {
     plugins: [
       tailwindcss(),
+      Icons({
+        compiler: 'astro',
+      }),
       visualizer({
         template: 'sunburst',
         gzipSize: true,

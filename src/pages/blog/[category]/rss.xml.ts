@@ -6,6 +6,8 @@ import { postsRssApi } from '@/lib/rss'
 
 type Category = DataEntryMap['category'][keyof DataEntryMap['category']]
 
+export const prerender = true
+
 export async function getStaticPaths() {
   const categories = await getCollection('category')
   return categories.map((category) => ({

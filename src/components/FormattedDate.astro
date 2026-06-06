@@ -2,15 +2,17 @@
 import type { HTMLAttributes } from 'astro/types'
 
 interface Props extends Omit<HTMLAttributes<'time'>, 'datetime'> {
-  date: Date
+  date: Date | string
 }
 
 const { date, ...timeProps } = Astro.props
+
+const dateObj = typeof date === 'string' ? new Date(date) : date
 ---
 
-<time datetime={date.toISOString()} {...timeProps}>
+<time datetime={dateObj.toISOString()} {...timeProps}>
   {
-    date.toLocaleDateString('zh-Hans-CN', {
+    dateObj.toLocaleDateString('zh-Hans-CN', {
       year: 'numeric',
       month: 'numeric',
       day: 'numeric',

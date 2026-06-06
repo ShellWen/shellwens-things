@@ -1,9 +1,11 @@
 ---
 import FormattedDate from '@/components/FormattedDate.astro'
-import { Icon } from 'astro-icon/components'
 import type { CollectionEntry } from 'astro:content'
 import type { HTMLAttributes } from 'astro/types'
 import { render } from 'astro:content'
+import IconCalendarToday from '~icons/material-symbols/calendar-today'
+import IconHistory from '~icons/material-symbols/history'
+import IconTimer from '~icons/material-symbols/timer'
 interface Props extends HTMLAttributes<'a'> {
   post: CollectionEntry<'post'>
 }
@@ -27,15 +29,15 @@ const minutesRead = (remarkPluginFrontmatter.minutesRead as string | undefined) 
 
     <div class="mt-4 flex flex-row flex-wrap gap-x-4 gap-y-2 text-sm opacity-60">
       <div transition:name={`pub-date-${post.id}`} class="tooltip" data-tip="最初发布日期">
-        <Icon name="material-symbols:calendar-today" class="inline-block" />
+        <IconCalendarToday class="inline-block" />
         <FormattedDate date={post.data.pubDate} />
       </div>
       <div transition:name={`updated-date-${post.id}`} class="tooltip" data-tip="上次更新日期">
-        <Icon name="material-symbols:history" class="inline-block" />
+        <IconHistory class="inline-block" />
         <FormattedDate date={post.data.pubDate} />
       </div>
       <div transition:name={`minutes-read-${post.id}`} class="tooltip" data-tip="预计阅读时间">
-        <Icon name="material-symbols:timer" class="inline-block" />
+        <IconTimer class="inline-block" />
         {minutesRead}
       </div>
     </div>

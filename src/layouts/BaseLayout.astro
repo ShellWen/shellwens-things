@@ -8,11 +8,11 @@ interface Props {
   title?: string
   description?: string
   image?: string | ImageMetadata
-  pubDate?: Date
+  pubDate?: string
   children: unknown
 }
 
-const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = undefined, pubDate = undefined } = Astro.props
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, pubDate } = Astro.props
 ---
 
 <!doctype html>

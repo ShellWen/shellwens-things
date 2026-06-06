@@ -1,8 +1,8 @@
 ---
 import HeaderLink from './HeaderLink.astro'
 import type { HTMLAttributes } from 'astro/types'
-import { Icon } from 'astro-icon/components'
-import Search from 'astro-pagefind/components/Search'
+import Search from 'astro-pagefind/components/Search.astro'
+import IconSearch from '~icons/material-symbols/search'
 import '@/styles/pagefind-ui.css'
 
 type Props = HTMLAttributes<'div'>
@@ -32,7 +32,7 @@ const { class: propClass, ...props } = Astro.props
             data-tip="搜索"
             onclick="document.getElementById('site-search-modal').showModal()"
           >
-            <Icon name="material-symbols:search" />
+            <IconSearch />
           </button>
         </li>
         <li>
@@ -51,9 +51,8 @@ const { class: propClass, ...props } = Astro.props
     <div class="modal-box w-full max-w-(--page)">
       <h3 id="site-search-title" class="text-lg font-bold">站内搜索</h3>
       <Search
-        id="search"
         className="pagefind-ui mt-4"
-        uiOptions={{
+        searchboxOptions={{
           showImages: false,
           resetStyles: false,
           translations: {

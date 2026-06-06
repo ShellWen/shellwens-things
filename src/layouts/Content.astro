@@ -7,15 +7,17 @@ import BaseLayout from './BaseLayout.astro'
 import Comments from '@/components/Comments.svelte'
 import TopToc from '@/components/toc/TopToc.astro'
 import { SITE_TITLE } from '@/consts'
-import { Icon } from 'astro-icon/components'
 import type { MarkdownHeading } from '@astrojs/markdown-remark'
+import IconCalendarToday from '~icons/material-symbols/calendar-today'
+import IconHistory from '~icons/material-symbols/history'
+import IconTimer from '~icons/material-symbols/timer'
 
 type Props = {
   slug: string
   title: string
   description: string
-  pubDate: Date
-  updatedDate: Date
+  pubDate: string
+  updatedDate: string
   headings: MarkdownHeading[]
   minutesRead: string
 }
@@ -44,7 +46,7 @@ const term = `${title} | ${slug}`
             class="tooltip flex items-center gap-1"
             data-tip="最初发布日期"
           >
-            <Icon name="material-symbols:calendar-today" />
+            <IconCalendarToday />
             <FormattedDate date={pubDate} />
           </div>
           <div
@@ -53,7 +55,7 @@ const term = `${title} | ${slug}`
             class="tooltip flex items-center gap-1"
             data-tip="上次更新日期"
           >
-            <Icon name="material-symbols:history" />
+            <IconHistory />
             <FormattedDate date={updatedDate} />
           </div>
           <div
@@ -62,7 +64,7 @@ const term = `${title} | ${slug}`
             class="tooltip flex items-center gap-1"
             data-tip="预计阅读时间"
           >
-            <Icon name="material-symbols:timer" />
+            <IconTimer />
             {minutesRead}
           </div>
         </div>

@@ -2,6 +2,8 @@
 import { type CollectionEntry, getCollection, render } from 'astro:content'
 import BlogPost from '@/layouts/Post.astro'
 
+export const prerender = true
+
 export async function getStaticPaths() {
   const posts = await getCollection('post')
   return posts.map((post) => {

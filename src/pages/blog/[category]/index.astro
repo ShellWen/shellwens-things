@@ -6,7 +6,9 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 import { sortPostByPubDateDesc } from '@/lib/util/sorts'
 import PostCard from '@/components/PostCard.astro'
 import GridListSwitcher from '@/components/GridListSwitcher.svelte'
-import { Icon } from 'astro-icon/components'
+import IconCategory from '~icons/material-symbols/category'
+
+export const prerender = true
 
 export async function getStaticPaths() {
   const categories = await getCollection('category')
@@ -47,7 +49,7 @@ const { category, posts } = Astro.props
           <br />
           <a href="/blog" class="inline-block pt-4">
             <button class="btn btn-soft btn-primary">
-              <Icon name="material-symbols:category" class="size-4" />
+              <IconCategory class="size-4" />
               回到分类页
             </button>
           </a>

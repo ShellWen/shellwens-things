@@ -8,7 +8,7 @@ interface Props {
   title: string
   description: string
   image?: string | ImageMetadata
-  pubDate?: Date
+  pubDate?: string
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
@@ -62,7 +62,7 @@ const optimizedImageAbsoluteUrl = new URL(optimizedImage.src, Astro.url)
 <meta name="author" content="ShellWen Chen" />
 
 <!-- Publish Date -->
-{pubDate && <meta name="article:published_time" content={pubDate?.toISOString()} />}
+{pubDate && <meta name="article:published_time" content={new Date(pubDate + 'T00:00:00Z').toISOString()} />}
 
 <!-- Lock Dark Reader -->
 <meta name="darkreader-lock" />

@@ -7,7 +7,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts'
 type PostMap = CollectionEntry<'post'>
 type FilterFn = (post: PostMap) => boolean
 
-export const postsRssApi: (filter: FilterFn, title: string, description: string) => APIRoute =
+export const postsRssApi: (filter?: FilterFn, title?: string, description?: string) => APIRoute =
   (filter = () => true, title = SITE_TITLE, description = SITE_DESCRIPTION) =>
   async (context) => {
     if (!context.site) throw new Error('Missing site metadata')
@@ -16,8 +16,10 @@ export const postsRssApi: (filter: FilterFn, title: string, description: string)
     const items: RSSFeedItem[] = [
       ...posts.filter(filter).map((post) => {
         const category = post.data.category.id
+        const pubDate = new Date(post.data.pubDate + 'T00:00:00Z')
         return {
           ...post.data,
+          pubDate,
           link: `/blog/${category}/${post.id}/`,
         }
       }),

@@ -3,11 +3,12 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "strictNullChecks": true,
-    "baseUrl": ".",
+    "types": ["unplugin-icons/types/astro"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "paths": {
-      "@/*": ["src/*"],
-      "@test/*": ["test/*"],
-      "@assets/*": ["src/assets/*"]
+      "@/*": ["./src/*"],
+      "@test/*": ["./test/*"],
+      "@assets/*": ["./src/assets/*"]
     }
   },
   "include": [".astro/types.d.ts", "src/**/*"],

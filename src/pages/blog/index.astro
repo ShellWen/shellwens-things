@@ -4,8 +4,8 @@ import Header from '@/components/Header.astro'
 import Footer from '@/components/Footer.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import PostCard from '@/components/PostCard.astro'
-import { Icon } from 'astro-icon/components'
 import { sortCategoryBySortOrder, sortPostByPubDateDesc } from '@/lib/util/sorts'
+import IconArrowForward from '~icons/material-symbols/arrow-forward'
 
 const categories = (await getCollection('category')).sort(sortCategoryBySortOrder)
 const posts = await getCollection('post')
@@ -26,7 +26,7 @@ const posts = await getCollection('post')
               <a href={`/blog/${category.id}`} class="inline-block">
                 <h1 class="py-4 font-serif" transition:name={`category-name-${category.id}`}>
                   {category.data.name}
-                  <Icon name="material-symbols:arrow-forward" class="inline" />
+                  <IconArrowForward class="inline" />
                 </h1>
               </a>
               {posts.length === 0 ? (
@@ -60,7 +60,7 @@ const posts = await getCollection('post')
                     <div class="text-end">
                       <a href={`/blog/${category.id}`} class="inline-block py-4">
                         <button class="btn btn-primary">
-                          <Icon name="material-symbols:arrow-forward" />
+                          <IconArrowForward />
                           查看更多
                         </button>
                       </a>

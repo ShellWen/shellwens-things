@@ -1,5 +1,6 @@
 import { glob } from 'astro/loaders'
-import { defineCollection, reference, z } from 'astro:content'
+import { z } from 'astro/zod'
+import { defineCollection, reference } from 'astro:content'
 
 const generateIdIgnorePath = ({ entry, data }: { entry: string; base: URL; data: Record<string, unknown> }) => {
   if (data.slug) {
@@ -13,14 +14,13 @@ const generateIdIgnorePath = ({ entry, data }: { entry: string; base: URL; data:
 
 const post = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/post', generateId: generateIdIgnorePath }),
-  schema: () =>
-    z.object({
-      title: z.string(),
-      description: z.string(),
-      pubDate: z.coerce.date(),
-      updatedDate: z.coerce.date(),
-      category: reference('category'),
-    }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.iso.date(),
+    updatedDate: z.iso.date(),
+    category: reference('category'),
+  }),
 })
 
 const page = defineCollection({
@@ -29,13 +29,12 @@ const page = defineCollection({
     base: './src/content/page',
     generateId: generateIdIgnorePath,
   }),
-  schema: ({ image }) =>
-    z.object({
-      title: z.string(),
-      description: z.string(),
-      pubDate: z.coerce.date(),
-      updatedDate: z.coerce.date(),
-    }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.iso.date(),
+    updatedDate: z.iso.date(),
+  }),
 })
 
 const category = defineCollection({
