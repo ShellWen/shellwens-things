@@ -1,6 +1,6 @@
 name = "shellwens-things"
 main = "@astrojs/cloudflare/entrypoints/server"
-compatibility_date = "2025-02-04"
+compatibility_date = "2026-05-26"
 compatibility_flags = ["nodejs_compat"]
 
 [assets]
