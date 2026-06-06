@@ -31,6 +31,7 @@ export default defineConfig({
         platformProxy: {
           configPath: 'wrangler.toml',
         },
+        prerenderEnvironment: 'node', // FIXME: https://github.com/withastro/astro/issues/15923
       }),
   integrations: [
     mdx(), // https://github.com/getsentry/sentry-javascript/issues/9777
