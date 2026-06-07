@@ -1,7 +1,9 @@
 ---
-import AppPicture from '@/components/AppPicture.astro'
 import homeFront from '@/assets/images/home_front.png'
+import { getImage } from 'astro:assets'
 import IconArrowForward from '~icons/material-symbols/arrow-forward'
+
+const webpHomeFront = await getImage({ src: homeFront, format: 'webp', quality: 80 })
 ---
 
 <main class="px-(--page-padding) py-8 pt-20" data-pagefind-body>
@@ -44,11 +46,13 @@ import IconArrowForward from '~icons/material-symbols/arrow-forward'
     </div>
     <div class="flex-1"></div>
     <div class="h-96 self-end">
-      <AppPicture
-        src={homeFront}
-        alt="ShellWen 的卡通小熊形象，穿连帽卫衣和运动鞋，手插口袋眨眼微笑的手绘涂鸦风格头像"
-        class="h-full object-contain object-bottom-right"
-      />
+      <div
+        class="aspect-929/1693 h-full bg-base-content mask-(--home-front) mask-contain mask-bottom-right mask-no-repeat"
+        style={`--home-front: url(${webpHomeFront.src})`}
+        role="img"
+        aria-label="ShellWen 的卡通小熊形象，穿连帽卫衣和运动鞋，手插口袋眨眼微笑的手绘涂鸦风格头像"
+      >
+      </div>
     </div>
   </article>
 </main>
