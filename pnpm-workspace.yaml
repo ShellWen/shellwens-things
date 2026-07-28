@@ -5,4 +5,10 @@ allowBuilds:
   sharp: true
   workerd: true
 minimumReleaseAgeExclude:
-  - '@types/node@25.9.2'
+  - '@types/node@26.1.2'
+  - '@astrojs/cloudflare@14.1.6'
+  - '@astrojs/internal-helpers@0.10.2'
+  - '@astrojs/markdown-remark@7.2.2'
+  - '@astrojs/markdown-satteri@0.3.5'
+  - '@astrojs/mdx@7.0.5'
+  - astro@7.1.5
