@@ -1,8 +1,8 @@
 ---
 import FormattedDate from '@/components/FormattedDate.astro'
+import { getReadingTime } from '@/lib/reading-time'
 import type { CollectionEntry } from 'astro:content'
 import type { HTMLAttributes } from 'astro/types'
-import { render } from 'astro:content'
 import IconCalendarToday from '~icons/material-symbols/calendar-today'
 import IconHistory from '~icons/material-symbols/history'
 import IconTimer from '~icons/material-symbols/timer'
@@ -12,8 +12,7 @@ interface Props extends HTMLAttributes<'a'> {
 
 const { post, class: className = '', ...rest } = Astro.props
 
-const { remarkPluginFrontmatter } = await render(post)
-const minutesRead = (remarkPluginFrontmatter.minutesRead as string | undefined) ?? ''
+const minutesRead = getReadingTime(post.body)
 ---
 
 <a href={`/blog/${post.data.category.id}/${post.id}/`} class:list={['card h-full bg-base-200', className]} {...rest}>

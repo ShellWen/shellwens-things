@@ -1,6 +1,5 @@
-// import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 import cloudflare from '@astrojs/cloudflare'
-import { unified } from '@astrojs/markdown-remark'
+import { satteri } from '@astrojs/markdown-satteri'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import svelte from '@astrojs/svelte'
@@ -9,14 +8,11 @@ import tailwindcss from '@tailwindcss/vite'
 import pagefind from 'astro-pagefind'
 import { defineConfig } from 'astro/config'
 import 'dotenv/config'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypeExternalLinks from 'rehype-external-links'
-import rehypeSlug from 'rehype-slug'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { visualizer } from 'rollup-plugin-visualizer'
 import Icons from 'unplugin-icons/vite'
 
-import { remarkReadingTime } from './remark-reading-time.js'
+import { satteriContentLinks } from './satteri-links.js'
 
 const isVitest = Boolean(process.env.VITEST)
 
@@ -55,32 +51,16 @@ export default defineConfig({
     pagefind(),
   ],
   markdown: {
-    processor: unified({
-      syntaxHighlight: 'shiki',
-      shikiConfig: {
-        themes: {
-          light: 'one-light',
-          dark: 'one-dark-pro',
-        },
-      },
-      remarkPlugins: [remarkReadingTime],
-      rehypePlugins: [
-        rehypeSlug,
-        [
-          rehypeExternalLinks,
-          {
-            target: '_blank',
-            rel: ['noopener', 'noreferrer', 'nofollow'],
-          },
-        ],
-        [
-          rehypeAutolinkHeadings,
-          {
-            behavior: 'prepend',
-          },
-        ],
-      ],
+    processor: satteri({
+      hastPlugins: [satteriContentLinks],
     }),
+    syntaxHighlight: 'shiki',
+    shikiConfig: {
+      themes: {
+        light: 'one-light',
+        dark: 'one-dark-pro',
+      },
+    },
   },
   experimental: {
     contentIntellisense: true,

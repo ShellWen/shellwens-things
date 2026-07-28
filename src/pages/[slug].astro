@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content'
 import BlogPage from '@/layouts/Page.astro'
+import { getReadingTime } from '@/lib/reading-time'
 
 export const prerender = true
 
@@ -14,8 +15,8 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'page'>
 
 const page = Astro.props
-const { Content, headings, remarkPluginFrontmatter } = await render(page)
-const minutesRead = (remarkPluginFrontmatter.minutesRead as string | undefined) ?? ''
+const { Content, headings } = await render(page)
+const minutesRead = getReadingTime(page.body)
 ---
 
 <BlogPage slug={page.id} {headings} {minutesRead} {...page.data}>

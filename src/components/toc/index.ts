@@ -1,4 +1,4 @@
-import type { MarkdownHeading } from '@astrojs/markdown-remark'
+import type { MarkdownHeading } from 'astro'
 
 export interface TocProps {
   headings: MarkdownHeading[]
