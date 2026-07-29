@@ -12,9 +12,11 @@ import 'dotenv/config'
 import { visualizer } from 'rollup-plugin-visualizer'
 import Icons from 'unplugin-icons/vite'
 
+import { getGitRevision } from './git-revision.js'
 import { satteriContentLinks } from './satteri-links.js'
 
 const isVitest = Boolean(process.env.VITEST)
+const gitRevision = getGitRevision()
 
 // https://astro.build/config
 export default defineConfig({
@@ -70,6 +72,9 @@ export default defineConfig({
     layout: 'constrained',
   },
   vite: {
+    define: {
+      'import.meta.env.PUBLIC_COMMIT_LABEL': JSON.stringify(gitRevision),
+    },
     plugins: [
       tailwindcss(),
       Icons({

@@ -9,6 +9,7 @@ import IconTwitter from '~icons/simple-icons/twitter'
 
 const today = new Date()
 const year = today.getFullYear()
+const commitLabel = import.meta.env.PUBLIC_COMMIT_LABEL
 ---
 
 <div
@@ -84,6 +85,13 @@ const year = today.getFullYear()
       <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer" class="link no-underline"
         >赣 ICP 备 2021003054 号-3</a
       >
+      {
+        commitLabel && (
+          <span>
+            {' | '}rev. {commitLabel}
+          </span>
+        )
+      }
     </div>
   </footer>
 </div>
