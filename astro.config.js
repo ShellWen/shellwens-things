@@ -23,7 +23,7 @@ export default defineConfig({
   adapter: isVitest
     ? undefined
     : cloudflare({
-        imageService: 'compile',
+        imageService: process.env.NODE_ENV === 'development' ? 'passthrough' : 'compile',
         platformProxy: {
           configPath: 'wrangler.toml',
         },
