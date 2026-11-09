@@ -9,9 +9,9 @@
     "preview": "wrangler types && astro preview",
     "preview-wrangler": "wrangler dev",
     "astro": "astro",
-    "test": "vitest",
-    "test:run": "vitest --run",
-    "test:watch": "vitest --watch"
+    "test": "bun test",
+    "test:run": "bun test",
+    "test:watch": "bun test --watch"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
@@ -64,8 +64,8 @@
     "rollup-plugin-visualizer": "^7.0.1",
     "typescript-eslint": "^8.65.0",
     "unplugin-icons": "^23.0.1",
-    "vitest": "^4.1.10",
     "wrangler": "^4.114.0"
   },
-  "packageManager": "pnpm@11.17.0+sha512.cca3cea332ad254bb84145f966d19f4879615210346fc92c79a047f23a0d7b3cca3c3792f0076ba1f1831d277efbcf0a9119b31a9a60eca7fb3d6231f331ef72"
+  "packageManager": "bun@1.4.2",
+  "trustedDependencies": ["@sentry/cli", "core-js", "esbuild", "sharp", "workerd"]
 }

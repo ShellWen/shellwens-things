@@ -1,4 +1,6 @@
-import '@testing-library/jest-dom/vitest'
-import { afterEach } from 'vitest'
+import * as matchers from '@testing-library/jest-dom/matchers'
+import { afterEach, expect } from 'bun:test'
+
+expect.extend(matchers)
 
 afterEach(() => {})

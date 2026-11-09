@@ -1,0 +1,6 @@
+[run]
+bun = true
+
+[test]
+environment = "jsdom"
+preload = ["./test/setup.ts"]

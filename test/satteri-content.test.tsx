@@ -1,5 +1,5 @@
 import { createSatteriMarkdownProcessor } from '@astrojs/markdown-satteri'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'bun:test'
 
 import { satteriContentLinks } from '../satteri-links.js'
 import { getReadingTime } from '../src/lib/reading-time'
