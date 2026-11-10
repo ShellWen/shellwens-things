@@ -1,8 +1,8 @@
 ---
 import HeaderLink from './HeaderLink.astro'
+import HeaderControls from './HeaderControls.svelte'
 import type { HTMLAttributes } from 'astro/types'
 import Search from 'astro-pagefind/components/Search.astro'
-import IconSearch from '~icons/material-symbols/search'
 import '@/styles/pagefind-ui.css'
 
 type Props = HTMLAttributes<'div'>
@@ -22,30 +22,20 @@ const { class: propClass, ...props } = Astro.props
         <span class="font-black">SHELLWEN</span>'s
       </a>
     </h2>
-    <div class="flex w-full flex-none items-center justify-center sm:block sm:w-auto">
-      <ul class="menu menu-horizontal">
-        <li>
-          <button
-            class="tooltip btn tooltip-bottom btn-ghost btn-sm"
-            type="button"
-            aria-label="搜索"
-            data-tip="搜索"
-            onclick="document.getElementById('site-search-modal').showModal()"
-          >
-            <IconSearch />
-          </button>
-        </li>
-        <li>
-          <HeaderLink href="/">首页</HeaderLink>
-        </li>
-        <li>
-          <HeaderLink href="/blog">文章</HeaderLink>
-        </li>
-        <li>
-          <HeaderLink href="/about">关于我</HeaderLink>
-        </li>
-      </ul>
-    </div>
+      <div class="flex w-full flex-none items-center justify-center sm:flex sm:w-auto">
+        <ul class="menu menu-horizontal items-center">
+          <li>
+            <HeaderLink href="/">首页</HeaderLink>
+          </li>
+          <li>
+            <HeaderLink href="/blog">文章</HeaderLink>
+          </li>
+          <li>
+            <HeaderLink href="/about">关于我</HeaderLink>
+          </li>
+        </ul>
+        <HeaderControls client:idle />
+      </div>
   </nav>
   <dialog id="site-search-modal" class="modal">
     <div class="modal-box w-full max-w-(--page)">
