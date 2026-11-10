@@ -7,24 +7,28 @@ const webpHomeFront = await getImage({ src: homeFront, format: 'webp', quality: 
 ---
 
 <main class="px-(--page-padding) py-8 pt-20" data-pagefind-body>
-  <span data-pagefind-meta="title" class="sr-only">首页</span>
+  <span data-pagefind-meta="title" class="sr-only">
+    首页
+  </span>
 
   <article class="mx-auto flex max-w-(--page) flex-col sm:flex-row">
     <div class="shrink-0">
       <div class="z-10 flex flex-col items-start">
         <div class="mb-8 flex items-center gap-4 opacity-60">
-          <span class="h-px w-8 bg-base-content"></span><span
-            class="font-mono text-[0.625rem] font-bold tracking-[0.3em] uppercase">Software Engineer &amp; Furry</span
-          >
-        </div><h1 class="flex flex-col text-[6rem] leading-[0.85] font-black tracking-tight uppercase md:text-[8rem]">
-          <span class="text-neutral dark:text-base-content">Shell</span><div class="flex items-baseline gap-4">
-            <span
-              class="custom-stroke text-transparent [--custom-stroke-color:var(--color-base-100)] [--custom-stroke-outline-color:var(--color-base-content)]"
-              >Wen</span
-            ><div
-              class="mb-4 flex flex-col border-l border-l-base-content pl-4 text-sm leading-4 font-medium tracking-normal lowercase opacity-40 md:text-sm"
-            >
-              <span>[zh] 颉文</span><span>/xié wén/</span>
+          <span class="h-px w-8 bg-base-content"></span>
+          <span class="font-mono text-[0.625rem] font-bold tracking-[0.3em] uppercase">
+            Software Engineer &amp; Furry
+          </span>
+        </div>
+        <h1 class="flex flex-col text-[6rem] leading-[0.85] font-black tracking-tight uppercase md:text-[8rem]">
+          <span class="text-neutral dark:text-base-content">Shell</span>
+          <div class="flex items-baseline gap-4">
+            <span class="custom-stroke text-transparent [--custom-stroke-color:var(--color-base-100)] [--custom-stroke-outline-color:var(--color-base-content)]">
+              Wen
+            </span>
+            <div class="mb-4 flex flex-col border-l border-l-base-content pl-4 text-sm leading-4 font-medium tracking-normal lowercase opacity-40 md:text-sm">
+              <span>[zh] 颉文</span>
+              <span>/xié wén/</span>
             </div>
           </div>
         </h1>
@@ -51,8 +55,7 @@ const webpHomeFront = await getImage({ src: homeFront, format: 'webp', quality: 
         style={`--home-front: url(${webpHomeFront.src})`}
         role="img"
         aria-label="ShellWen 的卡通小熊形象，穿连帽卫衣和运动鞋，手插口袋眨眼微笑的手绘涂鸦风格头像"
-      >
-      </div>
+      ></div>
     </div>
   </article>
 </main>

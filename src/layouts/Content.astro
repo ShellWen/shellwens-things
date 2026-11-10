@@ -71,17 +71,15 @@ const term = `${title} | ${slug}`
       </header>
       <div id="article-body" class="mx-auto prose w-full p-4">
         <div id="article-main" class="mx-auto">
-          {
-            description && (
-              <blockquote
-                id="article-description"
-                class="mb-0 border-l-4 border-base-300 bg-base-200 px-4 py-3 text-left text-sm leading-relaxed text-base-content not-italic"
-                transition:name={`description-${slug}`}
-              >
-                {description}
-              </blockquote>
-            )
-          }
+          {description && (
+            <blockquote
+              id="article-description"
+              class="mb-0 border-l-4 border-base-300 bg-base-200 px-4 py-3 text-left text-sm leading-relaxed text-base-content not-italic"
+              transition:name={`description-${slug}`}
+            >
+              {description}
+            </blockquote>
+          )}
           {headings.length !== 0 && <TopToc id="table-of-contents" headings={headings} class="py-4" />}
           <slot />
           <style is:global>
@@ -122,13 +120,18 @@ const term = `${title} | ${slug}`
             }
           </style>
         </div>
-        <div id="copyright-notice" class="divider">版权声明</div>
+        <div id="copyright-notice" class="divider">
+          版权声明
+        </div>
         <p id="copyright-text" class="mx-auto">
-          本页面内容，除特别声明外，均采用 <a
-            href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans"
-            target="_blank"
-            class="link">CC BY-NC-SA 4.0 Deed</a
-          > 协议授权。<div class="divider" id="comments-area-divider">评论区</div>
+          本页面内容，除特别声明外，均采用{' '}
+          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" class="link">
+            CC BY-NC-SA 4.0 Deed
+          </a>{' '}
+          协议授权。
+          <div class="divider" id="comments-area-divider">
+            评论区
+          </div>
           <Comments id="comments-area" term={term} client:idle client:only="svelte" />
           <noscript id="comments-area-noscript">
             评论区需要 JavaScript 支持，但您的浏览器不支持 JavaScript 或 JavaScript 被禁用了。

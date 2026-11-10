@@ -8,7 +8,7 @@
   --pagefind-ui-primary: var(--color-primary);
   --pagefind-ui-border-width: 0px;
   & .pagefind-ui__search-input {
-    @apply input input-lg w-full;
+    @apply input w-full input-lg;
   }
   & .pagefind-ui__search-clear {
     @apply btn btn-ghost;

@@ -11,11 +11,9 @@ const dateObj = typeof date === 'string' ? new Date(date) : date
 ---
 
 <time datetime={dateObj.toISOString()} {...timeProps}>
-  {
-    dateObj.toLocaleDateString('zh-Hans-CN', {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    })
-  }
+  {dateObj.toLocaleDateString('zh-Hans-CN', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  })}
 </time>

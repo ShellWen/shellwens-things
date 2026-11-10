@@ -1,5 +1,5 @@
 name = "shellwens-things"
-main = "@astrojs/cloudflare/entrypoints/server"
+main = "./sentry.server.config.ts"
 compatibility_date = "2026-05-26"
 compatibility_flags = ["nodejs_compat"]
 

@@ -17,6 +17,9 @@ import { satteriContentLinks } from './satteri-links.js'
 
 const isVitest = Boolean(process.env.VITEST)
 const gitRevision = getGitRevision()
+const sentryRelease = `shellwens-things@${process.env.npm_package_version ?? 'unknown'}`
+const isLocalDev = process.env.SENTRY_ENVIRONMENT === 'local-dev'
+const sentryDsn = 'https://7df36d7c0ed618e59ae41c6ded5b9a7c@o4506401530511360.ingest.sentry.io/4506401532018688'
 
 // https://astro.build/config
 export default defineConfig({
@@ -34,17 +37,15 @@ export default defineConfig({
   integrations: [
     mdx(), // https://github.com/getsentry/sentry-javascript/issues/9777
     ...(() => {
-      if (process.env.SENTRY_ENVIRONMENT === 'local-dev') {
+      if (isLocalDev) {
         return []
       }
       return [
         sentry({
-          dsn: 'https://7df36d7c0ed618e59ae41c6ded5b9a7c@o4506401530511360.ingest.sentry.io/4506401532018688',
-          release: `shellwens-things@${process.env.npm_package_version ?? 'unknown'}`,
-          sourceMapsUploadOptions: {
-            project: 'shellwens-things',
-            authToken: process.env.SENTRY_AUTH_TOKEN,
-          },
+          enabled: { server: false },
+          project: 'shellwens-things',
+          authToken: process.env.SENTRY_AUTH_TOKEN,
+          release: { name: sentryRelease },
         }),
       ]
     })(),
@@ -74,6 +75,8 @@ export default defineConfig({
   vite: {
     define: {
       'import.meta.env.PUBLIC_COMMIT_LABEL': JSON.stringify(gitRevision),
+      __SENTRY_RELEASE__: JSON.stringify(sentryRelease),
+      __SENTRY_DSN__: isLocalDev ? 'undefined' : JSON.stringify(sentryDsn),
     },
     plugins: [
       tailwindcss(),

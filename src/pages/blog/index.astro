@@ -14,64 +14,62 @@ const posts = await getCollection('post')
 <BaseLayout>
   <Header slot="header" />
   <main class="mx-auto my-4 flex max-w-(--page) flex-col gap-4 px-(--page-padding) lg:px-0" slot="body">
-    {
-      categories
-        .map((category) => ({
-          category,
-          posts: posts.filter((post) => post.data.category.id === category.id).sort(sortPostByPubDateDesc),
-        }))
-        .map(({ category, posts }) => {
-          return (
-            <section>
-              <a href={`/blog/${category.id}`} class="inline-block">
-                <h1 class="py-4 font-serif" transition:name={`category-name-${category.id}`}>
-                  {category.data.name}
-                  <IconArrowForward class="inline" />
-                </h1>
-              </a>
-              {posts.length === 0 ? (
-                <div>该分类暂无文章</div>
-              ) : (
-                <>
-                  <ul class="grid-auto-rows-[minmax(0,1fr)] grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                    {posts.slice(0, 7).map((post, index) => {
-                      return (
-                        <li
+    {categories
+      .map((category) => ({
+        category,
+        posts: posts.filter((post) => post.data.category.id === category.id).sort(sortPostByPubDateDesc),
+      }))
+      .map(({ category, posts }) => {
+        return (
+          <section>
+            <a href={`/blog/${category.id}`} class="inline-block">
+              <h1 class="py-4 font-serif" transition:name={`category-name-${category.id}`}>
+                {category.data.name}
+                <IconArrowForward class="inline" />
+              </h1>
+            </a>
+            {posts.length === 0 ? (
+              <div>该分类暂无文章</div>
+            ) : (
+              <>
+                <ul class="grid-auto-rows-[minmax(0,1fr)] grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  {posts.slice(0, 7).map((post, index) => {
+                    return (
+                      <li
+                        class:list={[
+                          {
+                            'col-span-1 md:col-span-2 lg:col-span-3': index === 0,
+                            'col-span-1': index !== 0,
+                          },
+                        ]}
+                      >
+                        <PostCard
+                          {post}
                           class:list={[
                             {
-                              'col-span-1 md:col-span-2 lg:col-span-3': index === 0,
-                              'col-span-1': index !== 0,
+                              '[--figure-width:100%] md:card-side md:[--figure-width:18rem]': index === 0,
                             },
                           ]}
-                        >
-                          <PostCard
-                            {post}
-                            class:list={[
-                              {
-                                '[--figure-width:100%] md:card-side md:[--figure-width:18rem]': index === 0,
-                              },
-                            ]}
-                          />
-                        </li>
-                      )
-                    })}
-                  </ul>
-                  {posts.length > 7 && (
-                    <div class="text-end">
-                      <a href={`/blog/${category.id}`} class="inline-block py-4">
-                        <button class="btn btn-primary">
-                          <IconArrowForward />
-                          查看更多
-                        </button>
-                      </a>
-                    </div>
-                  )}
-                </>
-              )}
-            </section>
-          )
-        })
-    }
+                        />
+                      </li>
+                    )
+                  })}
+                </ul>
+                {posts.length > 7 && (
+                  <div class="text-end">
+                    <a href={`/blog/${category.id}`} class="inline-block py-4">
+                      <button class="btn btn-primary">
+                        <IconArrowForward />
+                        查看更多
+                      </button>
+                    </a>
+                  </div>
+                )}
+              </>
+            )}
+          </section>
+        )
+      })}
   </main>
   <Footer slot="footer" />
 </BaseLayout>

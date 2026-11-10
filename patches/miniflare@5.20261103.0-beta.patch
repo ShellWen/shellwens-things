@@ -1,0 +1,86 @@
+diff --git a/dist/src/index.js b/dist/src/index.js
+index 6003d493fa7a460146b11a69a773aa253ced1fee..7835a89d0da5ff6ca9c59c51879ff7fd8daca4b9 100644
+--- a/dist/src/index.js
++++ b/dist/src/index.js
+@@ -58902,7 +58902,7 @@ var bgWhite = init(47, 49);
+ 
+ // src/index.ts
+ var import_stoppable = __toESM(require_stoppable());
+-var import_undici7 = require("undici");
++var import_undici7 = require(require.resolve("undici/package.json").replace(/package\.json$/, "index.js"));
+ 
+ // embed-worker:/Users/runner/work/workers-sdk/workers-sdk/packages/miniflare/src/workers/core/dev-registry-proxy.worker.ts
+ var import_fs = __toESM(require("fs"));
+@@ -78665,7 +78665,7 @@ var import_node_assert = __toESM(require("node:assert"));
+ var import_node_fs2 = require("node:fs");
+ var import_promises = require("node:fs/promises");
+ var import_node_path = __toESM(require("node:path"));
+-var import_undici = require("undici");
++var import_undici = require(require.resolve("undici/package.json").replace(/package\.json$/, "index.js"));
+ function getDefaultCfPath() {
+   const miniflareCacheDir = process.env.MINIFLARE_CACHE_DIR;
+   if (miniflareCacheDir) {
+@@ -92041,11 +92041,11 @@ function exitHook(callback) {
+ 
+ // src/http/fetch.ts
+ var import_node_assert7 = __toESM(require("node:assert"));
+-var undici = __toESM(require("undici"));
++var undici = __toESM(require(require.resolve("undici/package.json").replace(/package\.json$/, "index.js")));
+ var import_ws2 = __toESM(require("ws"));
+ 
+ // src/http/request.ts
+-var import_undici2 = require("undici");
++var import_undici2 = require(require.resolve("undici/package.json").replace(/package\.json$/, "index.js"));
+ var kCf = /* @__PURE__ */ Symbol("kCf");
+ var Request2 = class _Request extends import_undici2.Request {
+   // We should be able to use a private `#cf` property here instead of a symbol
+@@ -92072,7 +92072,7 @@ var Request2 = class _Request extends import_undici2.Request {
+ };
+ 
+ // src/http/response.ts
+-var import_undici3 = require("undici");
++var import_undici3 = require(require.resolve("undici/package.json").replace(/package\.json$/, "index.js"));
+ var kWebSocket = /* @__PURE__ */ Symbol("kWebSocket");
+ var Response2 = class _Response extends import_undici3.Response {
+   // We should be able to use a private `#webSocket` property here instead of a
+@@ -92980,7 +92980,7 @@ function getAccessibleHosts(ipv4Only = false) {
+ }
+ 
+ // src/http/index.ts
+-var import_undici4 = require("undici");
++var import_undici4 = require(require.resolve("undici/package.json").replace(/package\.json$/, "index.js"));
+ 
+ // src/plugins/shared/index.ts
+ var import_node_crypto7 = require("node:crypto");
+@@ -96565,7 +96565,7 @@ var path16 = __toESM(require("node:path"), 1);
+ var import_node_path10 = __toESM(require("node:path"), 1);
+ var import_node_util3 = require("node:util");
+ var import_node_url2 = require("node:url");
+-var import_undici5 = require("undici");
++var import_undici5 = require(require.resolve("undici/package.json").replace(/package\.json$/, "index.js"));
+ var import_node_child_process2 = require("node:child_process");
+ var import_node_crypto2 = require("node:crypto");
+ var import_node_os6 = require("node:os");
+@@ -122701,11 +122701,11 @@ const { parentPort, workerData } = require("worker_threads");
+ // Requests use their own port so we can call receiveMessageOnPort() in host
+ const { notifyHandle, port, filename } = workerData;
+ 
+-// When running Miniflare from Jest, regular 'require("undici")' will fail here
++// When running Miniflare from Jest, regular 'require(require.resolve("undici/package.json").replace(/package\.json$/, "index.js"))' will fail here
+ // with "Error: Cannot find module 'undici'". Instead we need to create a
+ // 'require' using the '__filename' of the host... :(
+ const actualRequire = createRequire(filename);
+-const { Pool, fetch } = actualRequire("undici");
++const { Pool, fetch } = actualRequire(actualRequire.resolve("undici/package.json").replace(/package\.json$/, "index.js"));
+ 
+ // Lets SynchronousFetcher#warm() know requests can now be served
+ parentPort.postMessage("ready");
+@@ -122870,7 +122870,7 @@ var SynchronousFetcher = class {
+ var import_node_buffer5 = require("node:buffer");
+ var import_consumers = require("node:stream/consumers");
+ var import_web3 = require("node:stream/web");
+-var import_undici6 = require("undici");
++var import_undici6 = require(require.resolve("undici/package.json").replace(/package\.json$/, "index.js"));
+ var NODE_PLATFORM_IMPL = {
+   // Node's implementation of these classes don't quite match Workers',
+   // but they're close enough for us

@@ -31,13 +31,11 @@ const { date } = Astro.props
 ---
 
 <time datetime={date.toISOString()}>
-  {
-    date.toLocaleDateString('zh-Hans-CN', {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    })
-  }
+  {date.toLocaleDateString('zh-Hans-CN', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  })}
 </time>
 ```
 
@@ -81,13 +79,11 @@ const { date, ...timeProps } = Astro.props
 ---
 
 <time datetime={date.toISOString()} {...timeProps}>
-  {
-    date.toLocaleDateString('zh-Hans-CN', {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    })
-  }
+  {date.toLocaleDateString('zh-Hans-CN', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  })}
 </time>
 ```
 

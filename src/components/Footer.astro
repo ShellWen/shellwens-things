@@ -56,20 +56,21 @@ const commitLabel = import.meta.env.PUBLIC_COMMIT_LABEL
             href="https://keys.openpgp.org/vks/v1/by-fingerprint/702F43996B585D7EA231633551AA58935AFE6617"
             target="_blank"
             rel="noreferrer"
-            class="link font-mono">51AA 5893 5AFE 6617</a
+            class="link font-mono"
           >
+            51AA 5893 5AFE 6617
+          </a>
         </span>
         <br />
         <span>&copy; {year} ShellWen. All rights reserved.</span>
         <br />
-        <span
-          >本站源码位于 <a
-            href="https://github.com/ShellWen/shellwens-things"
-            target="_blank"
-            rel="noreferrer"
-            class="link">GitHub.com/ShellWen/shellwens-things</a
-          >。</span
-        >
+        <span>
+          本站源码位于{' '}
+          <a href="https://github.com/ShellWen/shellwens-things" target="_blank" rel="noreferrer" class="link">
+            GitHub.com/ShellWen/shellwens-things
+          </a>
+          。
+        </span>
       </nav>
       <nav>
         <header class="footer-title">Feed</header>
@@ -80,18 +81,18 @@ const commitLabel = import.meta.env.PUBLIC_COMMIT_LABEL
       </nav>
     </div>
     <div class="inline-block pt-4">
-      <a href="https://note.glassfoxowo.com/" target="_blank" class="link no-underline">被驯服的狐狸玻狸🦊♥️🐻</a>
+      <a href="https://note.glassfoxowo.com/" target="_blank" class="link no-underline">
+        被驯服的狐狸玻狸🦊♥️🐻
+      </a>
       {' | '}
-      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer" class="link no-underline"
-        >赣 ICP 备 2021003054 号-3</a
-      >
-      {
-        commitLabel && (
-          <span>
-            {' | '}rev. {commitLabel}
-          </span>
-        )
-      }
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer" class="link no-underline">
+        赣 ICP 备 2021003054 号-3
+      </a>
+      {commitLabel && (
+        <span>
+          {' | '}rev. {commitLabel}
+        </span>
+      )}
     </div>
   </footer>
 </div>
