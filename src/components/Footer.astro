@@ -12,87 +12,83 @@ const year = today.getFullYear()
 const commitLabel = import.meta.env.PUBLIC_COMMIT_LABEL
 ---
 
-<div
-  class="w-full bg-neutral p-(--page-padding) text-neutral-content"
-  transition:name="footer"
-  transition:animate="none"
->
-  <footer class="mx-auto max-w-(--page)">
-    <div class="footer md:footer-horizontal">
-      <nav>
-        <header class="footer-title">联系方式</header>
-        <div class="grid grid-flow-col gap-4">
-          <a href="https://github.com/ShellWen" target="_blank">
+<footer class="site-footer" transition:name="footer" transition:animate="none">
+  <div class="page-shell">
+    <div class="footer-sections">
+      <nav aria-label="联系方式">
+        <h2>联系方式</h2>
+        <div class="social-links">
+          <a class="icon-button" href="https://github.com/ShellWen" target="_blank" rel="noreferrer" title="GitHub：@ShellWen">
             <span class="sr-only">在 GitHub 上关注我：@ShellWen</span>
-            <IconGithub class="size-6" />
+            <IconGithub aria-hidden="true" />
           </a>
-          <a href="https://twitter.com/realShellWen" target="_blank">
+          <a class="icon-button" href="https://twitter.com/realShellWen" target="_blank" rel="noreferrer" title="Twitter：@realShellWen">
             <span class="sr-only">在 Twitter 上关注我：@realShellWen</span>
-            <IconTwitter class="size-6" />
+            <IconTwitter aria-hidden="true" />
           </a>
-          <a href="https://discordapp.com/users/686031289534513225" target="_blank">
+          <a class="icon-button" href="https://discordapp.com/users/686031289534513225" target="_blank" rel="noreferrer" title="Discord：@ShellWen">
             <span class="sr-only">在 Discord 上找到我：@ShellWen</span>
-            <IconDiscord class="size-6" />
+            <IconDiscord aria-hidden="true" />
           </a>
-          <a href="https://steamcommunity.com/id/shellwen/" target="_blank">
+          <a class="icon-button" href="https://steamcommunity.com/id/shellwen/" target="_blank" rel="noreferrer" title="Steam：@ShellWen">
             <span class="sr-only">在 Steam 上和我一起玩：@ShellWen</span>
-            <IconSteam class="size-6" />
+            <IconSteam aria-hidden="true" />
           </a>
-          <a href="mailto:me@shellwen.com" target="_blank">
+          <a class="icon-button" href="mailto:me@shellwen.com" target="_blank" rel="noreferrer" title="E-mail：me@shellwen.com">
             <span class="sr-only">给我发 E-mail: me@shellwen.com</span>
-            <IconAlternateEmail class="size-6" />
+            <IconAlternateEmail aria-hidden="true" />
           </a>
-          <a href="https://qm.qq.com/q/cKzp5dduM0" target="_blank">
+          <a class="icon-button" href="https://qm.qq.com/q/cKzp5dduM0" target="_blank" rel="noreferrer" title="QQ：3590398766">
             <span class="sr-only">添加我 QQ 好友: 3590398766</span>
-            <IconQq class="size-6" />
+            <IconQq aria-hidden="true" />
           </a>
         </div>
       </nav>
-      <nav class="">
-        <header class="footer-title">声明</header>
-        <span>
+      <nav class="legal" aria-label="声明">
+        <h2>声明</h2>
+        <p>
           GPG 密钥指纹：
-          <a
-            href="https://keys.openpgp.org/vks/v1/by-fingerprint/702F43996B585D7EA231633551AA58935AFE6617"
-            target="_blank"
-            rel="noreferrer"
-            class="link font-mono"
-          >
-            51AA 5893 5AFE 6617
-          </a>
-        </span>
-        <br />
-        <span>&copy; {year} ShellWen. All rights reserved.</span>
-        <br />
-        <span>
+          <a class="footer-link fingerprint" href="https://keys.openpgp.org/vks/v1/by-fingerprint/702F43996B585D7EA231633551AA58935AFE6617" target="_blank" rel="noreferrer">51AA 5893 5AFE 6617</a>
+        </p>
+        <p>&copy; {year} ShellWen. All rights reserved.</p>
+        <p>
           本站源码位于{' '}
-          <a href="https://github.com/ShellWen/shellwens-things" target="_blank" rel="noreferrer" class="link">
-            GitHub.com/ShellWen/shellwens-things
-          </a>
-          。
-        </span>
+          <a class="footer-link" href="https://github.com/ShellWen/shellwens-things" target="_blank" rel="noreferrer">GitHub.com/ShellWen/shellwens-things</a>。
+        </p>
       </nav>
-      <nav>
-        <header class="footer-title">Feed</header>
-        <a href="/rss.xml">
-          <span class="sr-only">RSS 订阅</span>
-          <IconRssFeed class="size-6" />
-        </a>
+      <nav aria-label="Feed">
+        <h2>Feed</h2>
+        <a class="footer-link feed-link" href="/rss.xml"><IconRssFeed aria-hidden="true" /><span>RSS 订阅</span></a>
       </nav>
     </div>
-    <div class="inline-block pt-4">
-      <a href="https://note.glassfoxowo.com/" target="_blank" class="link no-underline">
-        被驯服的狐狸玻狸🦊♥️🐻
-      </a>
-      {' | '}
-      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer" class="link no-underline">
-        赣 ICP 备 2021003054 号-3
-      </a>
-      {commitLabel && (
-        <span>
-          {' | '}rev. {commitLabel}
-        </span>
-      )}
+    <div class="footer-bottom">
+      <a class="footer-link" href="https://note.glassfoxowo.com/" target="_blank" rel="noreferrer">被驯服的狐狸玻狸🦊♥️🐻</a>
+      <a class="footer-link" href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer">赣 ICP 备 2021003054 号-3</a>
+      {commitLabel && <span class="revision">rev. {commitLabel}</span>}
     </div>
-  </footer>
-</div>
+  </div>
+</footer>
+
+<style>
+  @reference '../styles/global.css';
+
+  .site-footer { margin-top: 64px; padding-block: 40px 24px; border-top: 1px solid var(--color-line); color: var(--color-muted); font-size: 14px; line-height: 1.7; }
+  .footer-sections { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) auto; gap: 32px; }
+  h2 { margin-bottom: 12px; color: var(--color-ink); font-size: 14px; font-weight: 650; }
+  .social-links { display: flex; max-width: 280px; flex-wrap: wrap; gap: 4px; margin-left: -10px; }
+  .social-links svg, .feed-link svg { width: 22px; height: 22px; flex-shrink: 0; }
+  .legal p { overflow-wrap: anywhere; }
+  .footer-link { display: inline-flex; min-height: 44px; align-items: center; color: inherit; text-decoration: none; }
+  .footer-link:hover { color: var(--color-accent); text-decoration: underline; text-underline-offset: 5px; }
+  .fingerprint, .revision { font-family: var(--font-mono); font-size: 12px; }
+  .feed-link { gap: 8px; }
+  .footer-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 0 24px; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--color-line); }
+  .revision { overflow-wrap: anywhere; }
+
+  @media (max-width: 767px) {
+    .footer-sections { grid-template-columns: minmax(0, 1fr) auto; gap: 24px; }
+    .legal { grid-row: 2; grid-column: 1 / -1; }
+    .site-footer { margin-top: 48px; padding-top: 32px; }
+    .footer-bottom { align-items: flex-start; flex-direction: column; }
+  }
+</style>

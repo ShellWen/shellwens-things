@@ -29,53 +29,66 @@
   }
 
   function openSearch() {
-    ;(document.getElementById('site-search-modal') as HTMLDialogElement)?.showModal()
+    document.dispatchEvent(new CustomEvent('site-search-open'))
   }
 </script>
 
-<div class="flex items-center">
+<div class="header-tools">
   <button
-    class="tooltip btn btn-ghost btn-sm tooltip-bottom"
+    class="icon-button"
     type="button"
     aria-label="搜索"
-    data-tip="搜索"
+    aria-haspopup="dialog"
+    aria-controls="site-search-modal"
+    aria-keyshortcuts="Control+k Meta+k"
+    title="搜索（Ctrl / ⌘ K）"
     onclick={openSearch}
   >
-    <IconSearch />
+    <IconSearch aria-hidden="true" />
   </button>
-  <div class="join" role="group" aria-label="主题选择">
+  <div class="segmented-control" role="group" aria-label="主题选择">
     <button
-      class="tooltip join-item btn btn-ghost btn-sm"
-      class:btn-active={currentMode === 'system'}
+      class="icon-button"
       type="button"
       aria-label="跟随系统"
       aria-pressed={currentMode === 'system'}
-      data-tip="跟随系统"
+      title="跟随系统"
       onclick={() => setMode('system')}
     >
-      <IconBrightnessAuto />
+      <IconBrightnessAuto aria-hidden="true" />
     </button>
     <button
-      class="tooltip join-item btn btn-ghost btn-sm"
-      class:btn-active={currentMode === 'light'}
+      class="icon-button"
       type="button"
       aria-label="浅色"
       aria-pressed={currentMode === 'light'}
-      data-tip="浅色"
+      title="浅色"
       onclick={() => setMode('light')}
     >
-      <IconLightMode />
+      <IconLightMode aria-hidden="true" />
     </button>
     <button
-      class="tooltip join-item btn btn-ghost btn-sm"
-      class:btn-active={currentMode === 'dark'}
+      class="icon-button"
       type="button"
       aria-label="深色"
       aria-pressed={currentMode === 'dark'}
-      data-tip="深色"
+      title="深色"
       onclick={() => setMode('dark')}
     >
-      <IconDarkMode />
+      <IconDarkMode aria-hidden="true" />
     </button>
   </div>
 </div>
+
+<style>
+  @reference '../styles/global.css';
+
+  .header-tools { display: flex; align-items: center; gap: 4px; }
+  .header-tools :global(svg) { width: 20px; height: 20px; }
+
+  @media (max-width: 639px) {
+    .segmented-control { gap: 0; padding: 0; background: transparent; }
+    .segmented-control .icon-button { border: 6px solid transparent; background-clip: padding-box; }
+    .segmented-control :global(svg) { width: 16px; height: 16px; }
+  }
+</style>

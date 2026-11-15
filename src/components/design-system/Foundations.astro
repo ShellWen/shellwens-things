@@ -1,0 +1,107 @@
+---
+import homeFront from '@/assets/images/home_front.png'
+import { getImage } from 'astro:assets'
+
+const bear = await getImage({ src: homeFront, format: 'webp', quality: 80 })
+const colors = [
+  { token: 'canvas', name: '奶白 / 深可可', use: '页面底色', light: '#FAF8F5', dark: '#241F1D' },
+  { token: 'surface', name: '清透表面', use: '卡片、输入框与阅读区', light: '#FFFFFF', dark: '#302925' },
+  { token: 'soft', name: '浅燕麦 / 可可层', use: '次级区域、页脚与代码底色', light: '#F1ECE7', dark: '#3B322D' },
+  { token: 'ink', name: '巧克力 / 奶白墨色', use: '正文、标题与品牌插画', light: '#3E332E', dark: '#F5EEE8' },
+  { token: 'muted', name: '柔棕灰', use: '辅助文字', light: '#736259', dark: '#C4B2A4' },
+  { token: 'line', name: '轻分隔', use: '仅装饰分隔，不承担控件识别', light: '#E4DAD2', dark: '#51443A' },
+  { token: 'control', name: '轮廓', use: '输入框与次要按钮的边界', light: '#937D6E', dark: '#A18A79' },
+  { token: 'accent', name: '可可棕 / 浅焦糖', use: '主要行动、链接与焦点', light: '#865840', dark: '#DFB493' },
+  { token: 'on-accent', name: '强调色上的文字', use: '搭配 accent 背景使用', light: '#FFFFFF', dark: '#302319' },
+  { token: 'accent-soft', name: '轻焦糖底', use: '轻量强调区域的底色', light: '#F2E6DC', dark: '#49382D' },
+  { token: 'mint', name: '薄荷', use: '装饰软底，文字只搭配 ink', light: '#E7F0E5', dark: '#303F34' },
+  { token: 'peach', name: '杏桃', use: '装饰软底，文字只搭配 ink', light: '#FBE7DC', dark: '#4A332C' },
+]
+const statuses = [
+  { token: 'success', name: '成功', symbol: '✓', light: '#326D5D', dark: '#A6DCC7', softLight: '#E6F3ED', softDark: '#253F3A' },
+  { token: 'warning', name: '提醒', symbol: '!', light: '#80601E', dark: '#EDCF8E', softLight: '#FFF3D6', softDark: '#453C27' },
+  { token: 'danger', name: '错误', symbol: '×', light: '#A54057', dark: '#F3AEC0', softLight: '#FCE9ED', softDark: '#482D3D' },
+  { token: 'info', name: '说明', symbol: 'i', light: '#3F668B', dark: '#ADCEEF', softLight: '#E8F1FA', softDark: '#293D55' },
+]
+const typeScale = [
+  ['Display', '64–112 / .98', '800', '仅拉丁品牌名；字距 −.055em'],
+  ['H1', '36–56 / 1.2', '700', '页面标题'],
+  ['H2', '28–36 / 1.3', '650', '主要章节'],
+  ['H3', '20–24 / 1.45', '600', '内容分组'],
+  ['Body', '16 / 1.8', '400', '界面正文'],
+  ['Article', '18 / 1.9', '400', '长文阅读'],
+  ['Small', '14 / 1.6', '400', '辅助说明与控件文字'],
+  ['Micro', '12 / 1.5', '400', '非关键索引与日期'],
+]
+const spaces = [4, 8, 12, 16, 24, 32, 48, 64, 96]
+const tableClasses = 'w-full border-collapse table-fixed text-sm leading-[1.6] [&_th]:px-3 [&_th]:py-4 [&_td]:px-3 [&_td]:py-4 [&_th]:text-left [&_td]:text-left [&_th]:align-top [&_td]:align-top [&_th]:border-0 [&_td]:border-0 [&_th]:border-b [&_td]:border-b [&_th]:border-solid [&_td]:border-solid [&_th]:border-line [&_td]:border-line [&_th]:[overflow-wrap:anywhere] [&_td]:[overflow-wrap:anywhere] [&_th:first-child]:w-[24%] [&_th:nth-child(2)]:w-[27%] max-sm:[&_th]:px-2 max-sm:[&_td]:px-2 [&_th:first-child]:pl-0 [&_td:first-child]:pl-0'
+---
+
+<section id="color" class="section" aria-labelledby="color-title">
+  <div class="section-head">
+    <div><p class="eyebrow mb-3">02 / Color</p><h2 id="color-title">色彩</h2></div>
+  </div>
+  <div class="flex h-16 overflow-hidden rounded-panel" aria-label="视觉用色建议：底色约八成，文字与线条约一成半，强调色约半成"><span class="flex w-4/5 items-center justify-center bg-surface font-mono text-xs leading-[1.5] font-medium">80% 底色</span><span class="flex w-[15%] items-center justify-center bg-ink font-mono text-xs leading-[1.5] font-medium text-canvas max-sm:text-[10px]">15% 墨</span><span class="flex w-[5%] items-center justify-center bg-accent font-mono text-xs leading-[1.5] font-medium text-on-accent max-sm:text-[10px]">5%</span></div>
+  <div class="mt-8 grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-sm:gap-3">
+    {colors.map((color) => (
+      <article class="overflow-hidden rounded-panel bg-surface">
+        <div class="mx-2 mt-2 h-22 rounded-control max-sm:h-16" style={`background: var(--color-${color.token})`} aria-hidden="true"></div>
+        <div class="p-4 max-sm:p-3"><h3 class="text-base leading-[1.5]">{color.name}</h3><code class="font-mono text-xs leading-[1.5] font-normal [overflow-wrap:anywhere]">--color-{color.token}</code><p class="my-3 text-sm leading-[inherit] text-muted">{color.use}</p><dl class="flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs leading-[1.5] font-normal"><div class="flex gap-2"><dt class="text-muted">浅</dt><dd>{color.light}</dd></div><div class="flex gap-2"><dt class="text-muted">深</dt><dd>{color.dark}</dd></div></dl></div>
+      </article>
+    ))}
+  </div>
+  <div class="panel mt-6 grid gap-4 text-sm leading-[inherit]"><span class="border-0 border-b border-solid border-line px-3 py-2">line · 装饰分隔</span><span class="rounded-control border border-solid border-control px-3 py-2">control · 控件边界</span></div>
+  <h3 class="mt-8 mb-4">状态色</h3>
+  <div class="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
+    {statuses.map((status) => (
+      <article class="overflow-hidden rounded-panel bg-surface">
+        <p class="p-4 text-sm leading-[inherit]" style={`color: var(--color-${status.token}); background: var(--color-${status.token}-soft)`}><span class="mr-2 font-mono" aria-hidden="true">{status.symbol}</span><strong>{status.name}</strong></p>
+        <div class="px-4 py-3"><code class="font-mono text-xs leading-[1.5] font-normal [overflow-wrap:anywhere]">--color-{status.token}</code><p class="mt-1 mb-3 font-mono text-xs leading-[1.6] font-normal">浅 {status.light} · 深 {status.dark}</p><code class="font-mono text-xs leading-[1.5] font-normal [overflow-wrap:anywhere]">--color-{status.token}-soft</code><p class="mt-1 font-mono text-xs leading-[1.6] font-normal">浅 {status.softLight} · 深 {status.softDark}</p></div>
+      </article>
+    ))}
+  </div>
+  <p class="mt-4 text-sm leading-[1.7] text-muted">普通文字对比度 ≥ 4.5:1，控件边界 ≥ 3:1。control / surface：浅色 3.89:1，深色 4.37:1；状态文字 / 对应 soft：浅色 ≥ 5.19:1，深色 ≥ 6.77:1。仅适用于指定配对。</p>
+</section>
+
+<section id="type" class="section" aria-labelledby="type-title">
+  <div class="section-head">
+    <div><p class="eyebrow mb-3">03 / Typography</p><h2 id="type-title">字体排印</h2></div>
+  </div>
+  <div class="panel">
+    <p class="eyebrow">ShellWen / 字体试样</p>
+    <p class="my-6 font-sans text-[clamp(64px,8vw,112px)] leading-[.98] font-extrabold tracking-[-.055em]">SHELL<span class="block text-accent">WEN</span></p>
+  </div>
+  <div class="grid grid-cols-2 gap-5 max-sm:grid-cols-1">
+    <div class="min-w-0">
+      <h3 class="mt-8 mb-4">排印层级</h3>
+      <div class="min-w-0 max-w-full overflow-x-auto"><table class:list={[tableClasses, '[&_td:nth-child(2)]:font-mono [&_td:nth-child(2)]:text-xs [&_td:nth-child(2)]:leading-[inherit]']}><caption class="caption-bottom py-4 text-left text-sm leading-[inherit] text-muted">字号单位为 px；斜线后为无单位行高。</caption><thead class="text-muted"><tr><th scope="col">层级</th><th scope="col">字号 / 行高</th><th scope="col">字重与用途</th></tr></thead><tbody>{typeScale.map(([name, size, weight, use]) => (<tr><th scope="row">{name}</th><td>{size}</td><td><span>{weight}</span><br />{use}</td></tr>))}</tbody></table></div>
+    </div>
+    <div class="min-w-0">
+      <h3 class="mt-8 mb-4">字体栈</h3>
+      <dl><div class="border-0 border-b border-solid border-line py-4"><dt class="text-sm leading-[inherit] font-[650]">正文与语气 · <code class="text-xs leading-[inherit] [overflow-wrap:anywhere]">--font-sans</code></dt><dd class="mt-2 text-sm leading-[inherit] text-muted [overflow-wrap:anywhere]">Inter, “Noto Sans SC”, “PingFang SC”, “Microsoft YaHei”, system-ui, sans-serif</dd></div><div class="border-0 border-b border-solid border-line py-4"><dt class="text-sm leading-[inherit] font-[650]">技术 · <code class="text-xs leading-[inherit] [overflow-wrap:anywhere]">--font-mono</code></dt><dd class="mt-2 text-sm leading-[inherit] text-muted [overflow-wrap:anywhere]">“JetBrains Mono”, “SFMono-Regular”, Consolas, monospace</dd></div></dl>
+      <p class="mt-4 text-sm leading-[1.7] text-muted">本地字体回退栈；无字体下载或内置字体。</p>
+      <p class="mt-4 text-sm leading-[inherit]">中文标题字距 ≥ −0.01em；正文自然字距。副标题 24px / 1.65、500 字重；引语 24px / 1.7、500 字重；重要说明 ≥ 14px。</p>
+    </div>
+  </div>
+</section>
+
+<section id="layout" class="section" aria-labelledby="layout-title">
+  <div class="section-head">
+    <div><p class="eyebrow mb-3">04 / Layout & rhythm</p><h2 id="layout-title">空间与布局</h2></div>
+  </div>
+  <div class="grid grid-cols-2 gap-5 max-sm:grid-cols-1">
+    <div class="panel"><h3 class="mb-3">间距阶梯 · px</h3><div class="mt-6 grid gap-2.5">{spaces.map((space) => (<div class="flex min-h-6 items-center gap-3"><span class="w-6 flex-[0_0_24px] font-mono text-xs leading-[1.5] font-normal text-muted">{space}</span><i class="h-3 shrink-0 rounded-tag bg-accent" style={`width: ${space}px`} aria-hidden="true"></i><small class="text-xs leading-[inherit] text-muted">{space <= 12 ? '元素内部' : space <= 32 ? '组件之间' : '区块之间'}</small></div>))}</div></div>
+    <div class="panel"><h3 class="mb-3">边界与形状</h3><div class="my-6 grid grid-cols-[1fr_1fr] gap-4"><div class="grid min-h-24 content-center rounded-control border border-solid border-control p-3 font-mono">10px<span class="font-sans text-xs leading-[1.6] font-normal text-ink">按钮 / 输入框</span></div><div class="grid min-h-24 content-center rounded-panel bg-soft p-3 font-mono">20px<span class="font-sans text-xs leading-[1.6] font-normal text-ink">卡片 / 容器</span></div><div class="col-span-full grid min-h-24 content-center rounded-frame bg-accent-soft p-3 font-mono">24px<span class="font-sans text-xs leading-[1.6] font-normal text-ink">大型页面样例</span></div><div class="col-span-full flex items-center gap-3"><span class="pill">标签</span><span class="font-sans text-xs leading-[1.6] font-normal text-ink">胶囊用于标签与紧凑选中态</span></div></div><p class="mt-4 text-sm leading-[1.7] text-muted">边界 ≤ 1px；点击高度 ≥ 44px；常规卡片无投影。</p><p class="mt-6 text-sm leading-[1.8]"><strong>140ms</strong> 即时反馈 · <strong>220ms</strong> 面板变化<br /><code class="text-xs leading-[inherit] [overflow-wrap:anywhere]">cubic-bezier(.2, .7, .2, 1)</code><br />箭头位移 ≤ 2px；减少动态效果时移除过渡与平滑滚动。</p></div>
+  </div>
+  <div class="panel mt-6"><div class="grid grid-cols-12 gap-6 max-lg:grid-cols-8 max-lg:[&>span:nth-child(n+9)]:hidden max-sm:grid-cols-4 max-sm:[&>span:nth-child(n+5)]:hidden" aria-hidden="true">{Array.from({ length: 12 }, (_, index) => (<span class="flex h-26 items-center justify-center rounded-control bg-accent-soft font-mono text-xs leading-[1.5] font-normal text-accent">{String(index + 1).padStart(2, '0')}</span>))}</div><div class="flex flex-wrap justify-between gap-x-6 gap-y-2 pt-4 text-sm leading-[inherit]"><strong>1120px 内容上限</strong><span class="text-muted">24px 栅格间距 · 720px 阅读上限</span></div></div>
+  <div class="min-w-0 max-w-full overflow-x-auto"><table class={tableClasses}><thead class="text-muted"><tr><th scope="col">视口</th><th scope="col">栅格 / 边距</th><th scope="col">内容组织</th></tr></thead><tbody><tr><th scope="row">手机<br />&lt; 640px</th><td>4 栏 / 20px</td><td>单列正文；108px 完整两行页头始终吸顶，导航链接按内容宽度居中排列；文章目录默认收起。</td></tr><tr><th scope="row">平板<br />640–1023px</th><td>8 栏 / 24px</td><td>主次分区；首页 ≥ 768px 为两列。</td></tr><tr><th scope="row">桌面<br />≥ 1024px</th><td>12 栏 / 32px</td><td>内容居中；文章正文窄行宽。</td></tr></tbody></table></div>
+  <p class="mt-4 text-sm leading-[1.7] text-muted">正文行宽上限 45rem（18px 中文约 40 字）；最大宽度受容器限制。页脚底色：canvas / soft。</p>
+</section>
+
+<section id="identity" class="section" aria-labelledby="identity-title">
+  <div class="section-head">
+    <div><p class="eyebrow mb-3">05 / Identity</p><h2 id="identity-title">品牌识别</h2></div>
+  </div>
+  <figure class="panel m-0"><div class="flex items-center justify-between gap-6 py-6 max-sm:flex-col max-sm:items-start"><div class="min-w-0"><p class="my-6 font-sans text-[clamp(64px,8vw,112px)] leading-[.98] font-extrabold tracking-[-.055em]">SHELL<span class="block text-accent">WEN</span></p><p class="text-xl leading-[inherit]">颉文 <span class="font-mono text-xs leading-[1.5] font-normal text-muted">/ xié wén /</span></p></div><div class="relative isolate grid shrink-0 justify-items-center p-6 before:absolute before:-z-1 before:top-16 before:right-2 before:bottom-[42px] before:left-0 before:rounded-[38%_45%_32%_40%] before:bg-mint before:content-[''] max-sm:self-end"><div class="aspect-[929/1693] h-60 shrink-0 bg-ink [mask:var(--bear-image)_center/contain_no-repeat] max-sm:h-50" style={`--bear-image: url("${bear.src}")`} aria-hidden="true"></div></div></div><figcaption class="pt-6 text-sm leading-[inherit] text-muted">ShellWen 的手绘小熊：连帽卫衣、运动鞋，手插口袋，眨眼微笑。</figcaption></figure>
+  <p class="mt-6 text-sm leading-[inherit]">插画比例 929 / 1693；建议高度 120–240px，首页可更大；周围留白 ≥ 24px。</p>
+</section>

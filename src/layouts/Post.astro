@@ -9,9 +9,7 @@ type Props = CollectionEntry<'post'>['data'] & {
   minutesRead: string
 }
 
-// TODO: Category
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { slug, title, description, pubDate, updatedDate, category, headings, minutesRead } = Astro.props
+const { slug, title, description, pubDate, updatedDate, headings, minutesRead } = Astro.props
 ---
 
 <Content {slug} {title} {description} {pubDate} {updatedDate} {headings} {minutesRead}>

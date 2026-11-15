@@ -1,0 +1,227 @@
+---
+import Foundations from '../components/design-system/Foundations.astro'
+import '../styles/global.css'
+
+const sections = [
+  ['overview', '总览'],
+  ['color', '色彩'],
+  ['type', '字体排印'],
+  ['layout', '空间与布局'],
+  ['identity', '品牌识别'],
+  ['components', '基础组件'],
+  ['accessibility', '无障碍与动效'],
+]
+const statuses = [
+  { classes: 'text-success bg-success-soft', symbol: '✓', label: '成功' },
+  { classes: 'text-warning bg-warning-soft', symbol: '!', label: '注意' },
+  { classes: 'text-danger bg-danger-soft', symbol: '×', label: '错误' },
+  { classes: 'text-info bg-info-soft', symbol: 'i', label: '提示' },
+]
+const themeButtonClasses = 'min-h-11 min-w-[50px] px-2.5 py-1.5 border-0 rounded-tag text-muted bg-transparent text-[14px] font-semibold aria-pressed:bg-accent aria-pressed:text-on-accent hover:not-aria-pressed:bg-surface hover:not-aria-pressed:text-accent max-sm:min-w-11 max-sm:px-1.5'
+const searchLinkClasses = 'group flex items-center justify-between gap-4 min-h-11 py-4 text-accent text-[16px] underline underline-offset-4'
+const arrowClasses = 'shrink-0 transition-transform duration-[140ms] ease-gentle group-hover:translate-x-0.5 motion-reduce:translate-x-0'
+const statusClasses = 'flex gap-3 p-5 rounded-panel text-[14px] leading-[1.7]'
+const accessibilityNumberClasses = 'block mb-4 text-accent font-mono text-[32px] leading-[1.2] max-sm:text-[28px] max-sm:mb-3'
+---
+
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="description" content="ShellWen 设计系统：色彩、字体排印、布局与组件规范。" />
+    <title>ShellWen 设计系统</title>
+  </head>
+  <body>
+    <a class="fixed z-10 top-2 left-5 -translate-y-[150%] px-4 py-2.5 bg-ink text-canvas rounded-control focus:translate-y-0" href="#main-content">跳到主要内容</a>
+    <header class="sticky top-0 z-5 bg-canvas border-0 border-b border-solid border-line">
+      <div class="max-w-[1440px] min-h-20 mx-auto px-8 py-3 flex items-center gap-6 max-lg:px-6 max-lg:gap-4 max-sm:min-h-[76px] max-sm:px-5 max-sm:py-2.5 max-sm:gap-3">
+        <a class="inline-flex items-center min-h-11 text-[23px] font-extrabold tracking-[-.055em] no-underline max-sm:text-[20px]" href="#overview" aria-label="ShellWen 设计系统总览">ShellWen<span class="text-accent" aria-hidden="true">.</span></a>
+        <span class="text-[14px] text-muted max-sm:hidden">设计系统 / 规范示例</span>
+        <a class="group inline-flex items-center gap-3 min-h-11 ml-auto text-[14px] no-underline hover:underline hover:underline-offset-4 max-sm:gap-1" href="/">返回首页 <span class:list={[arrowClasses, 'max-sm:hidden']} aria-hidden="true">↗</span></a>
+        <div class="flex shrink-0 gap-1 p-1 bg-soft rounded-tag max-sm:gap-0 max-sm:p-0.5" role="group" aria-label="参考页面配色">
+          <button class={themeButtonClasses} type="button" data-ds-set-theme="light" aria-pressed="true">浅色</button>
+          <button class={themeButtonClasses} type="button" data-ds-set-theme="dark" aria-pressed="false">深色</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid grid-cols-[176px_minmax(0,1fr)] gap-12 max-w-[1440px] mx-auto px-8 lg:max-[1200px]:grid-cols-[152px_minmax(0,1fr)] lg:max-[1200px]:gap-8 max-lg:grid-cols-[minmax(0,1fr)] max-lg:gap-0 max-lg:px-6 max-sm:px-5">
+      <aside class="self-start sticky top-28 py-8 max-lg:static max-lg:min-w-0 max-lg:pt-4 max-lg:pb-0">
+        <nav aria-label="设计系统章节">
+          <p class="eyebrow max-lg:hidden">内容索引 / 01—07</p>
+          <ol class="p-0 m-0 mt-4 list-none grid gap-1 max-lg:flex max-lg:gap-2 max-lg:overflow-x-auto max-lg:m-0 max-lg:p-1 max-lg:pb-3">
+            {sections.map(([id, label], index) => (
+              <li class="max-lg:shrink-0"><a class="flex items-center gap-3.5 min-h-11 px-2.5 rounded-control text-muted text-[14px] no-underline hover:text-accent hover:bg-accent-soft focus-visible:text-accent focus-visible:bg-accent-soft max-lg:gap-2" href={`#${id}`}><span class="text-muted font-mono text-[12px]" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>{label}</a></li>
+            ))}
+          </ol>
+        </nav>
+      </aside>
+
+      <main class="min-w-0" id="main-content" tabindex="-1">
+        <section id="overview" class="section pt-10 max-lg:pt-8 max-sm:pt-6" aria-labelledby="overview-title">
+          <h1 id="overview-title">设计系统</h1>
+        </section>
+
+        <Foundations />
+
+        <section id="components" class="section" aria-labelledby="components-title">
+          <div class="section-head"><div><p class="eyebrow">06 / COMPONENTS</p><h2 id="components-title">基础组件</h2></div></div>
+          <div class="grid grid-cols-2 gap-5 max-sm:grid-cols-1">
+            <div class="panel flex flex-col gap-5">
+              <p class="eyebrow -mb-2">ACTION / 按钮与链接</p>
+              <h3>按钮与链接</h3>
+              <div class="flex flex-wrap items-start gap-3">
+                <a class="button button-primary" href="#color">查看色彩 <span aria-hidden="true">↗</span></a>
+                <a class="button" href="#type">字体排印</a>
+                <a class="button button-quiet" href="#accessibility">无障碍规范 <span aria-hidden="true">→</span></a>
+                <button class="button" type="button" disabled>暂不可用 · 禁用示例</button>
+              </div>
+              <hr class="rule" />
+              <div class="flex items-center flex-wrap gap-2"><span class="pill">随笔</span><span class="pill">设计</span></div>
+              <nav class="flex flex-wrap justify-between items-center gap-x-4 gap-y-2 mt-auto pt-3" aria-label="章节导航示例"><a class="link inline-flex items-center min-h-11 text-[14px]" href="#identity">← 品牌识别</a><a class="link inline-flex items-center min-h-11 text-[14px]" href="#accessibility">无障碍与动效 →</a></nav>
+            </div>
+
+            <div class="panel flex flex-col gap-5">
+              <p class="eyebrow -mb-2">INPUT / 输入与反馈</p>
+              <h3>输入与反馈</h3>
+              <form id="ds-demo-form" novalidate>
+                <div class="mb-5">
+                  <label class="block mb-2 text-[14px] font-semibold" for="ds-email">电子邮箱 <span class="text-muted font-normal">（必填）</span></label>
+                  <input class="field" id="ds-email" name="email" type="email" placeholder="you@example.com" required autocomplete="off" aria-describedby="ds-email-help ds-form-feedback" aria-invalid="false" />
+                  <p id="ds-email-help" class="mt-2 text-muted text-[14px] leading-[1.6]">仅用于演示格式校验，不会发送、保存或订阅任何内容。</p>
+                </div>
+                <div class="mb-5">
+                  <label class="block mb-2 text-[14px] font-semibold" for="ds-name">称呼 <span class="text-muted font-normal">（选填）</span></label>
+                  <input class="field" id="ds-name" name="name" type="text" placeholder="希望我们怎么称呼你" autocomplete="off" />
+                </div>
+                <label class="flex items-center gap-2.5 min-h-11 mt-2 mb-4 text-[14px] cursor-pointer" for="ds-option"><input class="shrink-0 w-5 h-5 m-0 accent-accent" id="ds-option" type="checkbox" checked /><span>示例选项</span></label>
+                <div class="flex flex-wrap gap-3"><button id="ds-validate" class="button button-primary" type="submit" disabled>校验示例</button><button class="button" type="reset">重置</button></div>
+                <p id="ds-form-feedback" class="mt-4 p-3 rounded-control bg-soft text-muted text-[14px] leading-[1.6] data-[state=danger]:text-danger data-[state=danger]:bg-danger-soft data-[state=success]:text-success data-[state=success]:bg-success-soft" aria-live="polite" aria-atomic="true">输入邮箱后，试试校验。</p>
+              </form>
+              <noscript><p class:list={[statusClasses, 'text-warning bg-warning-soft']}>提示：格式校验演示和配色切换需要 JavaScript；本页规范仍可阅读。</p></noscript>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 mt-6 max-sm:grid-cols-1 max-sm:gap-3" aria-label="反馈状态静态示例">
+            {statuses.map(({ classes, symbol, label }) => (
+              <div class:list={[statusClasses, classes]}><span class="flex flex-[0_0_20px] items-center justify-center w-5 h-5 mt-0.5 border border-solid border-current rounded-[50%] font-bold leading-none" aria-hidden="true">{symbol}</span><strong>{label}<span class="text-[12px] font-normal"> · 状态示例</span></strong></div>
+            ))}
+          </div>
+          <div class="panel flex items-center justify-between flex-wrap gap-6 mt-6">
+            <div class="flex-[1_1_22rem]"><p class="eyebrow">DIALOG / 搜索浮层</p><h3 class="my-3">搜索浮层</h3><p class="text-muted text-[14px]">只筛选三篇真实文章。打开后可用键盘操作，按 Esc、点击遮罩或关闭按钮返回。</p></div>
+            <button id="ds-search-open" class="button" type="button" aria-haspopup="dialog">打开搜索示例</button>
+          </div>
+          <dialog id="ds-search-dialog" class="dialog-panel" aria-labelledby="ds-search-title" aria-describedby="ds-search-description">
+            <div class="flex items-start justify-between gap-3"><div><p class="eyebrow">演示索引 · 3 篇</p><h3 class="mt-2" id="ds-search-title">找一篇文章</h3></div><button id="ds-search-close" class="button button-quiet" type="button">关闭 <span aria-hidden="true">×</span></button></div>
+            <p id="ds-search-description" class="mt-2 text-muted text-[14px] leading-[1.6]">这是交互示例，仅筛选下方三篇文章标题，不是全站搜索。</p>
+            <label class="block mt-6 mb-2 text-[14px] font-semibold" for="ds-search-input">搜索文章标题</label>
+            <input id="ds-search-input" class="field" type="search" placeholder="试试 Astro、Android 或 Base64" autocomplete="off" aria-controls="ds-search-results" autofocus />
+            <p id="ds-search-count" class="mt-5 mb-2 text-muted text-[14px]" aria-live="polite" aria-atomic="true">找到 3 篇文章</p>
+            <ul id="ds-search-results" class="m-0 p-0 list-none">
+              <li class="border-0 border-t border-solid border-line"><a class={searchLinkClasses} href="/blog/frontend/astro-add-reading-time/"><span class="min-w-0 wrap-anywhere">Astro 添加预计阅读时间实践</span><span class={arrowClasses} aria-hidden="true">↗</span></a></li>
+              <li class="border-0 border-t border-solid border-line"><a class={searchLinkClasses} href="/blog/android/compose-android-native-scroll-screenshot/"><span class="min-w-0 wrap-anywhere">Jetpack Compose 适配 Android 原生滚动截图</span><span class={arrowClasses} aria-hidden="true">↗</span></a></li>
+              <li class="border-0 border-t border-solid border-line"><a class={searchLinkClasses} href="/blog/misc/uniqlo-akamai-t-shirt-base64-decode/"><span class="min-w-0 wrap-anywhere">优衣库 Akamai 有爱系列新品背部 Base64 还原</span><span class={arrowClasses} aria-hidden="true">↗</span></a></li>
+            </ul>
+            <p id="ds-search-empty" class="p-5 rounded-control bg-soft text-muted text-[14px]" hidden>没有匹配的标题。试试更短的关键词，或清空输入查看全部三篇。</p>
+            <p class="mt-5 text-muted text-[14px]">按 <kbd>Esc</kbd> 关闭，返回打开按钮。</p>
+          </dialog>
+        </section>
+
+        <section id="accessibility" class="section" aria-labelledby="accessibility-title">
+          <div class="section-head"><div><p class="eyebrow">07 / ACCESSIBILITY</p><h2 id="accessibility-title">无障碍与动效</h2></div></div>
+          <div class="grid grid-cols-2 gap-y-10 gap-x-12 max-sm:grid-cols-1 max-sm:gap-8">
+            <div><span class={accessibilityNumberClasses}>4.5:1</span><h3 class="mb-3">对比度</h3><p class="text-muted text-[14px]">普通文字 ≥ 4.5:1，大字 ≥ 3:1。正文 / 背景：浅色 11.53:1，深色 14.18:1；控件边界 / 表面：浅色 3.89:1，深色 4.37:1。</p></div>
+            <div><span class={accessibilityNumberClasses}>44 px</span><h3 class="mb-3">交互目标</h3><p class="text-muted text-[14px]">最小高度 44px；表单使用可见标签；状态使用文字或符号。</p></div>
+            <div><span class={accessibilityNumberClasses}>Tab ↵</span><h3 class="mb-3">键盘操作</h3><p class="text-muted text-[14px]">Tab 依序访问链接与控件，Enter 激活链接或按钮，空格切换复选框。焦点外环偏移 3px。</p></div>
+            <div><span class={accessibilityNumberClasses}>140 ms</span><h3 class="mb-3">动效</h3><p class="text-muted text-[14px]">颜色反馈 140ms；箭头位移 2px；减少动态效果时停用过渡与箭头位移。</p></div>
+          </div>
+          <div class="mt-8 p-6 rounded-panel bg-soft text-[14px]"><p>正文 18px / 1.9；中文阅读栏 ≤ 720px；移动端页边距 ≥ 20px。</p><p class="mt-3 text-muted">实施规范，非全站无障碍认证。</p></div>
+        </section>
+
+        <footer class="flex flex-wrap gap-6 mb-8 text-[14px]"><a class="link inline-flex items-center min-h-11" href="#overview">回到开头 ↑</a><a class="link inline-flex items-center min-h-11" href="/">返回首页 ↗</a></footer>
+      </main>
+    </div>
+    <script>
+      const root = document.documentElement
+      const themeButtons = document.querySelectorAll<HTMLButtonElement>('[data-ds-set-theme]')
+      themeButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const theme = button.dataset.dsSetTheme
+          if (theme !== 'light' && theme !== 'dark') return
+          root.dataset.theme = theme
+          themeButtons.forEach((control) => {
+            control.setAttribute('aria-pressed', String(control.dataset.dsSetTheme === theme))
+          })
+        })
+      })
+
+      const form = document.querySelector<HTMLFormElement>('#ds-demo-form')
+      const email = document.querySelector<HTMLInputElement>('#ds-email')
+      const feedback = document.querySelector<HTMLParagraphElement>('#ds-form-feedback')
+      if (form && email && feedback) {
+        const validateButton = form.querySelector<HTMLButtonElement>('#ds-validate')
+        if (validateButton) validateButton.disabled = false
+        form.addEventListener('submit', (event) => {
+          event.preventDefault()
+          const valid = email.validity.valid
+          email.setAttribute('aria-invalid', String(!valid))
+          feedback.dataset.state = valid ? 'success' : 'danger'
+          feedback.textContent = valid
+            ? '文本格式有效；这是组件演示，不会发送数据'
+            : email.validity.valueMissing
+              ? '请填写电子邮箱，例如 you@example.com。'
+              : '邮箱格式不正确，请使用 you@example.com 这样的格式。'
+          if (!valid) email.focus()
+        })
+        email.addEventListener('input', () => {
+          email.setAttribute('aria-invalid', 'false')
+          delete feedback.dataset.state
+          feedback.textContent = '内容已修改，请重新校验。'
+        })
+        form.addEventListener('reset', () => {
+          email.setAttribute('aria-invalid', 'false')
+          delete feedback.dataset.state
+          feedback.textContent = '输入邮箱后，试试校验。'
+        })
+      }
+
+      const searchDialog = document.querySelector<HTMLDialogElement>('#ds-search-dialog')
+      const searchOpen = document.querySelector<HTMLButtonElement>('#ds-search-open')
+      const searchClose = document.querySelector<HTMLButtonElement>('#ds-search-close')
+      const searchInput = document.querySelector<HTMLInputElement>('#ds-search-input')
+      const searchCount = document.querySelector<HTMLParagraphElement>('#ds-search-count')
+      const searchEmpty = document.querySelector<HTMLParagraphElement>('#ds-search-empty')
+      const searchItems = document.querySelectorAll<HTMLLIElement>('#ds-search-results li')
+      if (searchDialog && searchOpen && searchClose && searchInput && searchCount && searchEmpty) {
+        searchOpen.addEventListener('click', () => searchDialog.showModal())
+        searchClose.addEventListener('click', () => searchDialog.close())
+        searchDialog.addEventListener('close', () => searchOpen.focus())
+        searchDialog.addEventListener('keydown', (event) => {
+          if (event.key !== 'Escape') return
+          event.preventDefault()
+          searchDialog.close()
+        })
+        searchDialog.addEventListener('click', (event) => {
+          if (event.target !== searchDialog) return
+          const bounds = searchDialog.getBoundingClientRect()
+          if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) {
+            searchDialog.close()
+          }
+        })
+        searchInput.addEventListener('input', () => {
+          const query = searchInput.value.trim().toLocaleLowerCase()
+          let count = 0
+          searchItems.forEach((item) => {
+            const matches = (item.textContent ?? '').toLocaleLowerCase().includes(query)
+            item.hidden = !matches
+            if (matches) count += 1
+          })
+          searchCount.textContent = `找到 ${count} 篇文章`
+          searchEmpty.hidden = count > 0
+        })
+      }
+    </script>
+  </body>
+</html>

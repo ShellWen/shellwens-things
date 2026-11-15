@@ -4,72 +4,159 @@ import HeaderControls from './HeaderControls.svelte'
 import type { HTMLAttributes } from 'astro/types'
 import Search from 'astro-pagefind/components/Search.astro'
 import '@/styles/pagefind-ui.css'
+import IconClose from '~icons/material-symbols/close'
 
 type Props = HTMLAttributes<'div'>
 
 const { class: propClass, ...props } = Astro.props
 ---
 
-<div
-  class={`sticky top-0 z-50 flex flex-col items-center py-2 sm:py-4 px-(--page-padding) bg-base-100/80 backdrop-blur-sm ${propClass ?? ''}`}
-  transition:name="header"
-  transition:animate="none"
-  {...props}
->
-  <nav class="navbar flex-wrap gap-2 p-0 sm:max-w-(--page) sm:gap-0 sm:rounded-full">
-    <h2 class="flex w-full flex-1 justify-center pt-2 text-xl sm:block sm:w-auto sm:pt-0">
-      <a href="/" class="tracking-tighter">
-        <span class="font-black">SHELLWEN</span>'s
-      </a>
-    </h2>
-      <div class="flex w-full flex-none items-center justify-center sm:flex sm:w-auto">
-        <ul class="menu menu-horizontal items-center">
-          <li>
-            <HeaderLink href="/">首页</HeaderLink>
-          </li>
-          <li>
-            <HeaderLink href="/blog">文章</HeaderLink>
-          </li>
-          <li>
-            <HeaderLink href="/about">关于我</HeaderLink>
-          </li>
-        </ul>
-        <HeaderControls client:idle />
-      </div>
-  </nav>
-  <dialog id="site-search-modal" class="modal">
-    <div class="modal-box w-full max-w-(--page)">
-      <h3 id="site-search-title" class="text-lg font-bold">
-        站内搜索
-      </h3>
-      <Search
-        className="pagefind-ui mt-4"
-        searchboxOptions={{
-          showImages: false,
-          resetStyles: false,
-          translations: {
-            placeholder: '搜索',
-            clear_search: '清除',
-            load_more: '加载更多结果',
-            search_label: '站内搜索',
-            filters_label: '筛选',
-            zero_results: '未找到 [SEARCH_TERM] 的相关结果',
-            many_results: '找到 [COUNT] 个 [SEARCH_TERM] 的相关结果',
-            one_result: '找到 [COUNT] 个 [SEARCH_TERM] 的相关结果',
-            alt_search: '未找到 [SEARCH_TERM] 的相关结果。改为显示 [DIFFERENT_TERM] 的相关结果',
-            search_suggestion: '未找到 [SEARCH_TERM] 的相关结果。请尝试以下搜索。',
-            searching: '正在搜索 [SEARCH_TERM]...',
-          },
-        }}
-      />
-      <div class="modal-action">
-        <form method="dialog">
-          <button class="btn">关闭</button>
-        </form>
-      </div>
-    </div>
-    <form method="dialog" class="modal-backdrop">
-      <button>关闭</button>
+<header class:list={['site-header', propClass]} transition:name="header" transition:animate="none" {...props}>
+  <div class="header-inner page-shell">
+    <a class="brand" href="/" aria-label="ShellWen 首页">ShellWen<span aria-hidden="true">.</span></a>
+    <nav class="primary-nav" aria-label="主要导航">
+      <HeaderLink href="/">首页</HeaderLink>
+      <HeaderLink href="/blog">文章</HeaderLink>
+      <HeaderLink href="/about">关于</HeaderLink>
+    </nav>
+    <HeaderControls client:load />
+  </div>
+</header>
+
+<dialog id="site-search-modal" class="dialog-panel" aria-labelledby="site-search-title" aria-describedby="site-search-description">
+  <div class="search-heading">
+    <h2 id="site-search-title">站内搜索</h2>
+    <form method="dialog">
+      <button class="icon-button" type="submit" aria-label="关闭搜索" title="关闭搜索（Esc）">
+        <IconClose aria-hidden="true" />
+      </button>
     </form>
-  </dialog>
-</div>
+  </div>
+  <p id="site-search-description">按 Esc 关闭。</p>
+  <Search
+    className="site-search"
+    configOptions={{ lang: 'zh-CN' }}
+    searchboxOptions={{ shortcut: 'none', 'hide-shortcut': 'true', 'show-keyboard-hints': 'false' }}
+  />
+  <div class="search-actions">
+    <button class="button button-quiet" type="button" data-search-clear>清除搜索</button>
+  </div>
+</dialog>
+
+<script>
+  import type { PagefindSearchbox } from '@pagefind/component-ui'
+
+  let cleanup: (() => void) | undefined
+
+  function initSearch() {
+    cleanup?.()
+    const dialog = document.querySelector<HTMLDialogElement>('#site-search-modal')
+    if (!dialog) return
+    const controller = new AbortController()
+    const { signal } = controller
+    let opener: HTMLElement | null = null
+    const ready = customElements.whenDefined('pagefind-searchbox').then(() => {
+      if (signal.aborted || !dialog.isConnected) return null
+      const search = dialog.querySelector<PagefindSearchbox>('pagefind-searchbox')
+      search?.instance?.setTranslations({
+        placeholder: '搜索',
+        clear_search: '清除',
+        load_more: '加载更多结果',
+        search_label: '站内搜索',
+        results_label: '搜索结果',
+        filters_label: '筛选',
+        zero_results: '未找到 [SEARCH_TERM] 的相关结果',
+        many_results: '找到 [COUNT] 个 [SEARCH_TERM] 的相关结果',
+        one_result: '找到 [COUNT] 个 [SEARCH_TERM] 的相关结果',
+        alt_search: '未找到 [SEARCH_TERM] 的相关结果。改为显示 [DIFFERENT_TERM] 的相关结果',
+        search_suggestion: '未找到 [SEARCH_TERM] 的相关结果。请尝试以下搜索。',
+        searching: '正在搜索 [SEARCH_TERM]...',
+      })
+      search?.inputEl?.setAttribute('aria-label', '站内搜索')
+      return search
+    })
+
+    async function openSearch() {
+      if (!dialog || dialog.open) return
+      opener = document.activeElement instanceof HTMLElement ? document.activeElement : null
+      dialog.showModal()
+      const search = await ready
+      if (dialog.open && dialog.isConnected) search?.focus()
+    }
+
+    document.addEventListener('site-search-open', () => void openSearch(), { signal })
+    document.addEventListener('keydown', (event) => {
+      if ((event.ctrlKey || event.metaKey) && !event.altKey && event.key.toLowerCase() === 'k') {
+        event.preventDefault()
+        if (dialog.open) void ready.then((search) => search?.focus())
+        else void openSearch()
+      }
+    }, { signal })
+    dialog.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        // Pagefind consumes Escape for its dropdown; close the containing dialog first.
+        event.preventDefault()
+        event.stopPropagation()
+        dialog.close()
+      }
+    }, { capture: true, signal })
+    dialog.addEventListener('click', (event) => {
+      if (event.target !== dialog) return
+      const bounds = dialog.getBoundingClientRect()
+      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) {
+        dialog.close()
+      }
+    }, { signal })
+    dialog.addEventListener('close', () => {
+      if (opener?.isConnected) opener.focus()
+    }, { signal })
+    dialog.querySelector('[data-search-clear]')?.addEventListener('click', () => {
+      const search = dialog.querySelector<PagefindSearchbox>('pagefind-searchbox')
+      if (search) search.searchID++
+      const input = search?.inputEl
+      if (input) {
+        input.value = ''
+        input.dispatchEvent(new Event('input', { bubbles: true }))
+        input.focus()
+      }
+    }, { signal })
+    cleanup = () => controller.abort()
+  }
+
+  document.addEventListener('astro:page-load', initSearch)
+  if (import.meta.hot) import.meta.hot.dispose(() => {
+    cleanup?.()
+    document.removeEventListener('astro:page-load', initSearch)
+  })
+</script>
+
+<style>
+  @reference '../styles/global.css';
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--color-canvas) 92%, transparent);
+    backdrop-filter: blur(16px);
+  }
+  .header-inner { display: flex; min-height: 88px; align-items: center; gap: 24px; }
+  .brand { display: inline-flex; min-height: 44px; align-items: center; color: var(--color-ink); font-size: 20px; font-weight: 800; letter-spacing: -.04em; text-decoration: none; }
+  .brand span { color: var(--color-accent); }
+  .primary-nav { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+  .search-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .search-heading h2 { font-size: 24px; }
+  .search-heading svg { width: 24px; height: 24px; }
+  #site-search-description { margin-top: 8px; margin-bottom: 24px; color: var(--color-muted); font-size: 14px; }
+  .search-actions { display: flex; justify-content: flex-end; margin-top: 16px; }
+
+  @media (max-width: 639px) {
+    .header-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: minmax(56px, auto) minmax(44px, auto); min-height: 0; gap: 0 8px; padding-top: 0; padding-bottom: 8px; }
+    .primary-nav { display: flex; justify-content: center; grid-column: 1 / -1; grid-row: 2; width: 100%; gap: 16px; margin: 0; }
+    #site-search-modal { padding: 20px; }
+  }
+
+  @media (max-width: 359px) {
+    .brand { font-size: 16px; }
+  }
+</style>

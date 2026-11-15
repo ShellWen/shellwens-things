@@ -1,16 +1,59 @@
 @reference './global.css';
 
-.pagefind-ui {
-  --pagefind-ui-scale: 1;
-  --pagefind-ui-font: var(--font-sans);
-  --pagefind-ui-background: var(--color-base-200);
-  --pagefind-ui-text: var(--text-base-content);
-  --pagefind-ui-primary: var(--color-primary);
-  --pagefind-ui-border-width: 0px;
-  & .pagefind-ui__search-input {
-    @apply input w-full input-lg;
-  }
-  & .pagefind-ui__search-clear {
-    @apply btn btn-ghost;
+.site-search {
+  --pf-font: var(--font-sans);
+  --pf-text: var(--color-ink);
+  --pf-text-secondary: var(--color-muted);
+  --pf-text-muted: var(--color-muted);
+  --pf-background: var(--color-surface);
+  --pf-border: var(--color-control);
+  --pf-border-focus: var(--color-accent);
+  --pf-hover: var(--color-soft);
+  --pf-mark: var(--color-accent);
+  --pf-skeleton: var(--color-soft);
+  --pf-skeleton-shine: var(--color-canvas);
+  --pf-error-bg: var(--color-danger-soft);
+  --pf-error-border: var(--color-danger);
+  --pf-error-text: var(--color-danger);
+  --pf-error-text-secondary: var(--color-danger);
+  --pf-outline-focus: var(--color-accent);
+  --pf-outline-width: 2px;
+  --pf-outline-offset: 3px;
+  --pf-input-height: 44px;
+  --pf-input-font-size: 16px;
+  --pf-border-radius: var(--radius-control);
+  --pf-searchbox-max-width: 100%;
+  --pf-searchbox-dropdown-max-height: min(480px, 55dvh);
+  --pf-shadow-md: none;
+  --pf-dropdown-z-index: 1;
+  color: var(--color-ink);
+}
+
+/* Pagefind's unlayered, three-ID reset requires targeted overrides for layout and type. */
+.site-search .pf-searchbox-dropdown {
+  position: static !important;
+}
+
+.site-search .pf-searchbox-result-title {
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  overflow-wrap: anywhere !important;
+}
+
+.site-search .pf-searchbox-result-excerpt {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+}
+
+.site-search .pf-searchbox-result:focus-visible {
+  outline: 2px solid var(--color-accent) !important;
+  outline-offset: -2px !important;
+}
+
+@media (max-width: 639px) {
+  .site-search {
+    --pf-searchbox-dropdown-max-height: min(480px, max(120px, calc(100dvh - 304px)));
   }
 }

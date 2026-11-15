@@ -6,7 +6,6 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 import { sortPostByPubDateDesc } from '@/lib/util/sorts'
 import PostCard from '@/components/PostCard.astro'
 import GridListSwitcher from '@/components/GridListSwitcher.svelte'
-import IconCategory from '~icons/material-symbols/category'
 
 export const prerender = true
 
@@ -31,38 +30,29 @@ type Props = {
 const { category, posts } = Astro.props
 ---
 
-<BaseLayout>
+<BaseLayout title={category.data.name} description={category.data.description}>
   <Header slot="header" />
-  <main
-    class="mx-auto my-4 flex w-full max-w-(--page) flex-col gap-4 px-(--page-padding) lg:px-0"
-    slot="body"
-    data-pagefind-body
-  >
-    <h1 transition:name={`category-name-${category.id}`} class="font-serif" data-pagefind-meta="title">
-      {category.data.name}
-    </h1>
-    <p class="italic">{category.data.description}</p>
-    {posts.length === 0 ? (
+  <main id="main-content" class="page-shell category-page" slot="body" data-pagefind-body>
+    <a class="category-back link" href="/blog"><span aria-hidden="true">←</span> 全部分类</a>
+    <header class="category-heading">
       <div>
-        该分类暂无文章
-        <br />
-        <a href="/blog" class="inline-block pt-4">
-          <button class="btn btn-soft btn-primary">
-            <IconCategory class="size-4" />
-            回到分类页
-          </button>
-        </a>
+        <h1 transition:name={`category-name-${category.id}`} data-pagefind-meta="title">{category.data.name}</h1>
+      </div>
+      <div class="category-summary">
+        <span>{posts.length} 篇文章</span>
+        <a class="link" href={`/blog/${category.id}/rss.xml`} aria-label={`订阅${category.data.name} RSS`}>RSS 订阅 <span aria-hidden="true">↗</span></a>
+      </div>
+    </header>
+    {posts.length === 0 ? (
+      <div class="category-empty panel">
+        <p>该分类暂无文章</p>
+        <a class="button button-primary" href="/blog">回到分类页 <span aria-hidden="true">→</span></a>
       </div>
     ) : (
       <GridListSwitcher client:load>
-        <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
-            <li class="col-span-1 view-list:md:col-span-2 view-list:lg:col-span-3">
-              <PostCard
-                {post}
-                class="view-list:[--figure-width:100%] view-list:md:card-side view-list:md:[--figure-width:18rem]"
-              />
-            </li>
+        <ul class="category-posts">
+          {posts.map((post, index) => (
+            <li><PostCard {post} class:list={{ 'post-featured': index === 0 }} /></li>
           ))}
         </ul>
       </GridListSwitcher>
@@ -70,3 +60,95 @@ const { category, posts } = Astro.props
   </main>
   <Footer slot="footer" />
 </BaseLayout>
+
+<style>
+  .category-page {
+    padding-block: 32px 64px;
+  }
+  .category-back {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    gap: 8px;
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+  .category-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .category-heading h1 {
+    margin-block: 12px;
+    font-size: clamp(28px, 3.5vw, 36px);
+    font-weight: 650;
+    line-height: 1.3;
+    letter-spacing: -.01em;
+  }
+  .category-summary {
+    display: flex;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 20px;
+    color: var(--color-muted);
+    font-size: 14px;
+  }
+  .category-summary > a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    gap: 8px;
+  }
+  .category-empty {
+    display: grid;
+    justify-items: start;
+    gap: 20px;
+    color: var(--color-muted);
+  }
+  .category-posts {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .category-posts > li {
+    min-width: 0;
+  }
+  :global(.view-list) .category-posts > li + li {
+    border-top: 1px solid var(--color-line);
+  }
+  :global(.view-grid) .category-posts {
+    gap: 24px;
+  }
+  @media (min-width: 768px) {
+    :global(.view-grid) .category-posts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1024px) {
+    :global(.view-grid) .category-posts {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 639px) {
+    .category-page {
+      padding-block: 16px 40px;
+    }
+    .category-back {
+      margin-bottom: 12px;
+    }
+    .category-heading {
+      align-items: start;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 16px;
+    }
+    .category-heading h1 {
+      margin-block: 0;
+    }
+    :global(.view-grid) .category-posts {
+      gap: 16px;
+    }
+  }
+</style>

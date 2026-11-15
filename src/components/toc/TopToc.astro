@@ -3,19 +3,123 @@ import { type TocProps } from './index'
 import type { HTMLAttributes } from 'astro/types'
 type Props = TocProps & HTMLAttributes<'nav'>
 
-const { headings, ...restProps } = Astro.props
+const { headings, class: className, ...restProps } = Astro.props
 ---
 
-<nav {...restProps}>
-  <ul class="pl-0 text-sm">
-    {headings.map((heading) => (
-      <li class="list-none pl-0">
-        {/* \xa0: non-breaking space */}
-        <span>{'\xa0\xa0'.repeat(heading.depth - 1)}</span>
-        <a class="text-base-content/75 decoration-base-content/25" href={`#${heading.slug}`}>
-          {heading.text}
-        </a>
-      </li>
-    ))}
-  </ul>
+<nav aria-label="文章目录" {...restProps} class:list={['article-toc', className]}>
+  <details>
+    <summary class="toc-title">文章目录</summary>
+    <ul>
+      {headings.map((heading) => (
+        <li style={`--toc-depth: ${heading.depth - 1}`}>
+          <a href={`#${heading.slug}`}>{heading.text}</a>
+        </li>
+      ))}
+    </ul>
+  </details>
 </nav>
+
+<script>
+  const desktop = window.matchMedia('(min-width: 640px)')
+
+  function syncToc() {
+    const details = document.querySelector<HTMLDetailsElement>('.article-toc details')
+    if (details) details.open = desktop.matches
+  }
+
+  syncToc()
+  document.addEventListener('astro:page-load', syncToc)
+  desktop.addEventListener('change', syncToc)
+
+  if (import.meta.hot) import.meta.hot.dispose(() => {
+    document.removeEventListener('astro:page-load', syncToc)
+    desktop.removeEventListener('change', syncToc)
+  })
+</script>
+
+<style>
+  .article-toc {
+    margin-bottom: 40px;
+    padding-block: 24px;
+    border-block: 1px solid var(--color-line);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .toc-title {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    justify-content: space-between;
+    gap: 16px;
+    color: var(--color-ink);
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .toc-title::-webkit-details-marker {
+    display: none;
+  }
+
+  .toc-title::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    margin-inline-end: 4px;
+    flex-shrink: 0;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg);
+  }
+
+  details[open] .toc-title {
+    margin-bottom: 12px;
+  }
+
+  details[open] .toc-title::after {
+    transform: rotate(225deg);
+  }
+
+  .article-toc ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .article-toc li {
+    padding-inline-start: min(calc(var(--toc-depth) * 14px), 56px);
+  }
+
+  .article-toc a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    width: fit-content;
+    max-width: 100%;
+    padding-block: 8px;
+    border-radius: 2px;
+    color: var(--color-muted);
+    overflow-wrap: anywhere;
+    text-decoration: none;
+    text-underline-offset: 4px;
+  }
+
+  .article-toc a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .toc-title:focus-visible,
+  .article-toc a:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 639px) {
+    .article-toc {
+      margin-bottom: 24px;
+      padding-block: 0;
+    }
+  }
+</style>

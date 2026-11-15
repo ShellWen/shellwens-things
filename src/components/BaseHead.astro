@@ -26,6 +26,21 @@ const optimizedImageAbsoluteUrl = new URL(optimizedImage.src, Astro.url)
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" />
+<script is:inline>
+  (() => {
+    const systemMode = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+    let mode = systemMode
+    try {
+      if (localStorage.getItem('useSystemTheme') === 'false') {
+        mode = localStorage.getItem('theme') === 'shellwen-dark' ? 'dark' : 'light'
+      }
+    } catch {
+      // Storage can be unavailable; the system preference still resolves first paint.
+    }
+    document.documentElement.dataset.theme = mode
+  })()
+</script>
 <link rel="icon" type="image/avif" href={optimizedFaviconAvif.src} />
 <link rel="icon" type="image/webp" href={optimizedFaviconWebp.src} />
 <meta name="generator" content={Astro.generator} />

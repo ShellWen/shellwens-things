@@ -11,6 +11,7 @@ import type { MarkdownHeading } from 'astro'
 import IconCalendarToday from '~icons/material-symbols/calendar-today'
 import IconHistory from '~icons/material-symbols/history'
 import IconTimer from '~icons/material-symbols/timer'
+import '../styles/article.css'
 
 type Props = {
   slug: string
@@ -28,119 +29,144 @@ const term = `${title} | ${slug}`
 
 <BaseLayout title={`${title} | ${SITE_TITLE}`} description={description} pubDate={pubDate}>
   <Header slot="header" />
-  <main slot="body" data-pagefind-body>
-    <article id="article-content" class="w-full">
-      <header class="mx-auto flex w-full max-w-prose flex-col items-center px-4 pt-8 pb-4 text-center sm:pt-12">
-        <h1
-          id="article-title"
-          class="text-3xl font-bold sm:text-4xl"
-          transition:name={`title-${slug}`}
-          data-pagefind-meta="title"
-        >
+  <main id="main-content" slot="body" class="page-shell reading-page" data-pagefind-body>
+    <article id="article-content" class="reading-article" aria-labelledby="article-title">
+      <header class="article-header">
+        <h1 id="article-title" transition:name={`title-${slug}`} data-pagefind-meta="title">
           {title}
         </h1>
-        <div id="article-metadata" class="mt-4 flex flex-wrap justify-center gap-4 text-sm opacity-80">
-          <div
-            id="pub-date"
-            transition:name={`pub-date-${slug}`}
-            class="tooltip flex items-center gap-1"
-            data-tip="最初发布日期"
-          >
-            <IconCalendarToday />
+        <div id="article-metadata" class="article-metadata">
+          <div id="pub-date" transition:name={`pub-date-${slug}`} class="metadata-item" title="最初发布日期">
+            <IconCalendarToday aria-hidden="true" />
+            <span class="sr-only">发布于 </span>
             <FormattedDate date={pubDate} />
           </div>
-          <div
-            id="updated-date"
-            transition:name={`updated-date-${slug}`}
-            class="tooltip flex items-center gap-1"
-            data-tip="上次更新日期"
-          >
-            <IconHistory />
+          <div id="updated-date" transition:name={`updated-date-${slug}`} class="metadata-item" title="上次更新日期">
+            <IconHistory aria-hidden="true" />
+            <span class="sr-only">更新于 </span>
             <FormattedDate date={updatedDate} />
           </div>
-          <div
-            id="minutes-read"
-            transition:name={`minutes-read-${slug}`}
-            class="tooltip flex items-center gap-1"
-            data-tip="预计阅读时间"
-          >
-            <IconTimer />
+          <div id="minutes-read" transition:name={`minutes-read-${slug}`} class="metadata-item" title="预计阅读时间">
+            <IconTimer aria-hidden="true" />
             {minutesRead}
           </div>
         </div>
       </header>
-      <div id="article-body" class="mx-auto prose w-full p-4">
-        <div id="article-main" class="mx-auto">
-          {description && (
-            <blockquote
-              id="article-description"
-              class="mb-0 border-l-4 border-base-300 bg-base-200 px-4 py-3 text-left text-sm leading-relaxed text-base-content not-italic"
-              transition:name={`description-${slug}`}
-            >
-              {description}
-            </blockquote>
-          )}
-          {headings.length !== 0 && <TopToc id="table-of-contents" headings={headings} class="py-4" />}
+      <div id="article-body">
+        {headings.length !== 0 && <TopToc id="table-of-contents" headings={headings} />}
+        <div id="article-main" class="prose article-prose">
           <slot />
-          <style is:global>
-            @reference "tailwindcss";
-
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6 {
-              --link-opacity: 0%;
-              &:hover {
-                --link-opacity: 100%;
-              }
-            }
-            .icon-link {
-              @apply absolute opacity-(--link-opacity) transition-opacity;
-            }
-            .icon-link::before {
-              @apply -ml-6 inline-block size-0 text-lg content-['🔗'];
-            }
-
-            /* @media (prefers-color-scheme: dark) {
-              .astro-code,
-              .astro-code span {
-                color: var(--shiki-dark) !important;
-                background-color: var(--shiki-dark-bg) !important;
-                font-style: var(--shiki-dark-font-style) !important;
-                font-weight: var(--shiki-dark-font-weight) !important;
-                text-decoration: var(--shiki-dark-text-decoration) !important;
-              }
-            } */
-            /* Use @apply to compatible with Tailwind CSS dark mode */
-            .astro-code,
-            .astro-code span {
-              @apply dark:bg-(--shiki-dark-bg)! dark:font-(--shiki-dark-font-weight)! dark:text-(--shiki-dark)! dark:[font-style:var(--shiki-dark-font-style)]! dark:[text-decoration:var(--shiki-dark-text-decoration)]!;
-            }
-          </style>
         </div>
-        <div id="copyright-notice" class="divider">
-          版权声明
-        </div>
-        <p id="copyright-text" class="mx-auto">
+      </div>
+      <footer class="article-license" aria-labelledby="copyright-notice">
+        <h2 id="copyright-notice" class="article-section-title">版权声明</h2>
+        <p id="copyright-text">
           本页面内容，除特别声明外，均采用{' '}
-          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" class="link">
+          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" rel="noopener noreferrer" class="link">
             CC BY-NC-SA 4.0 Deed
           </a>{' '}
           协议授权。
-          <div class="divider" id="comments-area-divider">
-            评论区
-          </div>
-          <Comments id="comments-area" term={term} client:idle client:only="svelte" />
-          <noscript id="comments-area-noscript">
-            评论区需要 JavaScript 支持，但您的浏览器不支持 JavaScript 或 JavaScript 被禁用了。
-            <br />
-            请开启 JavaScript 或者使用支持 JavaScript 的浏览器。
-          </noscript>
         </p>
-      </div>
+      </footer>
+      <section class="article-comments" aria-labelledby="comments-area-divider" data-pagefind-ignore>
+        <h2 id="comments-area-divider" class="article-section-title">评论区</h2>
+        <Comments id="comments-area" term={term} client:only="svelte" />
+        <noscript id="comments-area-noscript">
+          评论区需要 JavaScript 支持，但您的浏览器不支持 JavaScript 或 JavaScript 被禁用了。
+          <br />
+          请开启 JavaScript 或者使用支持 JavaScript 的浏览器。
+        </noscript>
+      </section>
     </article>
-    <Footer slot="footer" />
   </main>
+  <Footer slot="footer" />
 </BaseLayout>
+
+<style>
+  .reading-page {
+    padding-block: 64px 80px;
+  }
+
+  .reading-article {
+    width: 100%;
+    max-width: 720px;
+    min-width: 0;
+    margin-inline: auto;
+  }
+
+  .article-header {
+    margin-bottom: 40px;
+  }
+
+  .article-header h1 {
+    margin-block: 16px 24px;
+    font-size: clamp(36px, 4vw, 48px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -.01em;
+    overflow-wrap: anywhere;
+  }
+
+  .article-metadata {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    color: var(--color-muted);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .metadata-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .metadata-item :global(svg) {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .article-license,
+  .article-comments {
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .article-section-title {
+    margin-bottom: 16px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .article-license p,
+  .article-comments noscript {
+    color: var(--color-muted);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 639px) {
+    .reading-page {
+      padding-block: 24px 48px;
+    }
+
+    .article-header {
+      margin-bottom: 24px;
+    }
+
+    .article-header h1 {
+      margin-block: 0 20px;
+      font-size: clamp(28px, 7.5vw, 32px);
+      line-height: 1.3;
+    }
+
+    .article-metadata {
+      gap: 8px 16px;
+      font-size: 13px;
+    }
+  }
+</style>

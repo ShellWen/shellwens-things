@@ -6,9 +6,29 @@ type Props = HTMLAttributes<'a'>
 const { href, class: className, ...props } = Astro.props
 
 const { pathname } = Astro.url
-const isActive = href === pathname || href === pathname.replace(/\/$/, '')
+const path = pathname.replace(/\/$/, '') || '/'
+const isActive = href === path || (href !== '/' && typeof href === 'string' && path.startsWith(`${href}/`))
 ---
 
-<a href={href} class:list={[className, { 'bg-neutral font-bold text-neutral-content': isActive }]} {...props}>
+<a href={href} class:list={['nav-link', className]} aria-current={isActive ? 'page' : undefined} {...props}>
   <slot />
 </a>
+
+<style>
+  @reference '../styles/global.css';
+
+  .nav-link {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 16px;
+    border-radius: var(--radius-tag);
+    color: var(--color-muted);
+    font-size: 14px;
+    text-decoration: none;
+    transition: background-color 180ms var(--ease-gentle), color 180ms var(--ease-gentle);
+  }
+  .nav-link:hover { background: var(--color-soft); color: var(--color-accent); }
+  .nav-link[aria-current='page'] { background: var(--color-accent-soft); color: var(--color-accent); font-weight: 650; }
+</style>

@@ -1,61 +1,160 @@
 ---
 import homeFront from '@/assets/images/home_front.png'
 import { getImage } from 'astro:assets'
-import IconArrowForward from '~icons/material-symbols/arrow-forward'
 
-const webpHomeFront = await getImage({ src: homeFront, format: 'webp', quality: 80 })
+const bear = await getImage({ src: homeFront, format: 'webp', quality: 80 })
 ---
 
-<main class="px-(--page-padding) py-8 pt-20" data-pagefind-body>
-  <span data-pagefind-meta="title" class="sr-only">
-    首页
-  </span>
-
-  <article class="mx-auto flex max-w-(--page) flex-col sm:flex-row">
-    <div class="shrink-0">
-      <div class="z-10 flex flex-col items-start">
-        <div class="mb-8 flex items-center gap-4 opacity-60">
-          <span class="h-px w-8 bg-base-content"></span>
-          <span class="font-mono text-[0.625rem] font-bold tracking-[0.3em] uppercase">
-            Software Engineer &amp; Furry
-          </span>
-        </div>
-        <h1 class="flex flex-col text-[6rem] leading-[0.85] font-black tracking-tight uppercase md:text-[8rem]">
-          <span class="text-neutral dark:text-base-content">Shell</span>
-          <div class="flex items-baseline gap-4">
-            <span class="custom-stroke text-transparent [--custom-stroke-color:var(--color-base-100)] [--custom-stroke-outline-color:var(--color-base-content)]">
-              Wen
-            </span>
-            <div class="mb-4 flex flex-col border-l border-l-base-content pl-4 text-sm leading-4 font-medium tracking-normal lowercase opacity-40 md:text-sm">
-              <span>[zh] 颉文</span>
-              <span>/xié wén/</span>
-            </div>
-          </div>
-        </h1>
+<main id="main-content" class="page-shell home" data-pagefind-body>
+  <span data-pagefind-meta="title" class="sr-only">首页</span>
+  <article class="home-hero" aria-labelledby="home-title">
+    <div class="home-intro">
+      <h1 id="home-title" class="home-name" aria-label="ShellWen">
+        <span>SHELL</span>
+        <span>WEN</span>
+      </h1>
+      <p class="home-pronunciation">颉文 <span>/ xié wén /</span></p>
+      <p class="home-description">写点不无聊的代码，<br />有时假装自己是<strong>小动物。</strong></p>
+      <div class="home-actions">
+        <a class="button button-primary" href="/about">认识一下 <span aria-hidden="true">↗</span></a>
+        <a class="home-reading link" href="/blog">读读我的文字 <span aria-hidden="true">→</span></a>
       </div>
-
-      <div class="mt-4 font-serif text-2xl leading-normal sm:text-3xl">
-        <span class="font-light">写点不无聊的代码，</span>
-        <br />
-        <span class="font-bold underline decoration-[4px] underline-offset-8">有时假装自己是小动物。</span>
+    </div>
+    <figure class="home-portrait">
+      <div class="home-bear-frame">
+        <div
+          class="home-bear"
+          style={`--bear-image: url("${bear.src}")`}
+          role="img"
+          aria-label="ShellWen 的手绘小熊，穿着连帽卫衣和运动鞋，手插口袋，眨眼微笑"
+        ></div>
       </div>
-      <br />
-      <br />
-      <a href="/about">
-        <button class="btn px-0 btn-ghost hover:bg-transparent hover:outline-transparent">
-          关于我
-          <IconArrowForward />
-        </button>
-      </a>
-    </div>
-    <div class="flex-1"></div>
-    <div class="h-96 self-end">
-      <div
-        class="aspect-929/1693 h-full bg-base-content mask-(--home-front) mask-contain mask-bottom-right mask-no-repeat"
-        style={`--home-front: url(${webpHomeFront.src})`}
-        role="img"
-        aria-label="ShellWen 的卡通小熊形象，穿连帽卫衣和运动鞋，手插口袋眨眼微笑的手绘涂鸦风格头像"
-      ></div>
-    </div>
+    </figure>
   </article>
 </main>
+
+<style>
+  .home {
+    padding-block: 48px 32px;
+  }
+  .home-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+  .home-intro {
+    min-width: 0;
+  }
+  .home-name {
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(64px, 8vw, 112px);
+    font-weight: 800;
+    line-height: .98;
+    letter-spacing: -.055em;
+  }
+  .home-name > span:last-child {
+    color: var(--color-accent);
+  }
+  .home-pronunciation {
+    margin-top: 16px;
+    font-size: 14px;
+  }
+  .home-pronunciation > span {
+    margin-left: 8px;
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+  }
+  .home-description {
+    margin-top: 32px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.65;
+  }
+  .home-description > strong {
+    font-weight: inherit;
+    text-decoration: underline 2px var(--color-accent);
+    text-underline-offset: 6px;
+  }
+  .home-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 20px;
+    margin-top: 32px;
+  }
+  .home-reading {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .home-portrait {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    margin: 0;
+  }
+  .home-bear-frame {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    justify-items: center;
+    width: min(100%, 320px);
+  }
+  .home-bear-frame::before {
+    position: absolute;
+    z-index: -1;
+    inset: 32% 2% 5% 8%;
+    border-radius: 46% 54% 35% 48%;
+    background: var(--color-mint);
+    content: '';
+  }
+  :global([data-theme='dark']) .home-bear-frame::before {
+    opacity: .4;
+  }
+  .home-bear {
+    width: min(100%, 240px);
+    aspect-ratio: 929 / 1693;
+    background: var(--color-ink);
+    mask: var(--bear-image) center / contain no-repeat;
+  }
+  @media (min-width: 768px) {
+    .home-hero {
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+      align-items: end;
+    }
+  }
+  @media (max-width: 639px) {
+    .home {
+      padding-block: 24px 20px;
+    }
+    .home-hero {
+      gap: 24px;
+    }
+    .home-name {
+      font-size: clamp(56px, 16vw, 72px);
+    }
+    .home-pronunciation {
+      margin-top: 12px;
+    }
+    .home-description {
+      margin-top: 24px;
+      font-size: clamp(18px, 5vw, 20px);
+    }
+    .home-actions {
+      gap: 8px 16px;
+      margin-top: 24px;
+    }
+    .home-bear-frame {
+      width: min(100%, 240px);
+    }
+    .home-bear {
+      width: 140px;
+    }
+  }
+</style>

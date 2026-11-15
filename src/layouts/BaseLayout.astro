@@ -16,55 +16,32 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, pubDate } = A
 ---
 
 <!doctype html>
-<html lang="zh" class="scroll-smooth">
+<html lang="zh-CN" data-theme="light">
   <head>
     <BaseHead {title} {description} {image} {pubDate} />
     <ClientRouter />
   </head>
-  <body class="flex min-h-screen flex-col">
+  <body class="site-layout">
+    <a class="skip-link button button-primary" href="#main-content">跳到主要内容</a>
     <script>
       import { theme, type ThemeType } from '@/lib/store/theme'
 
-      function updateTheme(theme: ThemeType) {
-        if (theme.colorMode === 'dark') {
-          document.body.classList.add('dark')
-        } else {
-          document.body.classList.remove('dark')
-        }
-        document.body.setAttribute('data-theme', theme.name)
-
-        const themeColor = getComputedStyle(document.body).getPropertyValue('--color-neutral').trim()
-        if (!/^oklch\(.*\)$/.test(themeColor)) {
-          console.warn('The color value of --color-neutral must be in the oklch color space.')
-          return
-        }
-        const metaThemeColor = document.querySelector('meta[name=theme-color]')
-        if (metaThemeColor) {
-          if (metaThemeColor.getAttribute('content') !== themeColor) {
-            metaThemeColor.setAttribute('content', themeColor)
-          }
-        } else {
-          const newMetaThemeColor = document.createElement('meta')
-          newMetaThemeColor.setAttribute('name', 'theme-color')
-          newMetaThemeColor.setAttribute('content', themeColor)
-          document.head.appendChild(newMetaThemeColor)
-        }
+      function updateTheme(selected: ThemeType) {
+        if (!document.body.classList.contains('site-layout')) return
+        document.documentElement.dataset.theme = selected.colorMode
+        const canvas = getComputedStyle(document.documentElement).getPropertyValue('--color-canvas').trim()
+        if (canvas) document.querySelector('meta[name="theme-color"]')?.setAttribute('content', canvas)
       }
 
-      theme.subscribe((theme) => {
-        updateTheme(theme)
-      })
-
-      const domContentLoadedListener = () => {
-        updateTheme(theme.get())
-      }
-
-      document.addEventListener('astro:after-swap', domContentLoadedListener)
+      const unsubscribe = theme.subscribe(updateTheme)
+      const afterSwap = () => updateTheme(theme.get())
+      document.addEventListener('astro:after-swap', afterSwap)
 
       if (import.meta.hot) {
         import.meta.hot.accept()
         import.meta.hot.dispose(() => {
-          document.removeEventListener('astro:after-swap', domContentLoadedListener)
+          unsubscribe()
+          document.removeEventListener('astro:after-swap', afterSwap)
         })
       }
     </script>
@@ -80,9 +57,18 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, pubDate } = A
       }
     </script>
     <slot name="header" />
-    <div class="flex min-h-[50vh] w-full flex-1 flex-col">
+    <div class="site-body">
       <slot name="body" />
     </div>
     <slot name="footer" />
   </body>
 </html>
+
+<style>
+  @reference '../styles/global.css';
+
+  .site-layout { display: flex; min-height: 100dvh; flex-direction: column; }
+  .site-body { display: flex; min-height: 50vh; flex: 1; flex-direction: column; }
+  .skip-link { position: fixed; top: 12px; left: 20px; z-index: 100; transform: translateY(-200%); }
+  .skip-link:focus { transform: translateY(0); }
+</style>

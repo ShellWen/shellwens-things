@@ -3,42 +3,109 @@ import FormattedDate from '@/components/FormattedDate.astro'
 import { getReadingTime } from '@/lib/reading-time'
 import type { CollectionEntry } from 'astro:content'
 import type { HTMLAttributes } from 'astro/types'
-import IconCalendarToday from '~icons/material-symbols/calendar-today'
-import IconHistory from '~icons/material-symbols/history'
-import IconTimer from '~icons/material-symbols/timer'
+
 interface Props extends HTMLAttributes<'a'> {
   post: CollectionEntry<'post'>
 }
 
 const { post, class: className = '', ...rest } = Astro.props
-
 const minutesRead = getReadingTime(post.body)
 ---
 
-<a href={`/blog/${post.data.category.id}/${post.id}/`} class:list={['card h-full bg-base-200', className]} {...rest}>
-  <div class="card-body flex flex-col p-6">
-    <h4 class="mb-2 card-title line-clamp-2" transition:name={`title-${post.id}`}>
-      {post.data.title}
-    </h4>
-    <div class="grow">
-      <p class="m-0 line-clamp-3 text-sm opacity-80" transition:name={`description-${post.id}`}>
-        {post.data.description}
-      </p>
-    </div>
-
-    <div class="mt-4 flex flex-row flex-wrap gap-x-4 gap-y-2 text-sm opacity-60">
-      <div transition:name={`pub-date-${post.id}`} class="tooltip" data-tip="最初发布日期">
-        <IconCalendarToday class="inline-block" />
-        <FormattedDate date={post.data.pubDate} />
-      </div>
-      <div transition:name={`updated-date-${post.id}`} class="tooltip" data-tip="上次更新日期">
-        <IconHistory class="inline-block" />
-        <FormattedDate date={post.data.pubDate} />
-      </div>
-      <div transition:name={`minutes-read-${post.id}`} class="tooltip" data-tip="预计阅读时间">
-        <IconTimer class="inline-block" />
-        {minutesRead}
-      </div>
-    </div>
+<a href={`/blog/${post.data.category.id}/${post.id}/`} class:list={['post-card', className]} {...rest}>
+  <div class="post-card-dates">
+    <span transition:name={`pub-date-${post.id}`} title="最初发布日期">
+      <span class="sr-only">发布于 </span><FormattedDate date={post.data.pubDate} />
+    </span>
+    <span transition:name={`updated-date-${post.id}`} title="上次更新日期">
+      <span>更新 </span><FormattedDate date={post.data.updatedDate} />
+    </span>
   </div>
+  <h3 class="post-card-title" transition:name={`title-${post.id}`}>
+    {post.data.title} <span class="post-card-arrow" aria-hidden="true">↗</span>
+  </h3>
+  <span class="post-card-reading" transition:name={`minutes-read-${post.id}`} title="预计阅读时间">{minutesRead}</span>
 </a>
+
+<style>
+  .post-card {
+    display: flex;
+    min-width: 0;
+    height: 100%;
+    flex-direction: column;
+    align-items: start;
+    gap: 12px;
+    padding: 28px 8px;
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+  .post-card-dates {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 16px;
+    color: var(--color-muted);
+    font-size: 12px;
+    font-family: var(--font-mono);
+    line-height: 1.6;
+  }
+  .post-card-title {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+  .post-card:hover .post-card-title {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 5px;
+  }
+  .post-card-arrow {
+    color: var(--color-accent);
+    font-size: 16px;
+    white-space: nowrap;
+  }
+  .post-card-reading {
+    margin-top: auto;
+    color: var(--color-muted);
+    font-size: 14px;
+  }
+  .post-card.post-featured {
+    gap: 20px;
+    padding: 28px;
+    border-radius: var(--radius-panel);
+    background: var(--color-accent-soft);
+  }
+  .post-featured .post-card-title {
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 650;
+    line-height: 1.4;
+    letter-spacing: -.01em;
+  }
+  .post-featured .post-card-arrow {
+    display: none;
+  }
+  :global(.view-grid) .post-card {
+    padding: 24px;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-panel);
+    background: var(--color-surface);
+  }
+  @media (max-width: 639px) {
+    .post-card {
+      gap: 10px;
+      padding: 20px 0;
+    }
+    .post-card.post-featured,
+    :global(.view-grid) .post-card {
+      gap: 16px;
+      padding: 20px;
+    }
+    .post-card.post-featured {
+      gap: 12px;
+    }
+    .post-card-title {
+      font-size: 20px;
+    }
+  }
+</style>

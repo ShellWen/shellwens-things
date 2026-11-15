@@ -2,24 +2,33 @@
 import Header from '@/components/Header.astro'
 import Footer from '@/components/Footer.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
-import IconHome from '~icons/material-symbols/home'
 ---
 
-<BaseLayout>
+<BaseLayout title="404 · 页面未找到">
   <Header slot="header" />
-  <main class="flex flex-1 flex-col items-center justify-center gap-4" slot="body">
-    <p class="text-4xl font-bold">404 Not Found</p>
-    <p>
-      ShellWen 找不到你要的页面
-      <br />
-      也许你可以去首页逛逛？🤔
-    </p>
-    <a href="/">
-      <button class="btn btn-soft btn-primary">
-        <IconHome class="size-4" />
-        回到首页
-      </button>
-    </a>
+  <main id="main-content" class="page-shell not-found" slot="body">
+    <h1>404</h1>
+    <a class="button button-primary" href="/">回到首页 <span aria-hidden="true">→</span></a>
   </main>
   <Footer slot="footer" />
 </BaseLayout>
+
+<style>
+  .not-found {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 24px;
+    padding-block: 80px;
+  }
+  @media (max-width: 639px) {
+    .not-found {
+      padding-block: 48px;
+    }
+    .not-found h1 {
+      font-size: 32px;
+    }
+  }
+</style>
