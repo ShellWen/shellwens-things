@@ -2,7 +2,7 @@
 import homeFront from '@/assets/images/home_front.png'
 import { getImage } from 'astro:assets'
 
-const bear = await getImage({ src: homeFront, format: 'webp', quality: 80 })
+const bear = await getImage({ src: homeFront, format: 'avif', quality: 60, width: 480 })
 const colors = [
   { token: 'canvas', name: '奶白 / 深可可', use: '页面底色', light: '#FAF8F5', dark: '#241F1D' },
   { token: 'surface', name: '清透表面', use: '卡片、输入框与阅读区', light: '#FFFFFF', dark: '#302925' },
